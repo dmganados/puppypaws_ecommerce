@@ -13,7 +13,7 @@ function AppNavBar() {
 					</form>*/}
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse>
-						<Nav classname="components">
+						<Nav classname="ml-auto">
 							<Nav.Link to="/" classname="nav-link">Home</Nav.Link>
 							<Nav.Link>Catalog</Nav.Link>
 							<Nav.Link>Register</Nav.Link>
