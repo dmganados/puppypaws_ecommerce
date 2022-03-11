@@ -1,4 +1,16 @@
+body {
+  background-color: ##F7F5FB;
+}
+
 .cardHighlight {
   min-height: 100%;
-  background-color: #F7F5FB !important;
+  background-color: #084887 !important;
+}
+
+#navbar {
+  background-color: #F58A07;
+}
+
+#components {
+  text-align: ;
 }

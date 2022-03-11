@@ -1,8 +1,8 @@
-import Theme from '../../components/Theme'
+import Theme from './../components/Themes';
 
 export default function Home() {
 	return(
-		<div>
+		<div>			
 			<Theme />
 		</div>
 	)
