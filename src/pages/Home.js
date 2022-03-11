@@ -1,8 +1,10 @@
 import Theme from './../components/Themes';
+import Banner from './../components/Banner'
 
 export default function Home() {
 	return(
-		<div>			
+		<div>
+			<Banner />		
 			<Theme />
 		</div>
 	)
