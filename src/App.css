@@ -1,3 +1,5 @@
+@import "react-slideshow-image/dist/style.css"
+
 body {
   background-color: ##F7F5FB;
 }
@@ -15,3 +17,17 @@ body {
   display: grid;
   grid-column-start: 4;
 }
+
+.banner {
+  width: 100%;
+  height: auto;
+}
+
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 350px;
+}
+

@@ -1,10 +1,16 @@
-import {Row, Col} from 'react-bootstrap';
-// import apparel from '../../public/banner/apparel.png';
 
-export default function Banner() {
-	
+// import {Row, Col} from 'react-bootstrap';
+// import { Slide } from 'react-slideshow-image';
+import apparel from './banner/apparel.png';
+import nike from './banner/nike_shoes.jpg';
 
-	return <img src={"../../public/logo192.png"} alt="" />
 
-	
-}
+export default function Banner() {	
+
+	return (
+		<div>				
+			<img src={apparel} className="banner" alt="Apparel" />
+			<img src={nike} className="banner" alt="Nike Shoes" />
+		</div>
+	)	
+};
