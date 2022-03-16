@@ -16,31 +16,31 @@ import running from './banner/nike_running_shoes.jpg';
 
 export default function Banner () {
 	return (
-		<div className="banner">
+		<div className="slick-arrow">
 			<Slide easing="ease">				
 				<div className="img-fluid each-slide" >
-					<img src={apparel} className="img-wrap banner" alt="" />
+					<img src={apparel} className="banner" alt="" />
 				</div>
 				<div className="img-fluid each-slide" >
-					<img src={nike} className="img-wrap banner" alt="" />
+					<img src={nike} className="banner" alt="" />
 				</div>
 				<div className="img-fluid each-slide" >
-					<img src={gadgets} className="img-wrap banner" alt="" />
+					<img src={gadgets} className="banner" alt="" />
 				</div>
 				<div className="img-fluid each-slide" >
-					<img src={man} className="img-wrap banner" alt="" />
+					<img src={man} className="banner" alt="" />
 				</div>	
 				<div className="img-fluid each-slide" >
-					<img src={woman} className="img-wrap banner" alt="" />
+					<img src={woman} className="banner" alt="" />
 				</div>
 				<div className="img-fluid each-slide" >
-					<img src={gymn} className="img-wrap banner" alt="" />
+					<img src={gymn} className="banner" alt="" />
 				</div>
 				<div className="img-fluid each-slide" >
-					<img src={running} className="img-wrap banner" alt="" />
+					<img src={running} className="banner" alt="" />
 				</div>	
 				<div className="img-fluid each-slide" >
-					<img src={cycling} className="img-wrap banner" alt="" />
+					<img src={cycling} className="banner" alt="" />
 				</div>	
 			</Slide>
 		</div>
