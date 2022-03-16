@@ -1,16 +1,29 @@
 
 // import {Row, Col} from 'react-bootstrap';
-// import { Slide } from 'react-slideshow-image';
+import React from 'react';
+import { Slide } from 'react-slideshow-image';
+import Image from 'react-bootstrap/Image';
+import 'react-slideshow-image/dist/styles.css';
 import apparel from './banner/apparel.png';
 import nike from './banner/nike_shoes.jpg';
 
 
-export default function Banner() {	
-
+export default function Banner () {
 	return (
-		<div>				
-			<img src={apparel} className="banner" alt="Apparel" />
-			<img src={nike} className="banner" alt="Nike Shoes" />
+		<div>
+			<Slide easing="ease">
+				<div className="each-slide img-fluid">
+					<div style={{'backgroundImage': `url(${apparel})`}}>
+						
+					</div>
+				</div>
+				<div className="each-slide img-fluid">
+					<div style={{'backgroundImage': `url(${nike})`}}>
+						
+					</div>
+				</div>
+			</Slide>
 		</div>
-	)	
+	)
 };
+
