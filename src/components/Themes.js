@@ -12,7 +12,7 @@ export default function Theme() {
 					<Card className="p-4 cardHighlight">
 						<Card.Body>
 							<Card.Img src={phone} className="img-fluid mb-2 mr-2 gadgetImage1" />
-							<Card.Img src={vReality} className="img-fluid mb-2 d-none d-md-none d-lg-inline gadgetImage2" />
+							<Card.Img src={vReality} className="img-fluid mb-2 d-none d-sm-none d-md-none d-lg-inline gadgetImage2"  />
 							<Card.Img src={headphones} className="img-fluid d-none d-md-inline d-lg-block mr-2 gadgetImage3" />
 							<Card.Img src={airpods} className="img-fluid d-none d-md-none d-lg-inline gadgetImage4" />
 
