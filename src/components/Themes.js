@@ -1,4 +1,4 @@
-import {Row, Col, Card, Container, Image} from 'react-bootstrap';
+import {Row, Col, Card, Container} from 'react-bootstrap';
 import phone from './banner/phone1.png'
 import vReality from './banner/vr_glass.jpg'
 import headphones from './banner/headphones.jpg'
@@ -11,12 +11,14 @@ export default function Theme() {
 				<Col xs={12} md={4}>
 					<Card className="p-4 cardHighlight">
 						<Card.Body>
-							<Card.Img src={phone} className="img-fluid mb-2 mr-2 gadgetImage1" />
-							<Card.Img src={vReality} className="img-fluid mb-2 d-none d-sm-none d-md-none d-lg-inline gadgetImage2"  />
-							<Card.Img src={headphones} className="img-fluid d-none d-md-inline d-lg-block mr-2 gadgetImage3" />
-							<Card.Img src={airpods} className="img-fluid d-none d-md-none d-lg-inline gadgetImage4" />
+							<Card.Img src={phone} className="img-fluid mb-2 mr-2 p-2 d-inline gadgetImage1" />
+							<Card.Img src={vReality} className="img-fluid mb-2 d-none d-sm-none d-md-block d-lg-inline gadgetImage2" width="150" />
+							<Col className="d-block">
+							<Card.Img src={headphones} className="img-fluid gadgetImage3" />
+							<Card.Img src={airpods} className="img-fluid gadgetImage4" />
+							</Col>
 
-							<Card.Title className="">Phones and Gadgets</Card.Title>
+							<Card.Title className="pt-4">Phones and Gadgets</Card.Title>
 							<Card.Text >
 								See more		
 							</Card.Text>
