@@ -15,27 +15,32 @@
   width: 60% !important;
   height: auto !important;
   margin-left: -100px !important; 
-  object-fit: cover !important; 
+ 
 }
 
 .gadgetImage2 {
-  width: 60% !important;
+  width: 67% !important;
   height: auto !important;
   margin-right: -100px !important;  
 
 }
 
 .gadgetImage3 {
-  width: 60% !important;
+   width: 61% !important;
   height: auto !important; 
-  margin-left: -30px !important;
+  margin-left: -60px !important;
 }
 
-.gadgetImage4 {
-  width: 60% !important;
+.gadgetImage4 { 
+  width: 69% !important;
   height: auto !important; 
-  margin-left: auto !important;
-  margin-top: auto !important;
+  margin-right: -60px !important;
+}
+
+.col2Gadget:after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 /*.cardColor{

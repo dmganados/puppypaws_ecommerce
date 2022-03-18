@@ -1,8 +1,6 @@
 
-// import {Row, Col} from 'react-bootstrap';
 import React from 'react';
 import { Slide } from 'react-slideshow-image';
-// import Image from 'react-bootstrap/Image';
 import 'react-slideshow-image/dist/styles.css';
 import apparel from './banner/apparel.png';
 import nike from './banner/nike_shoes.jpg';
