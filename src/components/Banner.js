@@ -3,7 +3,7 @@ import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import apparel from './banner/apparel.png';
-import nike from './banner/nike_shoes.jpg';
+import nike from './banner/nike_shoes1.png';
 import woman from './banner/apparel_woman1.png';
 import gadgets from './banner/gadgets1.png';
 import man from './banner/men_apparel.png';

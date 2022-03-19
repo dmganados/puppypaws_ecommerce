@@ -8,7 +8,7 @@ export default function Theme() {
 	return(
 		<Container>
 			<Row className="p-2 mb-5 d-flex align-items-lg-start align-items-md-start align-items-sm-end cardPosition">
-				<Col xs={12} md={4} className="mb-4 mt-lg-0 mt-sm-5 align-items-end">
+				<Col xs={12} md={4} className="mb-4 mt-lg-0 mt-md-0 mt-sm-5 align-items-end">
 					<Card className="p-4 cardHighlight">
 						<Card.Body>
 							<Col>

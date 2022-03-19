@@ -9,8 +9,27 @@
 
 .cardPosition {   
   position: relative;
-  top: -275px !important; 
+  /*top: -80px !important; */
+
   /*font-family: 'Alegreya Sans', sans-serif;*/
+}
+
+@media only screen and (max-width: 600px) {
+  .cardPosition {
+    margin-top: 10px !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .cardPosition {
+    margin-top: -80px !important;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .cardPosition {
+    margin-top: -80px !important;
+  }
 }
 
 .gadgetImage1 {
@@ -71,8 +90,27 @@
   background-size: cover;
 }
 
+.each-slide {
+  height: 700px !important;
+}
+
 @media only screen and (max-width: 600px) {
-  .cardPosition {
-    margin-top: 220px !important;
+  .each-slide {
+    width: 100% !important;
+    height: 150px !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .each-slide {
+    width: 100% !important;
+    height: 400px !important;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .each-slide {
+    width: 100% !important;
+    height: 700px !important;
   }
 }
