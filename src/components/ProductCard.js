@@ -15,7 +15,6 @@ export default function ProductCard({productProp}) {
 					<Card.Text>
 						Price: {productProp.price}
 					</Card.Text>
-
 				</Card.Body>
 			</Card>
 		</Col>
