@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&family=Merriweather+Sans&display=swap');
 
-
 .cardHighlight {  
   min-height: 100% !important;
   text-align: center;
@@ -28,7 +27,7 @@
 
 @media only screen and (min-width: 992px) {
   .cardPosition {
-    margin-top: -80px !important;
+    margin-top: -60px !important;
   }
 }
 
@@ -113,4 +112,72 @@
     width: 100% !important;
     height: 700px !important;
   }
+}
+
+#regCard {
+  width: 43% !important;
+  background-color: #F9AB55;
+  font-size: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  #regCard {
+    width: 100% !important;
+    padding-left: 10% !important;
+    padding-right: 10% !important;
+    margin: 20px !important;
+
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #regCard {
+    width: 50% !important;
+    /*padding-left: 10% !important;*/
+    /*padding-right: 10% !important;*/
+    /*margin: 20px !important;*/
+
+  }
+}
+
+.regstrBtn1 {
+  width: 600px !important;
+  background-color: #084887 !important;
+  font-size: 100% !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .regstrBtn1 {
+    width: 90% !important;
+    margin-top: -190px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .regstrBtn1 {
+    width: 100% !important;
+    margin-top: auto;
+  }
+}
+
+.regstrBtn2 {
+  width: 600px !important;
+  background-color: #084887 !important;
+  font-size: 100% !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .regstrBtn2 {
+    width: 90% !important;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .regstrBtn2 {
+    width: 100% !important;
+  }
+}
+
+.register {
+  margin-top: 200px !important;  
 }

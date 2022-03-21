@@ -8,7 +8,8 @@ export default function Catalog() {
 	const [productCollection, setProductCollection] = useState([]);
 
 	useEffect(() => {
-		fetch('https://limitless-brushlands-90925.herokuapp.com/products/all-active').then(res => res.json()).then(productData => {			
+		fetch('https://limitless-brushlands-90925.herokuapp.com/products/all-active').then(res => res.json()).then(productData => {	
+			// console.log(productData)		
 			setProductCollection(productData.map(products => {
 				return(
 					<ProductCard key={products._id}	productProp={products} />
@@ -19,8 +20,7 @@ export default function Catalog() {
 	return(
 		<>
 			<Container>
-				<Row>
-					<h1>Hello</h1>
+				<Row>					
 					{productCollection}
 				</Row>
 			</Container>
