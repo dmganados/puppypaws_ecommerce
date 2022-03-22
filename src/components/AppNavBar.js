@@ -14,7 +14,7 @@ function AppNavBar() {
 							<Nav.Link href="/catalog"className="nav-link d-block d-sm-inline d-md-block d-lg-inline navOptions">Catalog</Nav.Link>
 							<Nav.Link href="/"className="nav-link d-block d-sm-inline d-md-block d-lg-inline navOptions">Manage Product</Nav.Link>
 							<Nav.Link href="/register" className="nav-link d-block d-sm-inline d-md-block d-lg-inline navOptions">Register</Nav.Link>
-							<Nav.Link className="nav-link d-block d-sm-inline d-md-block d-lg-inline navOptions">Login</Nav.Link>			
+							<Nav.Link href="/login" className="nav-link d-block d-sm-inline d-md-block d-lg-inline navOptions">Login</Nav.Link>			
 						</Nav>						
 					</Navbar.Collapse>
 			</Container>
