@@ -1,6 +1,7 @@
-import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap';
-import UserContext from '../UserContext';
+
 import { useState, useEffect, useContext } from 'react';
+import UserContext from '../UserContext';
+import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { Navigate } from 'react-router-dom';
 
@@ -85,7 +86,7 @@ export default function Login() {
 			<h3 className="d-flex justify-content-center">Login to your Account</h3>
 
 			<Card className="d-block mt-lg-5 p-4 loginCard">
-				<Form>
+				<Form onSubmit={e => loginUser(e)}>
 					{/*Email Address Field*/}
 					<Form.Group>
 						<Form.Label>Email:</Form.Label>
@@ -93,7 +94,15 @@ export default function Login() {
 						type="email"
 						placeholder="Enter Email Here"
 						required
+						value={email}
+						onChange={event => {setEmail(event.target.value)}}
 						/>
+						{
+							isValid ?
+								<h6 className="text-success">Email is Valid</h6>
+							:
+								<h6 className="text-mute">Email is Invalid</h6>
+						}
 					</Form.Group>
 
 					{/*Password Field*/}
@@ -103,14 +112,25 @@ export default function Login() {
 						type="password"
 						placeholder="Enter Password Here"
 						required
+						value={password}
+						onChange={e => {setPassword(e.target.value)}}
 						/>
 					</Form.Group>
 
 					{/*Button*/}
-					<Button
-					className="btn-block loginBtn"
-					type="submit"
-					>Login</Button>
+					{
+						isActive ?
+							<Button
+							className="btn-block loginBtn"
+							type="submit"
+							>Login</Button>
+						:
+							<Button
+							className="btn-block"
+							type="secondary"
+							>Login</Button>
+					}
+					
 				</Form>
 			</Card>	
 		</Container>
