@@ -1,11 +1,16 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import UserContext from '../UserContext';
+import { Navigate } from 'react-router-dom';
 
 
 
 export default function Login() {
+
+	// const { user, setUser } = useContext(UserContext);
+	// console.log(user);
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -30,7 +35,7 @@ export default function Login() {
 		}
 	})
 
-	const loginUser = (event) => {
+	const loginUser = async (event) => {
 		event.preventDefault();
 
 		fetch('https://limitless-brushlands-90925.herokuapp.com/users/user-token', {
@@ -42,11 +47,13 @@ export default function Login() {
 				email: email,
 				password: password
 			})
-		}).then(res => res.json()).then(jsonData => {
+		}).then(res => res.json())
+		.then(jsonData => {
 			let token = jsonData.accessToken;
-			// console.log(typeof token);
+			// console.log(token);
 
 			if (typeof token !== 'undefined') {
+				localStorage.setItem('accessToken', token)
 				Swal.fire({
 					icon: 'success',
 					title: 'Login Successful',
@@ -60,7 +67,7 @@ export default function Login() {
 				})
 			}
 		})		
-	}
+	};
 
 	return (	
 		<>
@@ -68,7 +75,7 @@ export default function Login() {
 			<h3 className="d-flex justify-content-center">Login to your Account</h3>
 
 			<Card className="d-block mt-lg-5 p-4 loginCard">
-				<Form onSubmit={e => loginUser(e)}>
+				<Form onSubmit={event => loginUser(event)}>
 					{/*Email Address Field*/}
 					<Form.Group>
 						<Form.Label>Email:</Form.Label>
