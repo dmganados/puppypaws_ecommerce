@@ -1,10 +1,12 @@
-import { useState, useEffect, useContent } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import UserContext from '../UserContext';
 
 export default function Register() {
 
+	// const { user } = useContext(UserContext);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
@@ -66,7 +68,7 @@ export default function Register() {
 				mobileNo: mobileNo
 			})
 		}).then(result => result.json()).then(resultData => {
-			console.log(resultData);
+			// console.log(resultData);
 			if (resultData.email) {
 				return true;
 			} else {
@@ -101,6 +103,10 @@ export default function Register() {
 	};
 
 	return(
+
+		
+		
+		<>
 		<Container >
 			<h3 className="text-center" >Create your Account</h3>
 			<Form className="p-1 mt-2" onSubmit={e => registerUser(e)}>		
@@ -219,5 +225,6 @@ export default function Register() {
 			</Row>
 			</Form>	
 		</Container>
+		</>
 	)
 };

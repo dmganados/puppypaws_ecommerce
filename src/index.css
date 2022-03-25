@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.cardHighlight {  
+  min-height: 100% !important;  
+  background-color: #909CC2 !important;  
+}
