@@ -13,35 +13,76 @@ export default function Register() {
 	const [password2, setPassword2] = useState('');
 	const [isActive, setIsActive] = useState(false);
 	const [isMatched, setIsMatched] = useState(false);
+	const [isMobileValid, setIsMobileValid] = useState(false);
+	const [isAllowed, setIsAllowed] = useState(false);
 
 	useEffect(() => {
+
 		if (
-			(firstName !== '' && lastName !== '' && email !== '' && mobileNo !=='' && password1 !== '' && password2 !== '') && (password1 === password2) && (mobileNo.length === 11)
-			) 
+			mobileNo.length === 11
+		) 
 		{
-			console.log('You are allowed to create an account')
-			setIsActive(true);
+			setIsMobileValid(true);
+			if (
+				password1 === password2 && password1 !== '' && password2 !== ''
+			) {
+				setIsMatched(true);
+				if (firstName !== '' && lastName !== '' && email !== '') {
+						setIsAllowed(true);
+						setIsActive(true);
+				} else {
+					setIsAllowed(false);
+					setIsActive(false);
+				}
+			} else {
+				setIsMatched(false);
+				setIsAllowed(false);
+				setIsActive(false);
+			}
+		} 
+		else if (password1 !== '' && password1 === password2) {
 			setIsMatched(true);
-		} else {
-			console.log('Not allowed to create an account')
-			setIsActive(false);
+		}
+		else {
+			setIsMobileValid(false);
 			setIsMatched(false);
-		};
-	});
+			setIsAllowed(false);
+			setIsActive(false);
+
+		}
+		// if (
+		// 	(firstName !== '' && lastName !== '' && email !== '' && mobileNo !=='' && password1 !== '' && password2 !== '') && (password1 === password2) && (mobileNo.length === 11)
+		// 	) 
+		// {
+		// 	console.log('You are allowed to create an account')
+		// 	setIsActive(true);
+		// 	setIsMatched(true);
+		// } else {
+		// 	console.log('Not allowed to create an account')
+		// 	setIsActive(false);
+		// 	setIsMatched(false);
+		// };
+	},[mobileNo, password1, password2, firstName, lastName, email]);
 
 
-	const registerUser = (submit) => {
+
+
+	const registerUser = async (submit) => {
 		submit.preventDefault()
 
-		
+		setFirstName('');
+		setLastName('');
+		setEmail('');
+		setMobileNo('');
+		setPassword1('');
+		setPassword2('');
 
-		return (
-			Swal.fire({
-				icon: 'success',
-				title: 'Registration Successful',
-				text: 'Thank you for creating an account'
-			})
-		);
+		await Swal.fire({
+			icon: 'success',
+			title: 'Registration Successful',
+			text: 'Thank you for creating an account'
+		})
+		window.location.href = "/login";
 	};
 
 	return(
@@ -60,7 +101,6 @@ export default function Register() {
 						required
 						value={firstName}
 						onChange={event => setFirstName(event.target.value)}
-
 						 />						
 					</Form.Group>
 					
@@ -73,7 +113,6 @@ export default function Register() {
 						required
 						value={lastName}
 						onChange={e => setLastName(e.target.value)}
-
 						 />
 					</Form.Group>			
 
@@ -86,7 +125,6 @@ export default function Register() {
 						required
 						value={email}
 						onChange={e => setEmail(e.target.value)}
-
 						 />
 					</Form.Group>
 					
@@ -99,10 +137,16 @@ export default function Register() {
 						required
 						value={mobileNo}
 						onChange={e => setMobileNo(e.target.value)}
-
 						 />
-					</Form.Group>				
-					
+					</Form.Group>
+					{
+						isMobileValid ?
+							<span className="text-success">Mobile no. is valid!</span>
+						:
+							<span className="text-danger">Mobile no. should be 11 digits!</span>
+					}
+
+
 					{/*Password Field*/}
 					<Form.Group>
 						<Form.Label>Password:</Form.Label>
@@ -114,7 +158,7 @@ export default function Register() {
 						onChange={e => setPassword1(e.target.value)}
 
 						 />
-						 <p>At least 8 characters in alpha numeric case</p>
+						 <span>At least 8 characters in alpha numeric case</span>
 					</Form.Group>
 				
 					{/*Confirm Password Field*/}				
@@ -128,7 +172,14 @@ export default function Register() {
 						onChange={e => setPassword2(e.target.value)}
 
 						 />						 
-					</Form.Group>				
+					</Form.Group>
+					{
+						isMatched ?
+							<span className="text-success">Passwords Matched!</span>
+						:
+							<span className="text-danger">Passwords should match!</span>
+					}	
+
 			</Card>
 				{/*Button*/}	
 				<Col className="p-2 ml-4 register">
