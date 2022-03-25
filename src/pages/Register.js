@@ -14,75 +14,90 @@ export default function Register() {
 	const [isActive, setIsActive] = useState(false);
 	const [isMatched, setIsMatched] = useState(false);
 	const [isMobileValid, setIsMobileValid] = useState(false);
-	const [isAllowed, setIsAllowed] = useState(false);
+	const [isPassValid, setIsPassValid] = useState(false);
 
 	useEffect(() => {
 
-		if (
-			mobileNo.length === 11
-		) 
-		{
+		if (mobileNo.length === 11) {
 			setIsMobileValid(true);
-			if (
-				password1 === password2 && password1 !== '' && password2 !== ''
-			) {
-				setIsMatched(true);
-				if (firstName !== '' && lastName !== '' && email !== '') {
-						setIsAllowed(true);
+			if (password1.length >= 8) {
+				setIsPassValid(true);
+				if (password1 === password2 && password1 !== '' && password2 !== '') {
+					setIsMatched(true);
+					if (firstName !== '' && lastName !== '' && email !== '') {
 						setIsActive(true);
+					} else {
+						setIsActive(false);
+					}
 				} else {
-					setIsAllowed(false);
 					setIsActive(false);
+					setIsMatched(false);
 				}
 			} else {
-				setIsMatched(false);
-				setIsAllowed(false);
 				setIsActive(false);
+				setIsMatched(false);
+				setIsPassValid(false);
 			}
-		} 
-		else if (password1 !== '' && password1 === password2) {
-			setIsMatched(true);
-		}
-		else {
-			setIsMobileValid(false);
+		} else if (password1 !=='' && password1 === password2) {
 			setIsMatched(false);
-			setIsAllowed(false);
+		} else {
 			setIsActive(false);
-
-		}
-		// if (
-		// 	(firstName !== '' && lastName !== '' && email !== '' && mobileNo !=='' && password1 !== '' && password2 !== '') && (password1 === password2) && (mobileNo.length === 11)
-		// 	) 
-		// {
-		// 	console.log('You are allowed to create an account')
-		// 	setIsActive(true);
-		// 	setIsMatched(true);
-		// } else {
-		// 	console.log('Not allowed to create an account')
-		// 	setIsActive(false);
-		// 	setIsMatched(false);
-		// };
+			setIsMatched(false);
+			setIsPassValid(false);
+			setIsMatched(false);
+		}	
 	},[mobileNo, password1, password2, firstName, lastName, email]);
-
 
 
 
 	const registerUser = async (submit) => {
 		submit.preventDefault()
 
-		setFirstName('');
-		setLastName('');
-		setEmail('');
-		setMobileNo('');
-		setPassword1('');
-		setPassword2('');
-
-		await Swal.fire({
-			icon: 'success',
-			title: 'Registration Successful',
-			text: 'Thank you for creating an account'
+		const isRegistered = await fetch('https://glacial-everglades-19835.herokuapp.com/users/register', {
+			method: 'POST',
+			headers: {
+				'Content-Type' : 'application/json'
+			},
+			body: JSON.stringify({
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+				password: password1,
+				mobileNo: mobileNo
+			})
+		}).then(result => result.json()).then(resultData => {
+			console.log(resultData);
+			if (resultData.email) {
+				return true;
+			} else {
+				return false;
+			}
 		})
-		window.location.href = "/login";
+
+		if (isRegistered) {
+			await Swal.fire({
+				icon: 'success',
+				title: 'Registration Successful',
+				text: 'Thank you for creating an account'
+			})
+
+			setFirstName('');
+			setLastName('');
+			setEmail('');
+			setMobileNo('');
+			setPassword1('');
+			setPassword2('');
+
+			
+			window.location.href = "/login";
+
+		} else {
+			await Swal.fire({
+				icon: 'error',
+				title: 'Something Went Wrong',
+				text: 'Try Again Later'
+			});
+		}		
 	};
 
 	return(
@@ -138,14 +153,14 @@ export default function Register() {
 						value={mobileNo}
 						onChange={e => setMobileNo(e.target.value)}
 						 />
+						 {
+						 	isMobileValid ?
+						 		<span className="text-success">Mobile no. is valid!</span>
+						 	:
+						 		<span>Mobile no. should be 11 digits!</span>
+						 }
 					</Form.Group>
-					{
-						isMobileValid ?
-							<span className="text-success">Mobile no. is valid!</span>
-						:
-							<span className="text-danger">Mobile no. should be 11 digits!</span>
-					}
-
+					
 
 					{/*Password Field*/}
 					<Form.Group>
@@ -156,10 +171,15 @@ export default function Register() {
 						required
 						value={password1}
 						onChange={e => setPassword1(e.target.value)}
-
 						 />
-						 <span>At least 8 characters in alpha numeric case</span>
+						{
+							isPassValid ?
+								<span className="text-success">Password is valid</span>
+							:
+								<span>At least 8 characters in alpha numeric case</span>
+						}	
 					</Form.Group>
+					
 				
 					{/*Confirm Password Field*/}				
 					<Form.Group>
@@ -171,21 +191,31 @@ export default function Register() {
 						value={password2}
 						onChange={e => setPassword2(e.target.value)}
 
-						 />						 
+						 />	
+						 {
+						 	isMatched ?
+						 		<span className="text-success">Passwords Matched!</span>
+						 	:
+						 		<span>Passwords should match!</span>
+						 }						 
 					</Form.Group>
-					{
-						isMatched ?
-							<span className="text-success">Passwords Matched!</span>
-						:
-							<span className="text-danger">Passwords should match!</span>
-					}	
-
 			</Card>
+
 				{/*Button*/}	
-				<Col className="p-2 ml-4 register">
-				<Button className="d-block p-2 mb-2 regstrBtn1" type="submit">Register as a Buyer</Button>
-				<Button className="p-2 mt-2 regstrBtn2" type="submit">Register as a Seller</Button>
-				</Col>
+				{
+					isActive ?
+						<Col className="p-2 ml-4 register">
+						<Button className="d-block p-2 mb-2 regstrBtn1" type="submit">Register as a Buyer</Button>
+						<Button className="p-2 mt-2 regstrBtn2" type="submit">Register as a Seller</Button>
+						</Col>
+					:
+
+						<Col className="p-2 ml-4 register">
+						<Button className="d-block p-2 mb-2 regstrBtn1" disabled>Register as a Buyer</Button>
+						<Button className="p-2 mt-2 regstrBtn2" disabled>Register as a Seller</Button>
+						</Col>
+				}
+				
 			</Row>
 			</Form>	
 		</Container>
