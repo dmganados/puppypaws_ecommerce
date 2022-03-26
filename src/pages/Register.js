@@ -91,7 +91,7 @@ export default function Register() {
 			setPassword2('');
 
 			
-			window.location.href = "/login";
+			// window.location.href = "/login";
 
 		} else {
 			await Swal.fire({
