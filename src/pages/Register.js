@@ -6,7 +6,7 @@ import UserContext from '../UserContext';
 
 export default function Register() {
 
-	// const { user } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
@@ -91,7 +91,7 @@ export default function Register() {
 			setPassword2('');
 
 			
-			// window.location.href = "/login";
+			window.location.href = "/login";
 
 		} else {
 			await Swal.fire({
@@ -104,8 +104,9 @@ export default function Register() {
 
 	return(
 
-		
-		
+		user.id ?
+			<Navigate to="/" replace={true} />
+		:		
 		<>
 		<Container >
 			<h3 className="text-center" >Create your Account</h3>

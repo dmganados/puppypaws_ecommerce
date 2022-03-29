@@ -19,7 +19,7 @@ export default function Login() {
 	const [isValid, setIsValid] = useState(false);
 
 	useEffect(() => {
-		if (dns !== -1 && addressSign !== -1) {
+		if (dns !== -1 && addressSign !== -1 ) {
 			setIsValid(true);
 			if (password !== '') {
 				setIsActive(true);
@@ -30,60 +30,40 @@ export default function Login() {
 			setIsValid(false);
 			setIsActive(false);
 		}
-	},[email, password, addressSign, dns])
+	},[email, password, addressSign, dns])	
 
-	const loginUser = async (eventSubmit) => {
+	const userToken = async (eventSubmit) => {
 		eventSubmit.preventDefault();
-
-		fetch("https://limitless-brushlands-90925.herokuapp.com/users/user-token", {
-			method: "POST",
+		// console.log(eventSubmit)
+	
+		fetch('https://limitless-brushlands-90925.herokuapp.com/users/token', {
+			method: 'POST',
 			headers: {
-				"Content-Type": "application/json"
+				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
 				email: email,
 				password: password
 			})
-		}).then(res => res.json())
-		.then(jsonData => {		
-			let token = jsonData.accessToken;			
-			console.log(token);		
+		}).then(res => res.json()).then(dataNaJson => {
+			let token = dataNaJson.accessToken;
+			console.log(token);
 
-			if (typeof token == 'string') {	
-				localStorage.setItem('accessToken', token)	
-
-				fetch('https://limitless-brushlands-90925.herokuapp.com/users/users', {
-					headers: {
-						Authorization: `Bearer ${token}`
-					}
-				}).then(res => res.json()).json(convertedData => {
-
-					if (typeof convertedData._id !== "undefined") {
-						setUser({
-							id: convertedData._id,
-							isAdmin: convertedData.isAdmin
-						});
-						Swal.fire({
-						 	icon: 'success',
-						 	title: 'Login Successful',
-						 	text: 'Welcome'
-						 })						
-					} else {
-						setUser({
-							id: null,
-							isAdmin: null
-						})
-					}
-				})							
+			if (typeof token !== 'undefined') {
+				Swal.fire({
+				 	icon: 'success',
+				 	title: 'Login Successful',
+				 	text: 'Welcome'
+				 })	
 			} else {
 				Swal.fire({
 				 	icon: "error",
 				 	title: "Check your Credentials",
-				 	text: "Email doesn't correspond to an account"				
+				 	text: "Email doesn't correspond to an account"			
 				 })
-				// console.log("Email doesn't correspond to an account")
-			}		
+			}
 		})		
+	
 	};		
 
 	return (
@@ -93,7 +73,7 @@ export default function Login() {
 		<>
 		<Container >
 			<h3 className="d-flex justify-content-center">Login to your Account</h3>
-			<form onSubmit = {event => loginUser(event)}>
+			<Form onSubmit={e => userToken(e)} >
 				<Card className="d-block mt-lg-5 p-4 loginCard">
 					{/*Email Address Field*/}
 					<Form.Group>
@@ -128,6 +108,7 @@ export default function Login() {
 					</Form.Group>
 
 					{/*Button*/}
+
 					{
 						isActive ?
 							<Button
@@ -142,7 +123,7 @@ export default function Login() {
 					}						
 				
 				</Card>	
-			</form>
+			</Form>
 		</Container>
 		</>
 	);

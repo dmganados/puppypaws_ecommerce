@@ -54,7 +54,7 @@ function App() {
 
   return (
     
-    <UserProvider value={{user, setUser, unsetUser}} >
+      <UserProvider value={{user, setUser}} >
       <Router>
         <AppNavBar />
           <Routes>
@@ -65,7 +65,6 @@ function App() {
           </Routes>
       </Router>
       </UserProvider>
-      
   );
 };
 
