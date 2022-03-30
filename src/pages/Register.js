@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
-import PhoneInput from 'react-phone-number-input'
+import PhoneInput from 'react-phone-input-2'
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
+import 'react-phone-input-2/lib/style.css'
 
 export default function Register() {
 
@@ -151,20 +152,14 @@ export default function Register() {
 					
 					{/*Mobile Number Field*/}
 					<Form.Group>
-						<Form.Label>Mobile Number:</Form.Label>
+						<Form.Label>Phone:</Form.Label>
 						<PhoneInput
-						type="number"
-						placeholder="e.g: 09123456789"
+						className="phone"
+						country={'ph'}				
 						required
 						value={mobileNo}
-						onChange={e => setMobileNo(e.target.value)}
-						 />
-						 {
-						 	isMobileValid ?
-						 		<span className="text-success">Mobile no. is valid!</span>
-						 	:
-						 		<span>Mobile no. should be 11 digits!</span>
-						 }
+						onChange={setMobileNo}
+						 />						
 					</Form.Group>
 					
 
