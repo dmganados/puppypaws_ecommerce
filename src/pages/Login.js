@@ -47,14 +47,35 @@ export default function Login() {
 			})
 		}).then(res => res.json()).then(dataNaJson => {
 			let token = dataNaJson.accessToken;
-			console.log(token);
-
+			
 			if (typeof token !== 'undefined') {
-				Swal.fire({
-				 	icon: 'success',
-				 	title: 'Login Successful',
-				 	text: 'Welcome'
-				 })	
+				localStorage.setItem('accessToken', token)
+
+				fetch('https://limitless-brushlands-90925.herokuapp.com/users/users', {
+					headers: {
+						Authorization: `Bearer ${token}`
+					}
+				}).then(res => res.json()).then(convertedData => {
+					// console.log(convertedData)
+
+					if (typeof convertedData !== 'undefined') {
+						setUser({
+							id: convertedData._id,
+							isAdmin: convertedData.isAdmin
+						});
+						Swal.fire({
+						 	icon: 'success',
+						 	title: 'Login Successful',
+						 	text: 'Welcome'
+						 })	
+					} else {
+						setUser({
+							id: null,
+							isAdmin: null
+						})
+					}
+				})
+				
 			} else {
 				Swal.fire({
 				 	icon: "error",

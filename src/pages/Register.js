@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
+import PhoneInput from 'react-phone-number-input'
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 
@@ -49,8 +50,6 @@ export default function Register() {
 			setIsMatched(false);
 		}	
 	},[mobileNo, password1, password2, firstName, lastName, email]);
-
-
 
 	const registerUser = async (submit) => {
 		submit.preventDefault()
@@ -153,7 +152,7 @@ export default function Register() {
 					{/*Mobile Number Field*/}
 					<Form.Group>
 						<Form.Label>Mobile Number:</Form.Label>
-						<Form.Control
+						<PhoneInput
 						type="number"
 						placeholder="e.g: 09123456789"
 						required
