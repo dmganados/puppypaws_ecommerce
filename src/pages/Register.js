@@ -9,7 +9,7 @@ import Phone from '../components/Phone'
 
 export default function Register() {
 
-	const { user } = useContext(UserContext);
+	// const { user } = useContext(UserContext);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
@@ -22,36 +22,57 @@ export default function Register() {
 	const [isPassValid, setIsPassValid] = useState(false);
 
 	useEffect(() => {
-
-		if (mobileNo.length === 11) {
-			setIsMobileValid(true);
-			if (password1.length >= 8) {
-				setIsPassValid(true);
+		if (firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '') {
+			setIsActive(true);
+			if (password1.length > 8) {
+				setIsPassValid(true)
 				if (password1 === password2 && password1 !== '' && password2 !== '') {
-					setIsMatched(true);
-					if (firstName !== '' && lastName !== '' && email !== '') {
-						setIsActive(true);
-					} else {
-						setIsActive(false);
-					}
+					setIsMatched(true)
 				} else {
-					setIsActive(false);
-					setIsMatched(false);
+					setIsMatched(false)
 				}
 			} else {
-				setIsActive(false);
-				setIsMatched(false);
-				setIsPassValid(false);
-			}
-		} else if (password1 !=='' && password1 === password2) {
-			setIsMatched(false);
+				setIsPassValid(false)
+				setIsMatched(false)
+			}		
 		} else {
 			setIsActive(false);
-			setIsMatched(false);
 			setIsPassValid(false);
-			setIsMatched(false);
-		}	
-	},[mobileNo, password1, password2, firstName, lastName, email]);
+		}
+	},[firstName, lastName, password1])
+
+	// useEffect(() => {
+
+	// 	if (mobileNo !== '') {
+	// 		setIsMobileValid(true);
+	// 		if (password1.length >= 8) {
+	// 			setIsPassValid(true);
+	// 			if (password1 === password2 && password1 !== '' && password2 !== '') {
+	// 				setIsMatched(true);
+	// 				if (firstName !== '' && lastName !== '' && email !== '') {
+	// 					setIsActive(true);
+	// 				} else {
+	// 					setIsActive(false);
+	// 				}
+	// 			} else {
+	// 				setIsActive(false);
+	// 				setIsMatched(false);
+	// 			}
+	// 		} else {
+	// 			setIsActive(false);
+	// 			setIsMatched(false);
+	// 			setIsPassValid(false);
+	// 		}
+	// 	} else if (password1 !=='' && password1 === password2) {
+	// 		setIsMatched(false);
+	// 	} else {
+	// 		setIsActive(false);
+	// 		setIsMatched(false);
+	// 		setIsPassValid(false);
+	// 		setIsMatched(false);
+	// 		setIsMobileValid(false);
+	// 	}	
+	// },[mobileNo, password1, password2, firstName, lastName, email]);
 
 	const registerUser = async (submit) => {
 		submit.preventDefault()
@@ -105,9 +126,9 @@ export default function Register() {
 
 	return(
 
-		user.id ?
-			<Navigate to="/" replace={true} />
-		:		
+		// user.id ?
+		// 	<Navigate to="/" replace={true} />
+		// :		
 		<>
 		<Container >
 			<h3 className="text-center" >Create your Account</h3>
@@ -154,15 +175,9 @@ export default function Register() {
 					{/*Mobile Number Field*/}
 					<Form.Group>
 						<Form.Label>Phone:</Form.Label>
-						<Phone />
-						{/*<PhoneInput
-						className="phone"
-						defaultCountry={'ph'}					
-						// value={mobileNo}
-						// onChange={setMobileNo}
-						 />				*/}		
+						<Phone />							
 					</Form.Group>
-					
+
 
 					{/*Password Field*/}
 					<Form.Group>
@@ -194,16 +209,20 @@ export default function Register() {
 						onChange={e => setPassword2(e.target.value)}
 
 						 />	
-						 {
+						 {/*{
 						 	isMatched ?
 						 		<span className="text-success">Passwords Matched!</span>
 						 	:
 						 		<span>Passwords should match!</span>
-						 }						 
+						 }	*/}					 
 					</Form.Group>
 			</Card>
 
 				{/*Button*/}	
+				{/*<Col className="p-2 ml-4 register">
+				<Button className="d-block p-2 mb-2 regstrBtn1" type="submit">Register as a Buyer</Button>
+				<Button className="p-2 mt-2 regstrBtn2" type="submit">Register as a Seller</Button>
+				</Col>*/}
 				{
 					isActive ?
 						<Col className="p-2 ml-4 register">
