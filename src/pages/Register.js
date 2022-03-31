@@ -1,10 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
-import PhoneInput from 'react-phone-input-2'
+import PhoneInput from 'react-phone-number-input'
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
-import 'react-phone-input-2/lib/style.css'
+import Phone from '../components/Phone'
+
 
 export default function Register() {
 
@@ -153,13 +154,13 @@ export default function Register() {
 					{/*Mobile Number Field*/}
 					<Form.Group>
 						<Form.Label>Phone:</Form.Label>
-						<PhoneInput
+						<Phone />
+						{/*<PhoneInput
 						className="phone"
-						country={'ph'}				
-						required
-						value={mobileNo}
-						onChange={setMobileNo}
-						 />						
+						defaultCountry={'ph'}					
+						// value={mobileNo}
+						// onChange={setMobileNo}
+						 />				*/}		
 					</Form.Group>
 					
 
@@ -220,6 +221,8 @@ export default function Register() {
 			</Row>
 			</Form>	
 		</Container>
+
+		
 		</>
 	)
 };
