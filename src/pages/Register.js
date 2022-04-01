@@ -13,33 +13,95 @@ export default function Register() {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
+	let addressSign = email.search('@')
+	let dns1 = email.search('.com')
+	let dns2 = email.search('.net')
 	const [mobileNo, setMobileNo] = useState('');
 	const [password1, setPassword1] = useState('');
 	const [password2, setPassword2] = useState('');
 	const [isActive, setIsActive] = useState(false);
 	const [isMatched, setIsMatched] = useState(false);
-	const [isMobileValid, setIsMobileValid] = useState(false);
+	const [isPresent, setIsPresent] = useState(false);
 	const [isPassValid, setIsPassValid] = useState(false);
+	// console.log(dns);
 
 	useEffect(() => {
-		if (firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '') {
-			setIsActive(true);
-			if (password1.length > 8) {
-				setIsPassValid(true)
-				if (password1 === password2 && password1 !== '' && password2 !== '') {
-					setIsMatched(true)
+
+		if (dns1 !== -1 || dns2 !== -1) {
+			setIsPresent(true);
+			if (password1.length >= 8) {
+				setIsPassValid(true);
+				if (password1 === password2) {
+					setIsMatched(true);
+					if (firstName !== '' && lastName !== '' && email !== '') {
+						setIsActive(true);
+					} else {
+						setIsActive(false);
+					}
 				} else {
-					setIsMatched(false)
+					setIsMatched(false);
+					setIsActive(false);
 				}
 			} else {
-				setIsPassValid(false)
-				setIsMatched(false)
-			}		
+				setIsPassValid(false);
+				setIsMatched(false);
+				setIsActive(false);
+			}
 		} else {
-			setIsActive(false);
+			setIsPresent(false);
 			setIsPassValid(false);
+			setIsMatched(false);
+			setIsActive(false);
 		}
-	},[firstName, lastName, password1])
+		// if (password1.length >= 8) {
+		// 	setIsPassValid(true);
+		// 	if (password1 === password2 && password1 !== '' && password2 !== '') {
+		// 		setIsMatched(true);
+		// 		if (addressSign !== -1) {
+		// 			setIsPresent(true);
+		// 			// if (firstName !== '' && lastName !== '' && email !== '') {
+		// 			// 	setIsActive(true)
+		// 			// } else {
+		// 			// 	setIsActive(false);
+		// 			// }
+		// 		} else {
+		// 			setIsPresent(false);
+
+		// 			// setIsActive(false);
+		// 		}
+		// 	} else {
+		// 		setIsMatched(false);
+		// 		setIsPresent(false);
+		// 		// setIsFilled(false);
+		// 		// setIsActive(false);
+		// 	}
+		// } else {
+		// 	setIsPassValid(false);
+		// 	setIsMatched(false);
+		// 	setIsPresent(false);
+		// 	// setIsFilled(false);
+		// 	// setIsActive(false);			
+		// }
+
+		// if (firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '') {
+		// 	setIsActive(true);
+		// 	if (password1.length > 8) {
+		// 		setIsPassValid(true)
+		// 		if (password1 === password2 && password1 !== '' && password2 !== '') {
+		// 			setIsMatched(true)
+		// 		} else {
+		// 			setIsMatched(false)
+		// 		}
+		// 	} else {
+		// 		setIsPassValid(false)
+		// 		setIsMatched(false)
+		// 	}		
+		// } else {
+		// 	setIsActive(false);
+		// 	setIsPassValid(false);
+		// 	setIsMatched(false);
+		// }
+	},[firstName, lastName, password1, password2, addressSign, dns1, dns2])
 
 	// useEffect(() => {
 
@@ -165,12 +227,19 @@ export default function Register() {
 						<Form.Label>Email:</Form.Label>
 						<Form.Control
 						type="email"
-						placeholder="e.g: juandelacruz@email.com"
+						// placeholder="e.g: juandelacruz@email.com"
 						required
 						value={email}
 						onChange={e => setEmail(e.target.value)}
 						 />
+						 {
+						 	isPresent ?
+						 		<span className="text-success">Email is Valid</span>
+						 	:
+						 		<span>Provide a correct email format</span>
+						 }
 					</Form.Group>
+					
 					
 					{/*Mobile Number Field*/}
 					<Form.Group>
@@ -209,12 +278,12 @@ export default function Register() {
 						onChange={e => setPassword2(e.target.value)}
 
 						 />	
-						 {/*{
+						 {
 						 	isMatched ?
 						 		<span className="text-success">Passwords Matched!</span>
 						 	:
 						 		<span>Passwords should match!</span>
-						 }	*/}					 
+						 }						 
 					</Form.Group>
 			</Card>
 

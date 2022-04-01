@@ -14,7 +14,7 @@ export default function Login() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	let addressSign = email.search('@')
-	let dns = email.search('.com')
+	let dns = email.search('com')
 	const [isActive, setIsActive] = useState(false);
 	const [isValid, setIsValid] = useState(false);
 
