@@ -20,6 +20,8 @@ export default function Register() {
 	const [password1, setPassword1] = useState('');
 	const [password2, setPassword2] = useState('');
 	const [isActive, setIsActive] = useState(false);
+	const [isBuyer, setIsBuyer] = useState(false);
+	const [isAdmin, setIsNonAdmin] = useState('')
 	const [isMatched, setIsMatched] = useState(false);
 	const [isPresent, setIsPresent] = useState(false);
 	const [isPassValid, setIsPassValid] = useState(false);
@@ -33,114 +35,39 @@ export default function Register() {
 				setIsPassValid(true);
 				if (password1 === password2) {
 					setIsMatched(true);
-					if (firstName !== '' && lastName !== '' && email !== '') {
+					if (firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '') {
 						setIsActive(true);
+						
 					} else {
 						setIsActive(false);
+						
 					}
 				} else {
 					setIsMatched(false);
 					setIsActive(false);
+					
 				}
 			} else {
 				setIsPassValid(false);
 				setIsMatched(false);
 				setIsActive(false);
+				
 			}
 		} else {
 			setIsPresent(false);
 			setIsPassValid(false);
 			setIsMatched(false);
 			setIsActive(false);
-		}
-		// if (password1.length >= 8) {
-		// 	setIsPassValid(true);
-		// 	if (password1 === password2 && password1 !== '' && password2 !== '') {
-		// 		setIsMatched(true);
-		// 		if (addressSign !== -1) {
-		// 			setIsPresent(true);
-		// 			// if (firstName !== '' && lastName !== '' && email !== '') {
-		// 			// 	setIsActive(true)
-		// 			// } else {
-		// 			// 	setIsActive(false);
-		// 			// }
-		// 		} else {
-		// 			setIsPresent(false);
-
-		// 			// setIsActive(false);
-		// 		}
-		// 	} else {
-		// 		setIsMatched(false);
-		// 		setIsPresent(false);
-		// 		// setIsFilled(false);
-		// 		// setIsActive(false);
-		// 	}
-		// } else {
-		// 	setIsPassValid(false);
-		// 	setIsMatched(false);
-		// 	setIsPresent(false);
-		// 	// setIsFilled(false);
-		// 	// setIsActive(false);			
-		// }
-
-		// if (firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '') {
-		// 	setIsActive(true);
-		// 	if (password1.length > 8) {
-		// 		setIsPassValid(true)
-		// 		if (password1 === password2 && password1 !== '' && password2 !== '') {
-		// 			setIsMatched(true)
-		// 		} else {
-		// 			setIsMatched(false)
-		// 		}
-		// 	} else {
-		// 		setIsPassValid(false)
-		// 		setIsMatched(false)
-		// 	}		
-		// } else {
-		// 	setIsActive(false);
-		// 	setIsPassValid(false);
-		// 	setIsMatched(false);
-		// }
-	},[firstName, lastName, password1, password2, addressSign, dns1, dns2])
-
-	// useEffect(() => {
-
-	// 	if (mobileNo !== '') {
-	// 		setIsMobileValid(true);
-	// 		if (password1.length >= 8) {
-	// 			setIsPassValid(true);
-	// 			if (password1 === password2 && password1 !== '' && password2 !== '') {
-	// 				setIsMatched(true);
-	// 				if (firstName !== '' && lastName !== '' && email !== '') {
-	// 					setIsActive(true);
-	// 				} else {
-	// 					setIsActive(false);
-	// 				}
-	// 			} else {
-	// 				setIsActive(false);
-	// 				setIsMatched(false);
-	// 			}
-	// 		} else {
-	// 			setIsActive(false);
-	// 			setIsMatched(false);
-	// 			setIsPassValid(false);
-	// 		}
-	// 	} else if (password1 !=='' && password1 === password2) {
-	// 		setIsMatched(false);
-	// 	} else {
-	// 		setIsActive(false);
-	// 		setIsMatched(false);
-	// 		setIsPassValid(false);
-	// 		setIsMatched(false);
-	// 		setIsMobileValid(false);
-	// 	}	
-	// },[mobileNo, password1, password2, firstName, lastName, email]);
+			
+		}		
+	},[firstName, lastName, password1, password2, addressSign, dns1, dns2, mobileNo])	
 
 	const registerUser = async (submit) => {
 		submit.preventDefault()
 
-		const isRegistered = await fetch('https://glacial-everglades-19835.herokuapp.com/users/register', {
-			method: 'POST',
+		const isRegistered = await fetch('https://limitless-brushlands-90925.herokuapp.com/users/', {
+			mode: 'cors',
+			method: 'POST',			
 			headers: {
 				'Content-Type' : 'application/json'
 			},
@@ -148,8 +75,8 @@ export default function Register() {
 				firstName: firstName,
 				lastName: lastName,
 				email: email,
-				password: password1,
-				mobileNo: mobileNo
+				phone: mobileNo,
+				password: password1				
 			})
 		}).then(result => result.json()).then(resultData => {
 			// console.log(resultData);
@@ -227,7 +154,7 @@ export default function Register() {
 						<Form.Label>Email:</Form.Label>
 						<Form.Control
 						type="email"
-						// placeholder="e.g: juandelacruz@email.com"
+						placeholder="e.g: juandelacruz@email.com"
 						required
 						value={email}
 						onChange={e => setEmail(e.target.value)}
@@ -242,9 +169,17 @@ export default function Register() {
 					
 					
 					{/*Mobile Number Field*/}
+
 					<Form.Group>
 						<Form.Label>Phone:</Form.Label>
-						<Phone />							
+						
+						<Form.Control						
+						type="number"
+						required
+						value={mobileNo}
+						onChange={e => setMobileNo(e.target.value)}
+						/>
+
 					</Form.Group>
 
 
@@ -285,27 +220,50 @@ export default function Register() {
 						 		<span>Passwords should match!</span>
 						 }						 
 					</Form.Group>
-			</Card>
+			</Card>		
 
-				{/*Button*/}	
-				{/*<Col className="p-2 ml-4 register">
-				<Button className="d-block p-2 mb-2 regstrBtn1" type="submit">Register as a Buyer</Button>
-				<Button className="p-2 mt-2 regstrBtn2" type="submit">Register as a Seller</Button>
-				</Col>*/}
+					//Change the Form control here
+					// A form will show up when all fields in the form is filled
+					// Work on setting isAdmin when user register as a seller.
 				{
-					isActive ?
-						<Col className="p-2 ml-4 register">
-						<Button className="d-block p-2 mb-2 regstrBtn1" type="submit">Register as a Buyer</Button>
-						<Button className="p-2 mt-2 regstrBtn2" type="submit">Register as a Seller</Button>
-						</Col>
-					:
+									isActive ?
+										<Col className="p-2 ml-4 register">
+										<Button className="d-block p-2 mb-2 regstrBtn1" type="submit">Register as a Buyer</Button>
+										<Form.Group>
+										<Button className="p-2 mt-2 regstrBtn2" type="submit">Register as a Seller</Button>
+										<Form.Control
+										value={isAdmin}
+										onChange={e => setIsNonAdmin(e.target.value)}
+										 />
+										</Form.Group>
+										</Col>
+									:
 
+										<Col className="p-2 ml-4 register">
+										<Button className="d-block p-2 mb-2 regstrBtn1" disabled>Register as a Buyer</Button>
+										<Button className="p-2 mt-2 regstrBtn2" disabled>Register as a Seller</Button>
+										</Col>
+								}
+
+				{/*{
+					
+					isBuyer ?
 						<Col className="p-2 ml-4 register">
+						<Button className="d-block p-2 mb-2 regstrBtn1" type="submit">Register as a Buyer</Button>	
+					:
+						
 						<Button className="d-block p-2 mb-2 regstrBtn1" disabled>Register as a Buyer</Button>
-						<Button className="p-2 mt-2 regstrBtn2" disabled>Register as a Seller</Button>
-						</Col>
-				}
-				
+					</Col>	
+				}*/}
+{/*
+				{
+					isAdmin ?
+						<Button className="p-2 mt-2 regstrBtn2" type="submit">Register as a Seller</Button>
+					:
+						<Button className="d-block p-2 mt-2 regstrBtn2" disabled>Register as a Seller</Button>
+
+				}			*/}	
+							
 			</Row>
 			</Form>	
 		</Container>
