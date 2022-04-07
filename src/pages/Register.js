@@ -19,9 +19,8 @@ export default function Register() {
 	const [mobileNo, setMobileNo] = useState('');
 	const [password1, setPassword1] = useState('');
 	const [password2, setPassword2] = useState('');
-	const [isActive, setIsActive] = useState(false);
-	const [isBuyer, setIsBuyer] = useState(false);
-	const [isAdmin, setIsNonAdmin] = useState('')
+	const [isAdmin, setIsAdmin] = useState(false);
+	const [isBuyer, setIsBuyer] = useState(false);	
 	const [isMatched, setIsMatched] = useState(false);
 	const [isPresent, setIsPresent] = useState(false);
 	const [isPassValid, setIsPassValid] = useState(false);
@@ -36,29 +35,28 @@ export default function Register() {
 				if (password1 === password2) {
 					setIsMatched(true);
 					if (firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '') {
-						setIsActive(true);
+						setIsBuyer(true);
 						
 					} else {
-						setIsActive(false);
+						setIsBuyer(false);
 						
 					}
 				} else {
 					setIsMatched(false);
-					setIsActive(false);
+					setIsBuyer(false);
 					
 				}
 			} else {
 				setIsPassValid(false);
 				setIsMatched(false);
-				setIsActive(false);
+				setIsBuyer(false);
 				
 			}
 		} else {
 			setIsPresent(false);
 			setIsPassValid(false);
 			setIsMatched(false);
-			setIsActive(false);
-			
+			setIsBuyer(false);			
 		}		
 	},[firstName, lastName, password1, password2, addressSign, dns1, dns2, mobileNo])	
 
@@ -76,7 +74,9 @@ export default function Register() {
 				lastName: lastName,
 				email: email,
 				phone: mobileNo,
-				password: password1				
+				password: password1,
+				isAdmin: isAdmin
+				
 			})
 		}).then(result => result.json()).then(resultData => {
 			// console.log(resultData);
@@ -101,7 +101,6 @@ export default function Register() {
 			setPassword1('');
 			setPassword2('');
 
-			
 			window.location.href = "/login";
 
 		} else {
@@ -220,49 +219,22 @@ export default function Register() {
 						 		<span>Passwords should match!</span>
 						 }						 
 					</Form.Group>
-			</Card>		
+			</Card>						
 
-					//Change the Form control here
-					// A form will show up when all fields in the form is filled
-					// Work on setting isAdmin when user register as a seller.
 				{
-									isActive ?
-										<Col className="p-2 ml-4 register">
-										<Button className="d-block p-2 mb-2 regstrBtn1" type="submit">Register as a Buyer</Button>
-										<Form.Group>
-										<Button className="p-2 mt-2 regstrBtn2" type="submit">Register as a Seller</Button>
-										<Form.Control
-										value={isAdmin}
-										onChange={e => setIsNonAdmin(e.target.value)}
-										 />
-										</Form.Group>
-										</Col>
-									:
-
-										<Col className="p-2 ml-4 register">
-										<Button className="d-block p-2 mb-2 regstrBtn1" disabled>Register as a Buyer</Button>
-										<Button className="p-2 mt-2 regstrBtn2" disabled>Register as a Seller</Button>
-										</Col>
-								}
-
-				{/*{
-					
 					isBuyer ?
 						<Col className="p-2 ml-4 register">
-						<Button className="d-block p-2 mb-2 regstrBtn1" type="submit">Register as a Buyer</Button>	
+						<Button className="d-block p-2 mb-2 regstrBtn1" type="submit" onClick={() => setIsAdmin(false)} >Register as a Buyer</Button>			
+						<Button className="p-2 mt-2 regstrBtn2" type="submit" onClick={() => setIsAdmin(true)}>Register as a Seller</Button>	
+						</Col>
 					:
-						
-						<Button className="d-block p-2 mb-2 regstrBtn1" disabled>Register as a Buyer</Button>
-					</Col>	
-				}*/}
-{/*
-				{
-					isAdmin ?
-						<Button className="p-2 mt-2 regstrBtn2" type="submit">Register as a Seller</Button>
-					:
-						<Button className="d-block p-2 mt-2 regstrBtn2" disabled>Register as a Seller</Button>
 
-				}			*/}	
+						<Col className="p-2 ml-4 register">
+						<Button className="d-block p-2 mb-2 regstrBtn1" disabled>Register as a Buyer</Button>
+						<Button className="p-2 mt-2 regstrBtn2" disabled>Register as a Seller</Button>
+						</Col>
+				}
+			
 							
 			</Row>
 			</Form>	
