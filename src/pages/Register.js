@@ -9,7 +9,7 @@ import Phone from '../components/Phone'
 
 export default function Register() {
 
-	// const { user } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
@@ -114,9 +114,9 @@ export default function Register() {
 
 	return(
 
-		// user.id ?
-		// 	<Navigate to="/" replace={true} />
-		// :		
+		user.id ?
+			<Navigate to="/" replace={true} />
+		:		
 		<>
 		<Container >
 			<h3 className="text-center" >Create your Account</h3>
