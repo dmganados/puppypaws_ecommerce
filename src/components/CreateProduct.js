@@ -1,4 +1,4 @@
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
 
 export default function CreateProduct() {
 
@@ -22,9 +22,24 @@ export default function CreateProduct() {
 				</Form.Group>
 
 				<Form.Group>
-					<Form.Label>Available</Form.Label>
+					<Dropdown>
+					<Form.Label className="d-block">Category</Form.Label>
+					<Dropdown.Toggle></Dropdown.Toggle>
+					<Dropdown.Menu>
+						<Dropdown.Item>Phone</Dropdown.Item>
+						<Dropdown.Item>Electronics</Dropdown.Item>
+					</Dropdown.Menu>
+					</Dropdown>
+				</Form.Group>
+
+				<Form.Group>
+					<Form.Label>Stock</Form.Label>
 					<Form.Control type="number" required />
 				</Form.Group>
+
+				<div className="mb-4">
+					<input type="checkbox" /> Display product on the Catalog
+				</div>
 
 				<Button className="createBtn">Create Product</Button>
 			</Form>
