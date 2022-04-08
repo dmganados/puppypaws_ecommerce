@@ -1,6 +1,49 @@
+import { useState } from 'react';
 import { Container, Row, Col, Form, Button, Dropdown } from 'react-bootstrap';
+import styled from 'styled-components';
+
+const Main = styled("div")`
+	font-family: sans-serif;
+	// height: 100vh;
+`;
+
+const DropDownContainer = styled("div")`
+	border: 2px solid #e5e5e5;
+	width: 100%;
+	height: 45px;
+`;
+
+const DropDownHeader = styled("div")``;
+const DropDownListContainer = styled("div")``;
+
+const DropDownList = styled("ul")`
+	padding: 0;
+	margin: 0;	
+	background: #909CC2;
+	border: 2px solid #e5e5e5;	
+	&:first-child {
+	    padding-top: 0.8em;
+	}
+`;
+const ListItem = styled("li")`
+	list-style: none;
+	margin-bottom: 0.8em;
+`;
+
+const options = ["Phone", "Shirt", "Electronics"]
 
 export default function CreateProduct() {
+
+	const [isOpen, setIsOpen] = useState(false);
+	const [selectedOption, setSelectedOption] = useState(null);
+
+	const toggling = () => setIsOpen(!isOpen);
+
+	const onOptionClicked = value => () => {
+		setSelectedOption(value);
+		setIsOpen(false);
+		console.log(selectedOption);
+	};
 
 	return(
 		<>
@@ -22,14 +65,21 @@ export default function CreateProduct() {
 				</Form.Group>
 
 				<Form.Group>
-					<Dropdown>
-					<Form.Label className="d-block">Category</Form.Label>
-					<Dropdown.Toggle></Dropdown.Toggle>
-					<Dropdown.Menu>
-						<Dropdown.Item>Phone</Dropdown.Item>
-						<Dropdown.Item>Electronics</Dropdown.Item>
-					</Dropdown.Menu>
-					</Dropdown>
+				<Form.Label>Category</Form.Label>
+				<Main>
+				<DropDownContainer>
+					<DropDownHeader onClick={toggling}>{selectedOption || "Select a Category"}</DropDownHeader>
+					{isOpen && (
+						<DropDownListContainer>
+							<DropDownList>
+								{options.map(option => (
+								<ListItem onClick={onOptionClicked(option)} key={Math.random()}>{option}</ListItem>
+								))}
+							</DropDownList>
+						</DropDownListContainer>
+					)}					
+				</DropDownContainer>
+				</Main>
 				</Form.Group>
 
 				<Form.Group>
@@ -43,6 +93,9 @@ export default function CreateProduct() {
 
 				<Button className="createBtn">Create Product</Button>
 			</Form>
+
+			
+			
 		</Container>
 		</>
 	)
