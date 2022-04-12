@@ -17,6 +17,7 @@ export default function Login() {
 	let dns = email.search('com')
 	const [isActive, setIsActive] = useState(false);
 	const [isValid, setIsValid] = useState(false);
+	// console.log(localStorage)
 
 	useEffect(() => {
 		if (dns !== -1 && addressSign !== -1 ) {
@@ -47,16 +48,18 @@ export default function Login() {
 			})
 		}).then(res => res.json()).then(dataNaJson => {
 			let token = dataNaJson.accessToken;
+			console.log(token)
 			
 			if (typeof token !== 'undefined') {
 				localStorage.setItem('accessToken', token)
+
 
 				fetch('https://limitless-brushlands-90925.herokuapp.com/users/users', {
 					headers: {
 						Authorization: `Bearer ${token}`
 					}
 				}).then(res => res.json()).then(convertedData => {
-					// console.log(convertedData)
+					console.log(convertedData)
 
 					if (typeof convertedData !== 'undefined') {
 						setUser({
@@ -88,9 +91,9 @@ export default function Login() {
 	};		
 
 	return (
-		user.id ?
-			<Navigate to="/" replace={true} />
-		:
+		// user.id ?
+			// <Navigate to="/" replace={true} />
+		// :
 		<>
 		<Container >
 			<h3 className="d-flex justify-content-center">Login to your Account</h3>
