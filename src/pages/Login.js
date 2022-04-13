@@ -35,7 +35,7 @@ export default function Login() {
 
 	const userToken = async (eventSubmit) => {
 		eventSubmit.preventDefault();
-		// console.log(eventSubmit)
+		
 	
 		fetch('https://limitless-brushlands-90925.herokuapp.com/users/token', {
 			method: 'POST',
@@ -48,7 +48,7 @@ export default function Login() {
 			})
 		}).then(res => res.json()).then(dataNaJson => {
 			let token = dataNaJson.accessToken;
-			console.log(token)
+			
 			
 			if (typeof token !== 'undefined') {
 				localStorage.setItem('accessToken', token)
@@ -59,7 +59,7 @@ export default function Login() {
 						Authorization: `Bearer ${token}`
 					}
 				}).then(res => res.json()).then(convertedData => {
-					console.log(convertedData)
+					
 
 					if (typeof convertedData !== 'undefined') {
 						setUser({

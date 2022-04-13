@@ -22,100 +22,32 @@ export default function CreateProduct() {
 
 	const createListing = async (submitEvent) => {		
 		submitEvent.preventDefault();
-		let userCredentials = localStorage.accessToken;
-		// console.log(userCredentials)
+		let userCredentials = localStorage.accessToken;		
 
-		fetch('https://limitless-brushlands-90925.herokuapp.com/users/users', {
+		const isCreated = await fetch('http://localhost:8000/products/', {
+			method: 'POST',
 			headers: {
-				Authorization: `Bearer ${userCredentials}`
-			}
-		}).then(response => response.json()).then(userData => {
-			let userAdmin = userData.isAdmin;
-			console.log(userAdmin)
+				Authorization: `Bearer ${userCredentials}`,
+				'Content-Type' : 'application/json'
+			},
 
-			if (userAdmin) {
-				const isCreated = fetch('https://limitless-brushlands-90925.herokuapp.com/products/', {
-					method: 'POST',
-					headers: {
-						'Content-Type' : 'application/json'
-					},
-					body: JSON.stringify({
-						productName: productName,
-						description: description,
-						sellingPrice: sellingPrice,
-						stock: stock
-					})
-				}).then(res => res.json()).then(itemData => {
-					console.log(itemData);
-					
-					if (itemData) {
-						return true
-					} else {
-						return false
-					}
-
-					if (isCreated) {
-						setProductName('');
-						setDescription('');
-						setSellingPrice('');
-						setStock('');
-
-						Swal.fire({
-							icon: 'success',
-							text: 'New Product Listing is Created'
-						})
-						// window.location.href = "/manage-product";
-					} else {
-						Swal.fire({
-							icon: 'error',
-							text: 'Make sure all fields are filled'
-						})
-					}					
-				})
+			body: JSON.stringify({
+				productName: productName,
+				description: description,
+				sellingPrice: sellingPrice,
+				stock: stock
+			})
+		}).then(result => result.json()).then(itemData => {
+			
+			if (itemData) {
+				return true;
 			} else {
-				return false
+				return false;
 			}
+
 		})
 
-		// const isCreated = await fetch('https://limitless-brushlands-90925.herokuapp.com/products/', {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/json'
-		// 	}
-		// 	// body: JSON.stringify({
-		// 	// 	productName: productName,
-		// 	// 	description: description,
-		// 	// 	sellingPrice: sellingPrice,
-		// 	// 	stock: stock
-		// 	// })
-		// }).then(outcome => outcome.json()).then(itemData => {
-		// 	console.log(itemData);
-
-		// 	if (itemData) {
-		// 		return true;
-		// 	} else {
-		// 		return false;
-		// 	}
-		// })
-
-		// if (isCreated) {
-		// 	// setProductName('');
-		// 	// setDescription('');
-		// 	// setSellingPrice('');
-		// 	// setStock('');
-
-		// 	await Swal.fire({
-		// 		icon: 'success',
-		// 		text: 'New Product Listing is Created'
-		// 	})
-			
-		// 	// window.location.href = "/manage-product";
-		// } else {
-		// 	await Swal.fire({
-		// 		icon: 'error',
-		// 		text: 'Make sure all fields are filled'
-		// 	})
-		// }		
+		
 	};	
 
 	return(
