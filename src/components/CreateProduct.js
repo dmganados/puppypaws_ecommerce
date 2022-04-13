@@ -10,13 +10,14 @@ export default function CreateProduct() {
 	const [sellingPrice, setSellingPrice] = useState('');
 	const [stock, setStock] = useState('');
 	const [isActive, setIsActive] = useState(false);
+	const [isFilled, setIsFilled] = useState(false);
 	// console.log(Preview)
 
 	useEffect(() => {
 		if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '') {
-			setIsActive(true);
+			setIsFilled(true);
 		} else {
-			setIsActive(false);
+			setIsFilled(false);
 		}
 	},[productName, description, sellingPrice, stock])
 
@@ -35,10 +36,11 @@ export default function CreateProduct() {
 				productName: productName,
 				description: description,
 				sellingPrice: sellingPrice,
-				stock: stock
+				stock: stock,
+				isActive: isActive
 			})
 		}).then(result => result.json()).then(itemData => {
-			
+			console.log(itemData)
 			if (itemData) {
 				return true;
 			} else {
@@ -96,11 +98,11 @@ export default function CreateProduct() {
 				</Form.Group>
 
 				<div className="mb-4">
-					<input type="checkbox" /> Display product as Active
+					<input type="checkbox" checked={false} value={isActive} onChange={e => e.target.value} /> Display product as Active
 				</div>
 
 				{
-					isActive ?
+					isFilled ?
 						<Button className="createBtn" type="submit">Create Product</Button>	
 					:
 						<Button className="createBtn" disabled>Create Product</Button>	
