@@ -1,7 +1,6 @@
-import { useState, useEffect, useContext } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Container, Col, Form, Button,  } from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import Login from '../pages/Login'
 
 export default function CreateProduct() {
 
@@ -9,8 +8,9 @@ export default function CreateProduct() {
 	const [description, setDescription] = useState('');
 	const [sellingPrice, setSellingPrice] = useState('');
 	const [stock, setStock] = useState('');
-	const [isActive, setIsActive] = useState(false);
 	const [isFilled, setIsFilled] = useState(false);
+	const [isActive, setIsActive] = useState(false);
+	const toggleChecked = () => setIsActive(value => !value)
 	// console.log(Preview)
 
 	useEffect(() => {
@@ -49,8 +49,25 @@ export default function CreateProduct() {
 
 		})
 
-		
+		if (isCreated) {
+			setProductName('');
+			setDescription('');
+			setSellingPrice('');
+			setStock('');
+			setIsActive(false);
+
+			await Swal.fire({
+				icon: "success",
+				text: "New product listing is created"
+			});
+		} else {
+			await Swal.fire({
+				icon: "error",
+				text: "Check all fields"
+			});
+		}		
 	};	
+
 
 	return(
 		<>
@@ -97,8 +114,13 @@ export default function CreateProduct() {
 					/>
 				</Form.Group>
 
+
+
 				<div className="mb-4">
-					<input type="checkbox" checked={false} value={isActive} onChange={e => e.target.value} /> Display product as Active
+					<input 
+					type="checkbox" 
+					checked={isActive} 					
+					onChange={toggleChecked} /> Display product as Active
 				</div>
 
 				{
@@ -110,6 +132,8 @@ export default function CreateProduct() {
 					
 				
 			</Form>
+			
+
 		</Col>			
 		</Container>
 		</>
