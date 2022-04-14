@@ -10,13 +10,15 @@
 
 import { Button, Col, Row, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Inventory from '../components/Inventory'
 
 export default function ManageProduct() {
 
 	return(
 		<>
 			<Container>			
-				<Button className="mt-5 createBtn" href="/create-product">Create Product +</Button>			
+				<Button className="mt-5 createBtn" href="/create-product">Create Product +</Button>
+				<Inventory />	
 			</Container>
 		</>
 	)

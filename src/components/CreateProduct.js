@@ -25,7 +25,7 @@ export default function CreateProduct() {
 		submitEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;		
 
-		const isCreated = await fetch('http://localhost:8000/products/', {
+		const isCreated = await fetch('https://limitless-brushlands-90925.herokuapp.com/products/', {
 			method: 'POST',
 			headers: {
 				Authorization: `Bearer ${userCredentials}`,
@@ -60,6 +60,8 @@ export default function CreateProduct() {
 				icon: "success",
 				text: "New product listing is created"
 			});
+
+			window.location.href="/manage-product";
 		} else {
 			await Swal.fire({
 				icon: "error",
