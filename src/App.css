@@ -207,3 +207,9 @@
 .createBtn {
   background-color: #084887 !important;
 }
+
+.cardInventory{
+  width: 100% !important;
+  margin-top: 2%;
+}
+

@@ -14,6 +14,8 @@ import Inventory from '../components/Inventory'
 
 export default function ManageProduct() {
 
+	
+
 	return(
 		<>
 			<Container>			
