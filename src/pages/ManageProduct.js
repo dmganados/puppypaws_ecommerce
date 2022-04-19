@@ -17,9 +17,16 @@ import { useState, useEffect } from 'react';
 export default function ManageProduct() {
 
 	const [inventoryCollection, setInventoryCollection] = useState([]);
+	let userCredentials = localStorage.accessToken;
+	// console.log(userCredentials)
 
 	useEffect(() => {
-		fetch('http://localhost:8000/products/all',).then(res => res.json()).then(inventoryData => {
+		fetch('https://limitless-brushlands-90925.herokuapp.com/products/all', {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${userCredentials}`
+			}
+		}).then(res => res.json()).then(inventoryData => {
 			// console.log(inventoryData)
 			setInventoryCollection(inventoryData.map(inventory => {
 				return(
