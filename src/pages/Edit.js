@@ -1,17 +1,57 @@
 import {Button, Col, Row, Container, Form} from 'react-bootstrap'
+import { useState, useEffect } from 'react'
+import Swal from 'sweetalert2';
 
 export default function Edit () {
+
+	let [productName, setProductName] = useState('');
+	let [description, setDescription] = useState('');
+	let [sellingPrice, setSellingPrice] = useState('');
+	let [stock, setStock] = useState('');
+	let [isFilled, setIsFilled] = useState(false);
+	let [isActive, setIsActive] = useState(false);
+	let toggleChecked = () => setIsActive(value => !value)
+	// console.log(inventoryEdit)
+
+	useEffect(() => {
+		if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '') {
+			setIsFilled(true);
+		} else {
+			setIsFilled(false);
+		}
+	},[productName, description, sellingPrice, stock])
+
+	const updateListing = async (processEvent) => {
+		processEvent.preventDefault();
+		let userCredentials = localStorage.accessToken;
+		
+		const isUpdated = await fetch('https://limitless-brushlands-90925.herokuapp.com/products/:productId/update-product', {
+			method: 'POST',
+			params: {
+
+			}
+		})
+
+		return (
+			Swal.fire({
+				icon: "success",
+				text: "Product update was successful"
+			})
+		)	
+	}
 
 	return (
 		<div>
 		<Container>
 			<Col>
-				<Form className="p-5">
+				<Form onSubmit={e => updateListing(e)} className="p-5">
 					<Form.Group>
 						<Form.Label>Product Name</Form.Label>
 						<Form.Control
 						type="text"
 						required
+						value={productName}
+						onChange={e => setProductName(e.target.value)}
 						 />
 					</Form.Group>
 
@@ -19,7 +59,9 @@ export default function Edit () {
 						<Form.Label>Description</Form.Label>
 						<Form.Control 
 						type="text" 
-						required						 
+						required
+						value={description}
+						onChange={e => setDescription(e.target.value)}
 						/>
 					</Form.Group>
 
@@ -27,15 +69,21 @@ export default function Edit () {
 					<Form.Label>Price</Form.Label>
 					<Form.Control 
 					type="number" 
-					required					
-					/>
+					required
+					value={sellingPrice}
+					onChange={e => setSellingPrice(e.target.value)}
+
+					 />
 					</Form.Group>	
 
 					<Form.Group>
 						<Form.Label>Stock</Form.Label>
 						<Form.Control 
 						type="number" 
-						required						
+						required
+						value={stock}
+						onChange={e => setStock(e.target.value)}
+
 						/>
 					</Form.Group>
 
@@ -45,7 +93,14 @@ export default function Edit () {
 						/> Display product as Active
 					</div>
 
-					<Button className="createBtn" type="submit">Update Product Info</Button>	
+					{
+						isFilled ?
+							<Button className="createBtn" type="submit">Update Product Info</Button>
+						:
+							<Button className="createBtn" disabled>Update Product Info</Button>
+					}
+
+						
 				</Form>
 			</Col>
 		</Container>

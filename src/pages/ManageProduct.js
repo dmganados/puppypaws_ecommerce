@@ -11,14 +11,18 @@
 import { Button, Col, Row, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Inventory from '../components/Inventory';
+import Edit from '../pages/Edit';
 import { useState, useEffect } from 'react';
 
 
 export default function ManageProduct() {
 
 	const [inventoryCollection, setInventoryCollection] = useState([]);
+	const [handleCollection, setHandleCollection] = useState([])
+	// const setHandleCollection = useState([])
 	let userCredentials = localStorage.accessToken;
 	// console.log(userCredentials)
+	// console.log(inventoryCollection)
 
 	useEffect(() => {
 		fetch('https://limitless-brushlands-90925.herokuapp.com/products/all', {
@@ -29,11 +33,17 @@ export default function ManageProduct() {
 		}).then(res => res.json()).then(inventoryData => {
 			// console.log(inventoryData)
 			setInventoryCollection(inventoryData.map(inventory => {
-				return(
-					<Inventory key={inventory._id} inventoryProp={inventory} />
-					// console.log(inventoryProp)
+				// console.log(inventory)
+				return(									
+					<Inventory key={inventory._id} inventoryProp={inventory} />										
 				)
 			}));
+			setHandleCollection(inventoryData.map(collection => {
+				// console.log(collection)
+				return (
+					<Edit key={collection._id} collectionProp={collection} />
+				)
+			}))
 		});
 	});
 

@@ -4,13 +4,13 @@ import Swal from 'sweetalert2';
 
 export default function CreateProduct() {
 
-	const [productName, setProductName] = useState('');
-	const [description, setDescription] = useState('');
-	const [sellingPrice, setSellingPrice] = useState('');
-	const [stock, setStock] = useState('');
-	const [isFilled, setIsFilled] = useState(false);
-	const [isActive, setIsActive] = useState(false);
-	const toggleChecked = () => setIsActive(value => !value)
+	let [productName, setProductName] = useState('');
+	let [description, setDescription] = useState('');
+	let [sellingPrice, setSellingPrice] = useState('');
+	let [stock, setStock] = useState('');
+	let [isFilled, setIsFilled] = useState(false);
+	let [isActive, setIsActive] = useState(false);
+	let toggleChecked = () => setIsActive(value => !value)
 	// console.log(Preview)
 
 	useEffect(() => {
