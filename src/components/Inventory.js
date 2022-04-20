@@ -22,7 +22,7 @@ export default function Inventory({inventoryProp}) {
 					<Card.Text>Stock: {invStock}</Card.Text>
 					<Card.Text className="d-inline">Status: {strStatus} </Card.Text>				
 
-					<Link to="" className="mr-3" id="editFunction">Edit</Link>
+					<Link to="/edit" className="mr-3" id="editFunction">Edit</Link>
 					<Link to="" id="deleteFunction">Delete</Link>
 				</Card.Body>				
 			</Card>	
