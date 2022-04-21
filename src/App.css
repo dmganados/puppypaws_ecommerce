@@ -219,6 +219,11 @@
     display: inline;
     text-align: right;
     margin-left: 40%;
+    color: green;
+  }
+
+  #deleteFunction {
+    color: red;
   }
 }
 
@@ -233,12 +238,22 @@
   #editFunction {
     display: inline;
     text-align: right;
-    margin-left: 75%;   
+    margin-left: 75%; 
+    color: green;  
+  }
+
+  #deleteFunction {
+    color: red;
   }
 }
 
 @media only screen and (min-width: 992px) {
   #editFunction {
     margin-left: 85%;
+    color: green;
+  }
+
+  #deleteFunction {
+    color: red;
   }
 }

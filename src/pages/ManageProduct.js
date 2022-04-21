@@ -37,13 +37,7 @@ export default function ManageProduct() {
 				return(									
 					<Inventory key={inventory._id} inventoryProp={inventory} />										
 				)
-			}));
-			setHandleCollection(inventoryData.map(collection => {
-				// console.log(collection)
-				return (
-					<Edit key={collection._id} collectionProp={collection} />
-				)
-			}))
+			}));			
 		});
 	});
 

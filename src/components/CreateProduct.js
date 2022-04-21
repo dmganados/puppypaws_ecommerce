@@ -31,7 +31,6 @@ export default function CreateProduct() {
 				Authorization: `Bearer ${userCredentials}`,
 				'Content-Type' : 'application/json'
 			},
-
 			body: JSON.stringify({
 				productName: productName,
 				description: description,

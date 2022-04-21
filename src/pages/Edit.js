@@ -1,9 +1,11 @@
-import {Button, Col, Row, Container, Form} from 'react-bootstrap'
-import { useState, useEffect } from 'react'
+import {Button, Col, Row, Container, Form} from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { useParams } from 'react-router-dom';
 
-export default function Edit () {
+export default function Edit() {	
 
+	let { id } = useParams();
 	let [productName, setProductName] = useState('');
 	let [description, setDescription] = useState('');
 	let [sellingPrice, setSellingPrice] = useState('');
@@ -11,7 +13,10 @@ export default function Edit () {
 	let [isFilled, setIsFilled] = useState(false);
 	let [isActive, setIsActive] = useState(false);
 	let toggleChecked = () => setIsActive(value => !value)
-	// console.log(inventoryEdit)
+	// console.log(collectionProp)
+	// console.log(id)
+
+	// console.warn("props", props)
 
 	useEffect(() => {
 		if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '') {
@@ -25,13 +30,10 @@ export default function Edit () {
 		processEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;
 		
-		const isUpdated = await fetch('https://limitless-brushlands-90925.herokuapp.com/products/:productId/update-product', {
-			method: 'POST',
-			params: {
-
-			}
+		const isUpdated = await fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}`).then(res => res.json()).then(listingData => {
+			console.log(listingData)
 		})
-
+		// console.log(isUpdated)
 		return (
 			Swal.fire({
 				icon: "success",
@@ -42,12 +44,13 @@ export default function Edit () {
 
 	return (
 		<div>
-		<Container>
-			<Col>
-				<Form onSubmit={e => updateListing(e)} className="p-5">
+			<Container>
+				<Col>
+
+				<Form /*onSubmit={e => updateListing(e)}*/ className="p-5">
 					<Form.Group>
 						<Form.Label>Product Name</Form.Label>
-						<Form.Control
+						<Form.Control					
 						type="text"
 						required
 						value={productName}
@@ -102,8 +105,10 @@ export default function Edit () {
 
 						
 				</Form>
-			</Col>
-		</Container>
+				</Col>
+			</Container>
 		</div>
 	)
 }
+
+
