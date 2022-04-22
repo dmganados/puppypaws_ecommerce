@@ -12,13 +12,20 @@ export default function Edit() {
 	let [stock, setStock] = useState('');
 	let [isFilled, setIsFilled] = useState(false);
 	let [isActive, setIsActive] = useState(false);
+	const [data, setData] = useState([])
 	let toggleChecked = () => setIsActive(value => !value)
-	// console.log(collectionProp)
-	// console.log(id)
+	// console.log(productName)
+	// Handle the id and extract it's information
+	// Fill the form with information
+	// Let the form editable
+	// Form can save the update
 
-	// console.warn("props", props)
+	useEffect(async () => {
 
-	useEffect(() => {
+		let inventoryInfo = await fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}`).then(res => res.json()).then(convertedData => {
+			setData(convertedData)
+		})
+
 		if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '') {
 			setIsFilled(true);
 		} else {
@@ -26,14 +33,30 @@ export default function Edit() {
 		}
 	},[productName, description, sellingPrice, stock])
 
+
+
 	const updateListing = async (processEvent) => {
 		processEvent.preventDefault();
-		let userCredentials = localStorage.accessToken;
-		
-		const isUpdated = await fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}`).then(res => res.json()).then(listingData => {
-			console.log(listingData)
+		let userCredentials = localStorage.accessToken;		
+		const isUpdated = await fetch(`http://localhost:8000/products/${id}/update-product`, {
+			method: 'PUT',
+			headers: {
+				Authorization: `Bearer${userCredentials}`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				productName: productName,
+				description: description,
+				sellingPrice: sellingPrice,
+				stock: stock,
+				isActive: isActive
+			})
+		}).then(res => res.json()).then(updated => {
+			console.log(updated)
 		})
-		// console.log(isUpdated)
+
+		console.log(data.productName)
+		
 		return (
 			Swal.fire({
 				icon: "success",
@@ -47,15 +70,18 @@ export default function Edit() {
 			<Container>
 				<Col>
 
-				<Form /*onSubmit={e => updateListing(e)}*/ className="p-5">
+				<Form onSubmit={e => updateListing(e)} className="p-5">
 					<Form.Group>
 						<Form.Label>Product Name</Form.Label>
 						<Form.Control					
 						type="text"
 						required
-						value={productName}
-						onChange={e => setProductName(e.target.value)}
+						defaultValue={data.productName}
+						
+						
+
 						 />
+						
 					</Form.Group>
 
 					<Form.Group>
@@ -63,8 +89,8 @@ export default function Edit() {
 						<Form.Control 
 						type="text" 
 						required
-						value={description}
-						onChange={e => setDescription(e.target.value)}
+						defaultValue={data.description}
+
 						/>
 					</Form.Group>
 
@@ -73,8 +99,7 @@ export default function Edit() {
 					<Form.Control 
 					type="number" 
 					required
-					value={sellingPrice}
-					onChange={e => setSellingPrice(e.target.value)}
+					defaultValue={data.sellingPrice}
 
 					 />
 					</Form.Group>	
@@ -84,8 +109,7 @@ export default function Edit() {
 						<Form.Control 
 						type="number" 
 						required
-						value={stock}
-						onChange={e => setStock(e.target.value)}
+						defaultValue={data.stock}
 
 						/>
 					</Form.Group>
@@ -96,13 +120,15 @@ export default function Edit() {
 						/> Display product as Active
 					</div>
 
-					{
+					<Button className="createBtn" type="submit">Update Product Info</Button>
+
+				{/*	{
 						isFilled ?
 							<Button className="createBtn" type="submit">Update Product Info</Button>
 						:
 							<Button className="createBtn" disabled>Update Product Info</Button>
 					}
-
+*/}
 						
 				</Form>
 				</Col>
