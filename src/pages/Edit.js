@@ -19,12 +19,19 @@ export default function Edit() {
 	// Fill the form with information
 	// Let the form editable
 	// Form can save the update
+	// console.log(productName)
+
 
 	useEffect(async () => {
 
-		let inventoryInfo = await fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}`).then(res => res.json()).then(convertedData => {
+		let inventoryInfo = await fetch(`http://localhost:8000/products/${id}`).then(res => res.json()).then(convertedData => {
 			setData(convertedData)
+			setProductName(convertedData.productName);
+			setDescription(convertedData.description);
+			setSellingPrice(convertedData.sellingPrice);
+			setStock(convertedData.stock);			
 		})
+
 
 		if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '') {
 			setIsFilled(true);
@@ -40,8 +47,7 @@ export default function Edit() {
 		let userCredentials = localStorage.accessToken;		
 		const isUpdated = await fetch(`http://localhost:8000/products/${id}/update-product`, {
 			method: 'PUT',
-			headers: {
-				Authorization: `Bearer${userCredentials}`,
+			headers: {				
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
@@ -78,7 +84,6 @@ export default function Edit() {
 						required
 						defaultValue={data.productName}
 						
-						
 
 						 />
 						
@@ -89,8 +94,7 @@ export default function Edit() {
 						<Form.Control 
 						type="text" 
 						required
-						defaultValue={data.description}
-
+						
 						/>
 					</Form.Group>
 
@@ -99,8 +103,7 @@ export default function Edit() {
 					<Form.Control 
 					type="number" 
 					required
-					defaultValue={data.sellingPrice}
-
+					
 					 />
 					</Form.Group>	
 
@@ -109,8 +112,7 @@ export default function Edit() {
 						<Form.Control 
 						type="number" 
 						required
-						defaultValue={data.stock}
-
+						
 						/>
 					</Form.Group>
 
