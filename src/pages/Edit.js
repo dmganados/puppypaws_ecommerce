@@ -6,30 +6,25 @@ import { useParams } from 'react-router-dom';
 export default function Edit() {	
 
 	let { id } = useParams();
-	let [productName, setProductName] = useState('');
-	let [description, setDescription] = useState('');
-	let [sellingPrice, setSellingPrice] = useState('');
-	let [stock, setStock] = useState('');
-	let [isFilled, setIsFilled] = useState(false);
-	let [isActive, setIsActive] = useState(false);
 	const [data, setData] = useState([])
+	let [productName, setProductName] = useState(data.productName);
+	let [description, setDescription] = useState(data.description);
+	let [sellingPrice, setSellingPrice] = useState(data.sellingPrice);
+	let [stock, setStock] = useState(data.stock);
+	let [isFilled, setIsFilled] = useState(false);
+	let [isActive, setIsActive] = useState(false);	
 	let toggleChecked = () => setIsActive(value => !value)
-	// console.log(productName)
+	// console.log(isActive)
+
 	// Handle the id and extract it's information
 	// Fill the form with information
 	// Let the form editable
 	// Form can save the update
-	// console.log(productName)
-
 
 	useEffect(async () => {
 
-		let inventoryInfo = await fetch(`http://localhost:8000/products/${id}`).then(res => res.json()).then(convertedData => {
+		let inventoryInfo = await fetch(`http://localhost:8000/products/${id}`).then(res => res.json()).then(convertedData => {			
 			setData(convertedData)
-			setProductName(convertedData.productName);
-			setDescription(convertedData.description);
-			setSellingPrice(convertedData.sellingPrice);
-			setStock(convertedData.stock);			
 		})
 
 
@@ -39,8 +34,6 @@ export default function Edit() {
 			setIsFilled(false);
 		}
 	},[productName, description, sellingPrice, stock])
-
-
 
 	const updateListing = async (processEvent) => {
 		processEvent.preventDefault();
@@ -61,7 +54,7 @@ export default function Edit() {
 			console.log(updated)
 		})
 
-		console.log(data.productName)
+		// console.log(data.productName)
 		
 		return (
 			Swal.fire({
@@ -76,14 +69,14 @@ export default function Edit() {
 			<Container>
 				<Col>
 
-				<Form onSubmit={e => updateListing(e)} className="p-5">
+				<Form className="p-5">
 					<Form.Group>
 						<Form.Label>Product Name</Form.Label>
 						<Form.Control					
 						type="text"
 						required
-						defaultValue={data.productName}
-						
+						defaultValue={data.productName}			
+						onChange={(e) => setProductName(e.target.value)}
 
 						 />
 						
@@ -94,17 +87,21 @@ export default function Edit() {
 						<Form.Control 
 						type="text" 
 						required
+						defaultValue={data.description}
+						onChange={(e) => setDescription(e.target.value)}
 						
 						/>
 					</Form.Group>
 
 					<Form.Group>
-					<Form.Label>Price</Form.Label>
-					<Form.Control 
-					type="number" 
-					required
-					
-					 />
+						<Form.Label>Price</Form.Label>
+						<Form.Control 
+						type="number" 
+						required
+						defaultValue={data.sellingPrice}
+						onChange={(e) => setSellingPrice(e.target.value)}
+						
+					 	/>
 					</Form.Group>	
 
 					<Form.Group>
@@ -112,17 +109,22 @@ export default function Edit() {
 						<Form.Control 
 						type="number" 
 						required
+						defaultValue={data.stock}
+						onChange={(e) => setStock(e.target.value)}
 						
 						/>
 					</Form.Group>
 
 					<div className="mb-4">
 						<input 
-						type="checkbox" 
+						type="checkbox"
+						name="controlled" 
+						checked={isActive}							
+						onChange={toggleChecked}
 						/> Display product as Active
 					</div>
 
-					<Button className="createBtn" type="submit">Update Product Info</Button>
+					<Button onClick={(e) => updateListing(e)} className="createBtn">Update Product Info</Button>
 
 				{/*	{
 						isFilled ?

@@ -10,13 +10,7 @@ export default function Inventory({inventoryProp}) {
 	let invPrice = inventoryProp.sellingPrice;
 	let invStock = inventoryProp.stock;
 	let status = inventoryProp.isActive;
-	let strStatus = status === true ? 'Active' : 'Inactive';
-	const [productInfo, setProductInfo] = useState([])
-	// console.log(productInfo)
-
-	// Fill the Edit form with the listing information according to the listing you clicked
-	// Update the listing information
-	
+	let strStatus = status === true ? 'Active' : 'Inactive';	
 
 	return(
 
