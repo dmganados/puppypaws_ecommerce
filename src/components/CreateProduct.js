@@ -115,14 +115,17 @@ export default function CreateProduct() {
 					/>
 				</Form.Group>
 
-
-
 				<div className="mb-4">
 					<input 
 					type="checkbox" 
 					checked={isActive} 					
 					onChange={toggleChecked} /> Display product as Active
 				</div>
+
+				// Try to use a different url/site to save the images
+
+				<input type="file" /> <br/> <br/>
+				{/*<img src="http://localhost:8000/" + data.file_path>*/}
 
 				{
 					isFilled ?
