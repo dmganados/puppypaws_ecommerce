@@ -22,18 +22,17 @@ export default function Edit() {
 	// Form can save the update
 
 	useEffect(async () => {
-
-		let inventoryInfo = await fetch(`http://localhost:8000/products/${id}`).then(res => res.json()).then(convertedData => {			
-			setData(convertedData)
-		})
-
-
+		
 		if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '') {
 			setIsFilled(true);
 		} else {
 			setIsFilled(false);
-		}
+		}		
 	},[productName, description, sellingPrice, stock])
+
+	let inventoryInfo = fetch(`http://localhost:8000/products/${id}`).then(res => res.json()).then(convertedData => {		
+		setData(convertedData)
+	})
 
 	const updateListing = async (processEvent) => {
 		processEvent.preventDefault();
@@ -51,17 +50,32 @@ export default function Edit() {
 				isActive: isActive
 			})
 		}).then(res => res.json()).then(updated => {
-			console.log(updated)
+			if (updated) {
+				return true;
+			} else {
+				return false;
+			}
 		})
 
-		// console.log(data.productName)
-		
-		return (
-			Swal.fire({
+		if (isUpdated) {
+			setProductName('');
+			setDescription('');
+			setSellingPrice('');
+			setStock('');
+			setIsActive(false);
+
+			await Swal.fire({
 				icon: "success",
 				text: "Product update was successful"
 			})
-		)	
+
+			window.location.href="/manage-product"
+		} else {
+			await Swal.fire({
+				icon: "error",
+				text: "Check all fiels"
+			})
+		}		
 	}
 
 	return (
@@ -124,15 +138,15 @@ export default function Edit() {
 						/> Display product as Active
 					</div>
 
-					<Button onClick={(e) => updateListing(e)} className="createBtn">Update Product Info</Button>
+					
 
-				{/*	{
+					{
 						isFilled ?
-							<Button className="createBtn" type="submit">Update Product Info</Button>
+							<Button onClick={(e) => updateListing(e)} className="createBtn">Update Product Info</Button>
 						:
 							<Button className="createBtn" disabled>Update Product Info</Button>
 					}
-*/}
+
 						
 				</Form>
 				</Col>
