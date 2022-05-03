@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Col, Form, Button,  } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 export default function CreateProduct() {
 
@@ -11,6 +12,8 @@ export default function CreateProduct() {
 	let [isFilled, setIsFilled] = useState(false);
 	let [isActive, setIsActive] = useState(false);
 	let toggleChecked = () => setIsActive(value => !value)
+	let [file, setFile] = useState();
+	let [fileName, setFileName] = useState("");
 	// console.log(Preview)
 
 	useEffect(() => {
@@ -20,6 +23,26 @@ export default function CreateProduct() {
 			setIsFilled(false);
 		}
 	},[productName, description, sellingPrice, stock])
+
+	const saveFile = (e) => {
+		setFile(e.target.files[0]);
+		setFileName(e.target.files[0].name);
+	};
+
+	const uploadFile = async (e) => {
+		const formData = new FormData();
+		formData.append("file", file);
+		formData.append("fileName", fileName);
+		try {
+			const res = await axios.post(
+				"http://localhost:3000/products/upload",
+				formData
+			);
+			console.log(res);
+		} catch (ex) {
+			console.log(ex);
+		}
+	};
 
 	const createListing = async (submitEvent) => {		
 		submitEvent.preventDefault();
@@ -122,10 +145,10 @@ export default function CreateProduct() {
 					onChange={toggleChecked} /> Display product as Active
 				</div>
 
-				// Try to use a different url/site to save the images
+				
 
-				<input type="file" /> <br/> <br/>
-				{/*<img src="http://localhost:8000/" + data.file_path>*/}
+				<input type="file" onChange={saveFile} /> <br/> <br/>
+				<Button onClick={uploadFile}>Upload</Button>  <br/> <br/>
 
 				{
 					isFilled ?

@@ -26,7 +26,8 @@ export default function ManageProduct() {
 			headers: {
 				Authorization: `Bearer ${userCredentials}`
 			}
-		}).then(res => res.json()).then(inventoryData => {			
+		}).then(res => res.json()).then(inventoryData => {	
+			// console.log(inventoryData)		
 			setInventoryCollection(inventoryData.map(inventory => {				
 				return(									
 					<Inventory key={inventory._id} inventoryProp={inventory} />										
