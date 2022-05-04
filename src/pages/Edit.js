@@ -14,12 +14,10 @@ export default function Edit() {
 	let [isFilled, setIsFilled] = useState(false);
 	let [isActive, setIsActive] = useState(false);	
 	let toggleChecked = () => setIsActive(value => !value)
-	// console.log(isActive)
-
-	// Handle the id and extract it's information
-	// Fill the form with information
-	// Let the form editable
-	// Form can save the update
+	// console.log(data.productImg)
+	let productImage = data.productImg;
+	let image = "http://localhost:8000/" + productImage;
+	// console.log(image)
 
 	useEffect(async () => {
 		
@@ -138,7 +136,7 @@ export default function Edit() {
 						/> Display product as Active
 					</div>
 
-					
+					{/*<img src={image} />*/}
 
 					{
 						isFilled ?

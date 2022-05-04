@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Container, Col, Form, Button,  } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import Upload from './Uploads'
 
 export default function CreateProduct() {
 
@@ -9,6 +10,7 @@ export default function CreateProduct() {
 	let [description, setDescription] = useState('');
 	let [sellingPrice, setSellingPrice] = useState('');
 	let [stock, setStock] = useState('');
+	let [image, setImage] = useState([])
 	let [isFilled, setIsFilled] = useState(false);
 	let [isActive, setIsActive] = useState(false);
 	let toggleChecked = () => setIsActive(value => !value)
@@ -24,26 +26,7 @@ export default function CreateProduct() {
 		}
 	},[productName, description, sellingPrice, stock])
 
-	const saveFile = (e) => {
-		setFile(e.target.files[0]);
-		setFileName(e.target.files[0].name);
-	};
-
-	const uploadFile = async (e) => {
-		const formData = new FormData();
-		formData.append("file", file);
-		formData.append("fileName", fileName);
-		try {
-			const res = await axios.post(
-				"http://localhost:3000/products/upload",
-				formData
-			);
-			console.log(res);
-		} catch (ex) {
-			console.log(ex);
-		}
-	};
-
+	
 	const createListing = async (submitEvent) => {		
 		submitEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;		
@@ -59,7 +42,8 @@ export default function CreateProduct() {
 				description: description,
 				sellingPrice: sellingPrice,
 				stock: stock,
-				isActive: isActive
+				isActive: isActive,
+
 			})
 		}).then(result => result.json()).then(itemData => {
 			console.log(itemData)
@@ -97,7 +81,7 @@ export default function CreateProduct() {
 		<>
 		<Container>
 		<Col className='p-5'>
-			<Form onSubmit={e => createListing(e)} >
+			<Form  >
 				<Form.Group>
 					<Form.Label>Product Name</Form.Label>
 					<Form.Control 
@@ -147,12 +131,18 @@ export default function CreateProduct() {
 
 				
 
-				<input type="file" onChange={saveFile} /> <br/> <br/>
-				<Button onClick={uploadFile}>Upload</Button>  <br/> <br/>
+			{/*	<input type="file" /> <br/> <br/>
+				<Button >Upload</Button>  <br/> <br/>*/}
+			{/*Work on saving images online
+				Upload image through react
+				
+				*/}
+
+				{/*<Upload />*/}
 
 				{
 					isFilled ?
-						<Button className="createBtn" type="submit">Create Product</Button>	
+						<Button onClick={e => createListing(e)} className="createBtn" type="submit">Create Product</Button>	
 					:
 						<Button className="createBtn" disabled>Create Product</Button>	
 				}

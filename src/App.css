@@ -225,6 +225,21 @@
   #deleteFunction {
     color: red;
   }
+
+  .img {
+    width: 60% !important;
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cardText {
+    text-align: justify;
+    display: inline;
+    margin-top: auto;
+  }
+
+
 }
 
 @media only screen and (min-width: 600px) {
@@ -238,22 +253,47 @@
   #editFunction {
     display: inline;
     text-align: right;
-    margin-left: 75%; 
+    margin-left: 60%; 
     color: green;  
   }
 
   #deleteFunction {
     color: red;
   }
+
+  .img {
+    width: 40% !important;
+    display: inline-flex;
+  }
+
+  .cardText {
+    text-align: justify;
+    display: inline;
+    margin-top: -270px;
+    margin-left: 40%;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   #editFunction {
-    margin-left: 85%;
+    margin-left: 80%;
     color: green;
   }
 
   #deleteFunction {
     color: red;
+  }
+
+  .img {
+    width: 20% !important;
+    display: inline-flex;
+
+  }
+
+  .cardText {
+    text-align: justify;
+    display: inline;
+    margin-top: -230px !important;
+    margin-left: 30%;
   }
 }
