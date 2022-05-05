@@ -17,7 +17,7 @@ export default function Edit() {
 	// console.log(data.productImg)
 	let productImage = data.productImg;
 	let image = "http://localhost:8000/" + productImage;
-	// console.log(image)
+	// console.log(data)
 
 	useEffect(async () => {
 		

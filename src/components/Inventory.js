@@ -12,6 +12,7 @@ export default function Inventory({inventoryProp}) {
 	let status = inventoryProp.isActive;
 	let strStatus = status === true ? 'Active' : 'Inactive';	
 	let image = inventoryProp.productImg;
+	// console.log(inventoryProp)
 
 
 	return(
@@ -19,7 +20,7 @@ export default function Inventory({inventoryProp}) {
 		<div>	
 					
 			<Card className="cardInventory">
-				<img className="p-3 mt-2 img" src={"http://localhost:8000/" + image} />
+				<img className="p-3 mt-2 img" src={image} />
 				<Card.Body className=" cardText">				
 					<Card.Title>{invName}</Card.Title>					
 					<Card.Text>{invDescription}</Card.Text>
