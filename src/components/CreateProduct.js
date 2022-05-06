@@ -44,7 +44,7 @@ export default function CreateProduct() {
 				sellingPrice: sellingPrice,
 				stock: stock,
 				isActive: isActive,
-
+				productImg: productImg
 			})
 		}).then(result => result.json()).then(itemData => {
 			console.log(itemData)
@@ -132,7 +132,7 @@ export default function CreateProduct() {
 
 				
 
-				{/*<input type="file" value={productImg} onChange={e => setProductImg(e.target.value)} /> <br/> <br/>*/}
+				<input type="file"></input><br/> <br/>
 				{/*<Button >Upload</Button>  <br/> <br/>*/}
 			{/*Work on saving images online
 				Upload image through react
