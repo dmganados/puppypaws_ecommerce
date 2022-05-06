@@ -191,9 +191,11 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .loginCard {
-    width: 100%;
-  }
+.loginCard {
+  width: 100%;
+}
+
+
 }
 
 .loginBtn {
@@ -209,91 +211,82 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .cardInventory {
-    width: 100% !important;
-    margin: 0px;
-    margin-top: 10% ;
-  }
+.img {  
+  margin-left: 30%;  
+}
 
-  #editFunction {
-    display: inline;
-    text-align: right;
-    margin-left: 40%;
-    color: green;
-  }
+.title {
+  margin-top: 10%;
+}
 
-  #deleteFunction {
-    color: red;
-  }
+#editFunction {
+  color: green;
+}
 
-  .img {
-    width: 60% !important;
-    display: inline-flex;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cardText {
-    text-align: justify;
-    display: inline;
-    margin-top: auto;
-  }
-
+#deleteFunction {
+  color: red;    
+}
 
 }
 
 @media only screen and (min-width: 600px) {
-  .cardInventory {
-    width: 100% !important;
-    margin-left: auto;
-    margin-top: 10px;
+.title {
+ margin-left: 30%;
+ font-size: 100% !important;
+ font-family: 'Merriweather Sans', sans-serif;
+}
 
-  }
+.subtext {
+  margin-left: 30%;
+  font-size: 95%;
+}
 
-  #editFunction {
-    display: inline;
-    text-align: right;
-    margin-left: 60%; 
-    color: green;  
-  }
+.img {
+  position: absolute;  
+  margin-top: 2%;
+  margin-left: 3%;
+}
 
-  #deleteFunction {
-    color: red;
-  }
+#editFunction {
+  color: green;
+  margin-left: 80%;
+  font-size: 95%;
+}
 
-  .img {
-    width: 40% !important;
-    display: inline-flex;
-  }
-
-  .cardText {
-    text-align: justify;
-    display: inline;
-    margin-top: -270px;
-    margin-left: 40%;
-  }
+#deleteFunction {
+  color: red;
+  font-size: 95%;  
+}
 }
 
 @media only screen and (min-width: 992px) {
-  #editFunction {
-    margin-left: 80%;
-    color: green;
-  }
+.title {
+ margin-left: 20%;
+ font-size: 100% !important;
+ font-family: 'Merriweather Sans', sans-serif;
+}
 
-  #deleteFunction {
-    color: red;
-  }
+.subtext {
+  margin-left: 20%;
+  font-size: 95%;
+}
 
-  .img {
-    width: 20% !important;
-    display: inline-flex;
+.img {
+  position: absolute;  
+  margin-top: 2%;
+  margin-left: 3%;
+}
 
-  }
+#editFunction {
+  color: green;
+  margin-left: 80%;
+  font-size: 95%;
 
-  .cardText {
-    text-align: justify;
-    display: inline;
-    margin-top: -230px !important;
-    margin-left: 30%;
-  }
+}
+
+#deleteFunction {
+  color: red;
+  font-size: 95%;
+  
+}
 }

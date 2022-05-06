@@ -13,6 +13,7 @@ export default function CreateProduct() {
 	let [image, setImage] = useState([])
 	let [isFilled, setIsFilled] = useState(false);
 	let [isActive, setIsActive] = useState(false);
+	let [productImg, setProductImg] = useState('')
 	let toggleChecked = () => setIsActive(value => !value)
 	let [file, setFile] = useState();
 	let [fileName, setFileName] = useState("");
@@ -131,8 +132,8 @@ export default function CreateProduct() {
 
 				
 
-			{/*	<input type="file" /> <br/> <br/>
-				<Button >Upload</Button>  <br/> <br/>*/}
+				{/*<input type="file" value={productImg} onChange={e => setProductImg(e.target.value)} /> <br/> <br/>*/}
+				{/*<Button >Upload</Button>  <br/> <br/>*/}
 			{/*Work on saving images online
 				Upload image through react
 				

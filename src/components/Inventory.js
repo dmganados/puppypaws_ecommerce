@@ -19,16 +19,14 @@ export default function Inventory({inventoryProp}) {
 
 		<div>	
 					
-			<Card className="cardInventory">
-				<img className="p-3 mt-2 img" src={image} />
-				<Card.Body className=" cardText">				
-					<Card.Title>{invName}</Card.Title>					
-					<Card.Text>{invDescription}</Card.Text>
-					<Card.Text>Selling Price: PHP {invPrice} </Card.Text>
-					<Card.Text>Stock: {invStock}</Card.Text>
-					<Card.Text className="">Status: {strStatus} </Card.Text>
-
-
+			<Card className="mt-2 cardInventory">
+				<Card.Body className="cardText">
+					<img style={{width:100, height:120}} className="img" src={image} />				
+					<Card.Title className="title">{invName}</Card.Title>					
+					<Card.Text className="subtext">{invDescription}</Card.Text>
+					<Card.Text className="subtext">Selling Price: PHP {invPrice} </Card.Text>
+					<Card.Text className="subtext">Stock: {invStock}</Card.Text>
+					<Card.Text className="subtext">Status: {strStatus} </Card.Text>
 					<Link to={"update-product/" + id} className="mr-3" id="editFunction" >Update</Link>
 					<Link to="" id="deleteFunction">Delete</Link>
 				</Card.Body>				
