@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default class FilesUploadComponent extends Component {
 
+    
     constructor(props) {
         super(props);
 
@@ -10,19 +11,19 @@ export default class FilesUploadComponent extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            profileImg: ''
+            image: ''
         }
     }
 
     onFileChange(e) {
-        this.setState({ profileImg: e.target.files[0] })
+        this.setState({ image: e.target.files[0] })
     }
 
     onSubmit(e) {
         e.preventDefault()
         const formData = new FormData()
-        formData.append('profileImg', this.state.profileImg)
-        axios.post("http://localhost:8000/resources/uploads", formData, {
+        formData.append('image', this.state.image)
+        axios.post("http://localhost:8000/products/upload", formData, {
         }).then(res => {
             console.log(res)
         })

@@ -32,6 +32,9 @@ export default function Edit() {
 		setData(convertedData)
 	})
 
+	// Not yet pushed to heroku
+	// Option to update image
+
 	const updateListing = async (processEvent) => {
 		processEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;		
