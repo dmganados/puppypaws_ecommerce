@@ -1,7 +1,12 @@
 import React, { useState, useEffect, Component } from 'react';
-import { Container, Col, Form, Button,  } from 'react-bootstrap';
+import { Container, Col, Form, Button, Text } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { FilePond, registerPlugin} from 'react-filepond';
+
+// import FilePondPluginImagePreview  from 'filepond-plugin-image-preview';
+// import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
+// registerPlugin(FilePondPluginFileValidateSize, FilePondPluginImagePreview)
 // import FileUploader from './Uploader'
 
 // Work on setting validation for file size
@@ -15,19 +20,34 @@ export default function CreateProduct() {
 	let [description, setDescription] = useState('');
 	let [sellingPrice, setSellingPrice] = useState('');
 	let [stock, setStock] = useState('');	
+	let [productImg, setProductImg] = useState('');
+	let [imageSize, setImageSize] = useState('');
+	let [imageType, setImageType] = useState('');
 	let [isFilled, setIsFilled] = useState(false);
-	let [isActive, setIsActive] = useState(false);
-	let [productImg, setProductImg] = useState('')
+	let [isActive, setIsActive] = useState(false);	
 	let toggleChecked = () => setIsActive(value => !value)
+	// console.log(productImg.type)
 
 
 	useEffect(() => {
-		if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '' && productImg !== '') {
-			setIsFilled(true);			
+		if (productImg.size >= 6000000) {
+			setImageSize(false)
+			if (productImg.type !== "image/jpeg" && productImg.type !== "image/jpg" && productImg.type !== "image/png") {
+				setImageType(true);
+				if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '' && productImg !== '') {
+					setIsFilled(true);
+				} else {
+					setIsFilled(false);
+				}
+			} else {
+				setImageType(false);
+			}									
 		} else {
+			setImageSize(true);
+			setImageType(false)
 			setIsFilled(false);
 		}
-	},[productName, description, sellingPrice, stock])	
+	},[productName, description, sellingPrice, stock, imageSize, imageType])	
 
 	const changeHandler = (event) => {
 		setProductName(event.target.files)
@@ -146,7 +166,26 @@ export default function CreateProduct() {
 				</div>
 
 				
-				<input type="file" onChange={e => setProductImg(e.target.files[0])} />	<br/><br/>	
+				<input 
+				type="file" 				
+				onChange={e => setProductImg(e.target.files[0])} />	<br/>	
+
+				{
+					imageSize ?
+						<p className="">File too Big, please select a file less than 6mb</p>
+					:
+						<p className="d-none">File too Big, please select a file less than 6mb</p>
+				}
+
+				{
+					imageType ?
+						<p>Accepted file type are: .jpeg, .jpg, and .png</p>
+					:
+						<p className="d-none">Accepted file type are: .jpeg, .jpg, and .png</p>
+				}
+
+				
+				
 
 				{
 					isFilled ?
