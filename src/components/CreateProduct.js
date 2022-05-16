@@ -21,33 +21,39 @@ export default function CreateProduct() {
 	let [sellingPrice, setSellingPrice] = useState('');
 	let [stock, setStock] = useState('');	
 	let [productImg, setProductImg] = useState('');
-	let [imageSize, setImageSize] = useState('');
-	let [imageType, setImageType] = useState('');
+	let productImgSize = productImg.size
+	let productImgType = productImg.type
+	let [isImageSize, setIsImageSize] = useState(false);
+	let [isImageType, setIsImageType] = useState();
 	let [isFilled, setIsFilled] = useState(false);
 	let [isActive, setIsActive] = useState(false);	
 	let toggleChecked = () => setIsActive(value => !value)
-	// console.log(productImg.type)
+	// console.log(isImageSize)
+	// console.log(productImgSize)
 
+	// Work on handling undefined
 
 	useEffect(() => {
-		if (productImg.size >= 6000000) {
-			setImageSize(false)
-			if (productImg.type !== "image/jpeg" && productImg.type !== "image/jpg" && productImg.type !== "image/png") {
-				setImageType(true);
-				if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '' && productImg !== '') {
-					setIsFilled(true);
+
+			if (productImgType === "image/jpeg" ||  productImgType === "image/jpg" || productImgType === "image/png") {
+				setIsImageType(true);
+				if (productImgSize === 'undefined' || productImgSize === null) {
+					setIsImageSize(true);
+					if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '' && productImg !== '') {
+						setIsFilled(true);
+					} else {
+						setIsFilled(false);
+					}
 				} else {
+					setIsImageSize(false);
 					setIsFilled(false);
 				}
 			} else {
-				setImageType(false);
-			}									
-		} else {
-			setImageSize(true);
-			setImageType(false)
-			setIsFilled(false);
-		}
-	},[productName, description, sellingPrice, stock, imageSize, imageType])	
+				setIsImageType(false);
+				setIsImageSize(false);
+				setIsFilled(false);
+			}		
+	},[productName, description, sellingPrice, stock, productImg])	
 
 	const changeHandler = (event) => {
 		setProductName(event.target.files)
@@ -74,7 +80,7 @@ export default function CreateProduct() {
 		formData.append('isActive', isActive);
 		formData.append('productImg', productImg)
 
-		const isCreated = await fetch('http://localhost:8000/products/', {
+		const isCreated = await fetch('https://limitless-brushlands-90925.herokuapp.com/products/', {
 			method: 'POST',
 			headers: {
 				Authorization: `Bearer ${userCredentials}`				
@@ -168,23 +174,22 @@ export default function CreateProduct() {
 				
 				<input 
 				type="file" 				
-				onChange={e => setProductImg(e.target.files[0])} />	<br/>	
+				onChange={e => setProductImg(e.target.files[0])} />	<br/>
 
 				{
-					imageSize ?
-						<p className="">File too Big, please select a file less than 6mb</p>
-					:
-						<p className="d-none">File too Big, please select a file less than 6mb</p>
+					isImageSize ?								
+							<p></p>
+						:							
+							
+							<p className="fileError">File too Big, please select a file less than 6mb</p>
 				}
 
 				{
-					imageType ?
-						<p>Accepted file type are: .jpeg, .jpg, and .png</p>
-					:
-						<p className="d-none">Accepted file type are: .jpeg, .jpg, and .png</p>
-				}
-
-				
+					isImageType ?
+						<p className="fileError">Acceptable file type: .jpeg, .jpg, and .png</p>								
+					:						
+						<p></p>	
+				}				
 				
 
 				{

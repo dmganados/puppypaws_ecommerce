@@ -35,22 +35,18 @@ export default function Register() {
 				if (password1 === password2) {
 					setIsMatched(true);
 					if (firstName !== '' && lastName !== '' && email !== '' && mobileNo !== '') {
-						setIsBuyer(true);
-						
+						setIsBuyer(true);						
 					} else {
-						setIsBuyer(false);
-						
+						setIsBuyer(false);						
 					}
 				} else {
 					setIsMatched(false);
-					setIsBuyer(false);
-					
+					setIsBuyer(false);					
 				}
 			} else {
 				setIsPassValid(false);
 				setIsMatched(false);
-				setIsBuyer(false);
-				
+				setIsBuyer(false);				
 			}
 		} else {
 			setIsPresent(false);
