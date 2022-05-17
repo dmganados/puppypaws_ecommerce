@@ -58,7 +58,7 @@ export default function CreateProduct() {
 	const createListing = async (submitEvent) => {		
 		submitEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;	
-		const formData = new FormData();
+		let formData = new FormData();
 		formData.append('productName', productName);
 		formData.append('description', description);
 		formData.append('sellingPrice', sellingPrice);
@@ -69,7 +69,7 @@ export default function CreateProduct() {
 		const isCreated = await fetch('https://limitless-brushlands-90925.herokuapp.com/products/', {
 			method: 'POST',
 			headers: {
-				Authorization: `Bearer ${userCredentials}`				
+				Authorization: `Bearer ${userCredentials}`		
 			}, 
 			body: formData
 		}).then(result => result.json()).then(itemData => {
@@ -156,7 +156,6 @@ export default function CreateProduct() {
 					checked={isActive} 					
 					onChange={toggleChecked} /> Display product as Active
 				</div>
-
 				
 				<input 
 				type="file" 				
