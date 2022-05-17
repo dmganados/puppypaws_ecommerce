@@ -4,18 +4,9 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { FilePond, registerPlugin} from 'react-filepond';
 
-// import FilePondPluginImagePreview  from 'filepond-plugin-image-preview';
-// import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
-// registerPlugin(FilePondPluginFileValidateSize, FilePondPluginImagePreview)
-// import FileUploader from './Uploader'
 
-// Work on setting validation for file size
-// Not yet pushed to heroku
 
 export default function CreateProduct() {
-
-	// let fileUpload = Upload
-
 	let [productName, setProductName] = useState('');
 	let [description, setDescription] = useState('');
 	let [sellingPrice, setSellingPrice] = useState('');
@@ -28,16 +19,12 @@ export default function CreateProduct() {
 	let [isFilled, setIsFilled] = useState(false);
 	let [isActive, setIsActive] = useState(false);	
 	let toggleChecked = () => setIsActive(value => !value)
-	// console.log(isImageSize)
-	// console.log(productImgSize)
-
-	// Work on handling undefined
-
+	
 	useEffect(() => {
 
 			if (productImgType === "image/jpeg" ||  productImgType === "image/jpg" || productImgType === "image/png") {
 				setIsImageType(true);
-				if (productImgSize === 'undefined' || productImgSize === null) {
+				if (productImgSize <= 6000000) {
 					setIsImageSize(true);
 					if (productName !== '' && description !== '' && sellingPrice !== '' && stock !== '' && productImg !== '') {
 						setIsFilled(true);
@@ -61,8 +48,7 @@ export default function CreateProduct() {
 		setSellingPrice(event.target.files)
 		setStock(event.target.files)
 		setProductImg(event.target.files[0])
-	}
-	// console.log(changeHandler)
+	}	
 
 	const handleSubmission = () => {
 
@@ -178,17 +164,16 @@ export default function CreateProduct() {
 
 				{
 					isImageSize ?								
-							<p></p>
-						:							
-							
-							<p className="fileError">File too Big, please select a file less than 6mb</p>
+						<p></p>
+					:								
+						<p className="fileError">Please select a file less than 6mb</p>
 				}
 
 				{
 					isImageType ?
-						<p className="fileError">Acceptable file type: .jpeg, .jpg, and .png</p>								
-					:						
-						<p></p>	
+						<p></p>		
+					:							
+						<p className="fileError">Acceptable file type: .jpeg, .jpg, and .png</p>
 				}				
 				
 
