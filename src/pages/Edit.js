@@ -10,11 +10,11 @@ export default function Edit() {
 	let { id } = useParams();
 	const [data, setData] = useState([])
 	let price = data.sellingPrice
-	let [productName, setProductName] = useState(data.productName);
-	let [description, setDescription] = useState(data.description);
+	let [productName, setProductName] = useState('');
+	let [description, setDescription] = useState('');
 	let [sellingPrice, setSellingPrice] = useState('');
-	let [stock, setStock] = useState(data.stock);
-	let [productImg, setProductImg] = useState(data.productImg);
+	let [stock, setStock] = useState('');
+	let [productImg, setProductImg] = useState('');
 	let [isFilled, setIsFilled] = useState(false);
 	let [isActive, setIsActive] = useState(false);	
 	let toggleChecked = () => setIsActive(value => !value)	
@@ -32,39 +32,51 @@ export default function Edit() {
 
 	// Extract the product information and set a new data
 	const inventoryInfo = fetch(`http://localhost:8000/products/${id}`).then(res => res.json()).then(convertedData => {		
+		// setProductName(convertedData.productName);
+		// setDescription(convertedData.description);
+		// setSellingPrice(convertedData.sellingPrice);
+		// setStock(convertedData.stock);
 		setData(convertedData)
-		// console.log(convertedData)
+		// setProductImg(convertedData.productImg);
+		// setIsActive(convertedData.isActive);		
 	})
 
 	// Not yet pushed to heroku
 	// Option to update image
 	// Work on handling values from prefilled form and remain as the data on the same form
-	const editHandler = (event) => {
-		setProductName(event.target.files);
-		setDescription(event.target.files);
-		setSellingPrice(event.target.files);
-		setStock(event.target.files);
-		setProductImg(event.target.files[0])
-	}
+	// const editHandler = (event) => {
+	// 	setProductName(event.target.files);
+	// 	setDescription(event.target.files);
+	// 	setSellingPrice(event.target.files);
+	// 	setStock(event.target.files);
+	// 	setProductImg(event.target.files[0])
+	// }
 
 	const updateListing = async (processEvent) => {
 		processEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;	
-		let updateData = new FormData();
-		updateData.append('productName', productName);
-		updateData.append('description', description);
-		updateData.append('sellingPrice', sellingPrice);
-		updateData.append('stock', stock);
-		updateData.append('isActive',isActive);
-		updateData.append('productImg', productImg)
+		// let updateData = new FormData();
+		// updateData.append('productName', productName);
+		// updateData.append('description', description);
+		// updateData.append('sellingPrice', sellingPrice);
+		// updateData.append('stock', stock);
+		// updateData.append('isActive',isActive);
+		// updateData.append('productImg', productImg)
 		
 		const isUpdated = await fetch(`http://localhost:8000/products/${id}/update-product`, {
 			method: 'PUT',
 			headers: {
 				Authorization: `Bearer ${userCredentials}`,
-				// 'Content-Type': 'multipart/form-data'
+				'Content-Type': 'application/json'
 			},			
-			body: updateData
+			body: JSON.stringify({
+				productName: productName,
+				description: description,
+				sellingPrice: sellingPrice,
+				stock: stock,
+				isActive: isActive,
+				productImg: productImg
+			})
 		}).then(res => res.json()).then(updated => {
 			console.log(updated)
 			if (updated) {
@@ -107,7 +119,7 @@ export default function Edit() {
 						type="text"
 						required
 						defaultValue={data.productName}							
-						onChange={(e) => setProductName(e.target.value)}
+						onChange={e => setProductName(e.target.value)}
 
 						 />
 						
@@ -130,7 +142,7 @@ export default function Edit() {
 						type="number" 
 						required
 						defaultValue={data.sellingPrice}
-						onChange={(e) => setSellingPrice(data.sellingPrice)}
+						onChange={(e) => setSellingPrice(e.target.value)}
 						
 					 	/>
 					</Form.Group>	
@@ -157,10 +169,10 @@ export default function Edit() {
 
 					<input 
 					type="file" 
-					defaultValue={data.productImg}
+					defaultValue={productImg}
 					onChange={e => setProductImg(e.target.files[0])} /> <br/><br/>
 
-					<img style={{width:100, height: 100}} src={data.productImg} /> <br/> <br/>
+					{/*<img style={{width:100, height: 100}} src={productImg} /> <br/> <br/>*/}
 
 					<Button onClick={e => updateListing(e)} className="createBtn">Update Product Info</Button>
 
