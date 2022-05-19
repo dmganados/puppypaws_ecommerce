@@ -20,21 +20,29 @@ export default function ManageProduct() {
 	const [inventoryCollection, setInventoryCollection] = useState([]);		
 	let userCredentials = localStorage.accessToken;
 
-	useEffect(() => {
-		fetch('https://limitless-brushlands-90925.herokuapp.com/products/all', {
+	useEffect(async() =>  {	
+		
+		let unmounted = false;
+
+		await fetch('https://limitless-brushlands-90925.herokuapp.com/products/all', {
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${userCredentials}`
 			}
 		}).then(res => res.json()).then(inventoryData => {	
-			// console.log(inventoryData)		
-			setInventoryCollection(inventoryData.map(inventory => {				
-				return(									
-					<Inventory key={inventory._id} inventoryProp={inventory} />										
-				)
-			}));			
+			// console.log(inventoryData)
+			if (!unmounted) {
+				setInventoryCollection(inventoryData.map(inventory => {				
+					return(									
+						<Inventory key={inventory._id} inventoryProp={inventory} />										
+					)
+				}));
+			}		
+			return () => {
+				unmounted = true;
+			}			
 		});
-	});
+	},[]);
 
 	return(
 		<>

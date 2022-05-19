@@ -42,17 +42,17 @@ export default function CreateProduct() {
 			}		
 	},[productName, description, sellingPrice, stock, productImg])	
 
-	const changeHandler = (event) => {
-		setProductName(event.target.files)
-		setDescription(event.target.files)
-		setSellingPrice(event.target.files)
-		setStock(event.target.files)
-		setProductImg(event.target.files[0])
-	}	
+	// const changeHandler = (event) => {
+	// 	setProductName(event.target.files)
+	// 	setDescription(event.target.files)
+	// 	setSellingPrice(event.target.files)
+	// 	setStock(event.target.files)
+	// 	setProductImg(event.target.files[0])
+	// }	
 
-	const handleSubmission = () => {
+	// const handleSubmission = () => {
 
-	};
+	// };
 
 	
 	const createListing = async (submitEvent) => {		
