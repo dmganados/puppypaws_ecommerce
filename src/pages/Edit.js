@@ -13,17 +13,22 @@ export default function Edit() {
 	let [description, setDescription] = useState('');
 	let [sellingPrice, setSellingPrice] = useState('');
 	let [stock, setStock] = useState('');	
-	let [productImg, setProductImg] = useState('');	
+	let [productImg, setProductImg] = useState();	
 	let [isActive, setIsActive] = useState(false);	
-	let [newFile, setNewFile] = useState('')
+	let [newFile, setNewFile] = useState([])
+	let [updatedProduct, setUpdatedProduct] = useState('')
 	let toggleChecked = () => setIsActive(value => !value)
-	// console.log(productImg)
+	let imageurl = updatedProduct.productImg;
+	imageurl = newFile.productImg
+	// console.log(updatedProduct.productImg)
+	// console.log(updatedProduct)
 
 	useEffect(() => {
 		productInfo();	
 		// newImage();	
 	},[])
 
+	// Get the product details
 	const productInfo = async () => {
 		await fetch(`http://localhost:8000/products/${id}`).then(res => res.json()).then(data => {
 			// console.log(data)
@@ -56,32 +61,35 @@ export default function Edit() {
 		formData.append('sellingPrice', sellingPrice);
 		formData.append('stock', stock);
 		formData.append('isActive', isActive);
-		// formData.append('productImg', productImg);
-
-		let newImage = (event) => {
-			if (productImg !== '') {
-				 fetch('http://localhost:8000/products/upload',{
-					method: 'POST',
-					body: addFile
-				}).then(result => result.json()).then(file => {
-					setProductImg(file)
-				})
-			}			
-		}
+		formData.append('productImg', newFile);
 		
+		// Condition if user changes the image
+		if (productImg) {
+			 fetch('http://localhost:8000/products/upload',{
+				method: 'POST',
+				body: addFile
+			}).then(result => result.json()).then(file => {
+				// setProductImg(file)
+				setNewFile(file)
+			})
+		};	
+		
+				
 		// Work on changing the product image by the new uploaded image
 		// Work on Delete Component
 		// Work on viewing individual product
 		// Work on Displaying Images on the Catalog
 
+		// Update the product details
 		let isUpdated = await fetch(`http://localhost:8000/products/${id}/update-product`, {
 			method: 'PUT',			
 			body: formData
 		}).then(res => res.json()).then(newData => {
-			console.log(newData)
+			setUpdatedProduct(newData)
 		})
 	};
-	
+
+
 
 	return (
 		<div>
@@ -141,10 +149,12 @@ export default function Edit() {
 						/> Display product as Active
 					</div>
 					
+
 					<input 
 					type="file"					 
 					onChange={e => setProductImg(e.target.files[0])}
 					 /> <br/><br/>
+					 {/*<Button onClick={e => newImage(e)} >Upload</Button>*/}
 					 
 					<Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>
 
