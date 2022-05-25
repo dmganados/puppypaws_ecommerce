@@ -18,12 +18,22 @@ export default function Edit() {
 	let [newFile, setNewFile] = useState([])
 	let [updatedProduct, setUpdatedProduct] = useState('')
 	let toggleChecked = () => setIsActive(value => !value)
-	let imageurl = updatedProduct.productImg;
-	imageurl = newFile.productImg
+	let productImgSize = productImg.size;
+	let productImgType = productImg.type;
+	let [isImageType, setIsImageType] = useState(false);
+	let [isImageSize, setIsImageSize] = useState(false);
+	let [isFilled, setIsFilled] = useState(false);
+	// console.log(stock)
 
 	useEffect(() => {
-		productInfo();				
+		productInfo();	
+		formFunction();	
+		
 	},[])
+
+	const formFunction = () => {
+		
+	}
 
 	// Get the product details
 	const productInfo = async () => {
@@ -36,7 +46,8 @@ export default function Edit() {
 		})
 	};
 
-	const productUpdate = async () => {		
+	const productUpdate = async () => {	
+		let userCredentials = localStorage.accessToken;	
 		let formData = new FormData()		
 		formData.append('productName', productName);
 		formData.append('description', description);
@@ -44,11 +55,15 @@ export default function Edit() {
 		formData.append('stock', stock);
 		formData.append('isActive', isActive);
 		formData.append('productImg', productImg);
+		
 
 		// Created two API to let user choose to upload a new image or not
 		if (productImg) {
 			 fetch(`http://localhost:8000/products/${id}/update-product`, {
-				method: 'PUT',			
+				method: 'PUT',
+				headers: {
+					Authorization: `Bearer ${userCredentials}`
+				},			
 				body: formData
 			}).then(res => res.json()).then(newData => {
 				console.log(newData)
@@ -57,7 +72,8 @@ export default function Edit() {
 			fetch(`http://localhost:8000/products/${id}/update-no-image`, {
 				method: 'PUT',
 				headers: {
-					'Content-Type' : 'application/json'
+					'Content-Type' : 'application/json',
+					Authorization: `Bearer ${userCredentials}`
 				},
 				body: JSON.stringify({
 					productName: productName,
@@ -74,6 +90,8 @@ export default function Edit() {
 
 	// Work on the effects when done filling out the form (Swal effect)
 	// Work on disabling and enabling button when filling out the form
+	// Work on authentication
+	// Change endpoints
 
 	return (
 		<div>
@@ -131,19 +149,33 @@ export default function Edit() {
 						checked={isActive}
 						onChange={toggleChecked}				
 						/> Display product as Active
-					</div>
-					
+					</div>					
 
 					<input 
-					type="file"	
-					// value={productImg}		 
+					type="file"								 
 					onChange={e => setProductImg(e.target.files[0])}
 					 /> <br/><br/>
-					 {/*<Button onClick={e => newImage(e)} >Upload</Button>*/}
 					 
-					<Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>
+					 {/*{
+					 	isImageSize ?								
+					 		<p></p>
+					 	:								
+					 		<p className="fileError">Please select a file less than 6mb</p>
+					 }
 
-				
+					 {
+					 	isImageType ?
+					 		<p></p>		
+					 	:							
+					 		<p className="fileError">Acceptable file type: .jpeg, .jpg, and .png</p>
+					 }	*/}
+
+					 {
+					 	isFilled ?
+					 		<Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>
+					 	:
+					 		<Button className="createBtn" disabled>Update Product Info</Button>
+					 }					
 						
 				</Form>
 				</Col>

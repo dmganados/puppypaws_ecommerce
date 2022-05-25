@@ -12,8 +12,8 @@ export default function CreateProduct() {
 	let [sellingPrice, setSellingPrice] = useState('');
 	let [stock, setStock] = useState('');	
 	let [productImg, setProductImg] = useState('');
-	let productImgSize = productImg.size
-	let productImgType = productImg.type
+	let productImgSize = productImg.size;
+	let productImgType = productImg.type;
 	let [isImageSize, setIsImageSize] = useState(false);
 	let [isImageType, setIsImageType] = useState();
 	let [isFilled, setIsFilled] = useState(false);
