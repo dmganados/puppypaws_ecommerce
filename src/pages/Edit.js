@@ -9,31 +9,19 @@ import Upload from '../components/Uploads'
 export default function Edit() {	
 
 	const {id} = useParams();
-	let [productName, setProductName] = useState('');
+	let [productName, setProductName] = useState('');	
 	let [description, setDescription] = useState('');
 	let [sellingPrice, setSellingPrice] = useState('');
 	let [stock, setStock] = useState('');	
 	let [productImg, setProductImg] = useState('');	
 	let [isActive, setIsActive] = useState(false);	
 	let [newFile, setNewFile] = useState([])
-	let [updatedProduct, setUpdatedProduct] = useState('')
 	let toggleChecked = () => setIsActive(value => !value)
-	let productImgSize = productImg.size;
-	let productImgType = productImg.type;
-	let [isImageType, setIsImageType] = useState(false);
-	let [isImageSize, setIsImageSize] = useState(false);
-	let [isFilled, setIsFilled] = useState(false);
-	// console.log(stock)
 
 	useEffect(() => {
 		productInfo();	
-		formFunction();	
-		
-	},[])
 
-	const formFunction = () => {
-		
-	}
+	},[])	
 
 	// Get the product details
 	const productInfo = async () => {
@@ -154,28 +142,9 @@ export default function Edit() {
 					<input 
 					type="file"								 
 					onChange={e => setProductImg(e.target.files[0])}
-					 /> <br/><br/>
-					 
-					 {/*{
-					 	isImageSize ?								
-					 		<p></p>
-					 	:								
-					 		<p className="fileError">Please select a file less than 6mb</p>
-					 }
+					 /> <br/><br/>					 
 
-					 {
-					 	isImageType ?
-					 		<p></p>		
-					 	:							
-					 		<p className="fileError">Acceptable file type: .jpeg, .jpg, and .png</p>
-					 }	*/}
-
-					 {
-					 	isFilled ?
-					 		<Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>
-					 	:
-					 		<Button className="createBtn" disabled>Update Product Info</Button>
-					 }					
+					 <Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>	 			
 						
 				</Form>
 				</Col>
