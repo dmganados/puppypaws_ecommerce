@@ -6,8 +6,8 @@ import axios from 'axios';
 import { FilePond, registerPlugin} from 'react-filepond';
 import Upload from '../components/Uploads'
 
-export default function Edit() {	
-
+export default function Edit() {
+		
 	const {id} = useParams();
 	let [productName, setProductName] = useState('');	
 	let [description, setDescription] = useState('');
@@ -17,10 +17,14 @@ export default function Edit() {
 	let [isActive, setIsActive] = useState(false);	
 	let [newFile, setNewFile] = useState([])
 	let toggleChecked = () => setIsActive(value => !value)
+	let productImgSize = productImg.size;
+	let [isAcceptable, setIsAcceptable] = useState(false);
+	let [isFilled, setIsFilled] = useState(false);
+	// console.log(productName)
 
 	useEffect(() => {
 		productInfo();	
-
+		// effect();
 	},[])	
 
 	// Get the product details
@@ -34,7 +38,8 @@ export default function Edit() {
 		})
 	};
 
-	const productUpdate = async () => {	
+	const productUpdate = async (submitEvent) => {	
+		submitEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;	
 		let formData = new FormData()		
 		formData.append('productName', productName);
@@ -42,22 +47,26 @@ export default function Edit() {
 		formData.append('sellingPrice', sellingPrice);
 		formData.append('stock', stock);
 		formData.append('isActive', isActive);
-		formData.append('productImg', productImg);
-		
+		formData.append('productImg', productImg);	
 
 		// Created two API to let user choose to upload a new image or not
 		if (productImg) {
-			 fetch(`http://localhost:8000/products/${id}/update-product`, {
+			 await fetch(`http://localhost:8000/products/${id}/update-product`, {
 				method: 'PUT',
 				headers: {
 					Authorization: `Bearer ${userCredentials}`
 				},			
 				body: formData
-			}).then(res => res.json()).then(newData => {
-				console.log(newData)
-			})
+			}).then(res => res.json()).then(newData => {})
+			await Swal.fire({
+			 		position: 'center',
+			 		icon: "success",
+			 		text: "Update successful",
+			 		showConfirmButton: false,
+			 		timer: 1500
+			 	});		
 		} else {
-			fetch(`http://localhost:8000/products/${id}/update-no-image`, {
+			await fetch(`http://localhost:8000/products/${id}/update-no-image`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type' : 'application/json',
@@ -70,16 +79,17 @@ export default function Edit() {
 					stock: stock,
 					isActive: isActive
 				})
-			}).then(res => res.json()).then(newData => {
-				console.log(newData)
-			})
-		}		
+			}).then(res => res.json()).then(newData => {})
+			await Swal.fire({
+					position: 'center',
+					icon: "success",
+					text: "Update successful",
+					showConfirmButton: false,
+					timer: 1500
+				});	
+		}	
+		window.location.href="/manage-product";	
 	};
-
-	// Work on the effects when done filling out the form (Swal effect)
-	// Work on disabling and enabling button when filling out the form
-	// Work on authentication
-	// Change endpoints
 
 	return (
 		<div>
@@ -142,10 +152,9 @@ export default function Edit() {
 					<input 
 					type="file"								 
 					onChange={e => setProductImg(e.target.files[0])}
-					 /> <br/><br/>					 
-
-					 <Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>	 			
-						
+					 />
+					 <p><small>Choose jpg, png, or jpeg file type, and a maximum of 5MB.</small></p>
+					 <Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>						 			
 				</Form>
 				</Col>
 			</Container>	
