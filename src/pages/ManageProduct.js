@@ -19,7 +19,7 @@ import { useTable } from 'react-table';
 export default function ManageProduct() {
 
 	const [inventoryCollection, setInventoryCollection] = useState([]);	
-	let [inventory, setInventory] = useState([]);	
+	let [inventory, setInventory] = useState('');	
 	let userCredentials = localStorage.accessToken;
 	let status = inventory.isActive
 	let listStatus = status === true ? 'Active' : 'Inactive';
@@ -48,65 +48,54 @@ export default function ManageProduct() {
 			headers: {
 				Authorization: `Bearer ${userCredentials}`
 			}
-		}).then(res => res.json()).then(inventoryData => {			
-			if (!unmounted) {
-				setInventoryCollection(inventoryData.map(inventoryInfo => {	
-					setInventory(inventoryInfo);
-				}));
-			}		
-			return () => {
-				unmounted = true;
-			}			
+		}).then(res => res.json()).then(inventoryData => {	
+			setInventory(inventoryData)		
+			// if (!unmounted) {
+			// 	setInventoryCollection(inventoryData.map(inventoryInfo => {	
+			// 		// console.log(inventoryInfo);
+			// 	}));
+			// }		
+			// return () => {
+			// 	unmounted = true;
+			// }			
 		});
 	},[]);
 
 	return(
-		<>
+		<div className="App">
 			<Container>			
-				<Button className="mt-5 createBtn" href="/create-product">Create Product +</Button>
+				<Button className="mt-5 createBtn" href="/create-product">Create Product +</Button>		
 
-				
-				{/*{inventoryCollection}	*/}
-				{/*<Table className="table mt-3">*/}
-					{/*<thead>
-						<tr>							
-							<th scope="col">Product Name</th>							
-							<th scope="col">Selling Price</th>
-							<th scope="col">Stock</th>
-							<th scope="col">Status</th>
-							<th scope="col">Update/Delete</th>
-						</tr>
-					</thead>*/}
-					{/*<tbody>*/}
-						
-						{/*<tr>
-							<td>{inventory.productName}</td>
-							<td>${inventory.sellingPrice}</td>
-						</tr>*/}
-						{/*{inventory.map((item) => (
-							<tr>
-								<td>{item.productName}</td>
-								<td>${item.sellingPrice}</td>
+				<table>
+					<tr>
+						<th>Product Name</th>
+						<th>Price</th>
+						<th>Status</th>
+					</tr>
+					{inventory.map((val, key) => {
+						return (
+							<tr key={key}>
+								<td>{val.productName}</td>
+								<td>{val.sellingPrice}</td>
+								<td>{val.isActive}</td>
 							</tr>
-							))}
-*/}
+						)
+					})}
 
-						
-						{/*{inventory.map((items) => ( 
-						<tr>						
-							<td>{items.productName}</td>							
-							<td>${items.sellingPrice}</td>
-							<td>{items.stock}</td>
-							<td>{listStatus}</td>
-							<td></td>
-						</tr>
-						))}*/}
-						
-					{/*</tbody>*/}
-				{/*</Table>					*/}
+					{/*<tr>
+						<td>I Watch</td>
+						<td>P 5000</td>
+						<td>Active</td>
+					</tr>
+					<tr>
+						<td>Go Pro</td>
+						<td>P 8000</td>
+						<td>Active</td>
+					</tr>*/}
+				</table>
+
 			</Container>
-
-		</>
+		</div>
 	)
 }
 
