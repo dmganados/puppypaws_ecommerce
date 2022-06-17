@@ -9,7 +9,7 @@
 // Do all these in a separate module
 
 import { Button, Col, Row, Container, Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Inventory from '../components/Inventory';
 import Edit from '../pages/Edit';
 import { useState, useEffect } from 'react';
@@ -18,26 +18,22 @@ import { useTable } from 'react-table';
 
 export default function ManageProduct() {
 
+	
 	const [inventoryCollection, setInventoryCollection] = useState([]);	
-	let [inventory, setInventory] = useState('');	
-	let userCredentials = localStorage.accessToken;
-	
-	
-	let newData = inventory
-	let data = [
-		{
-			productName: "Iwatch",
-			sellingPrice: 200,
-			status: "Active"
-		},
-		{
-			productName: "Phone",
-			sellingPrice: 500,
-			status: "Inactive"
-		}
-	]
-	
-	// console.log(newData)
+	let [inventory, setInventory] = useState([]);
+	let [listings, setListings] = useState([])	
+	// let id = listings._id
+	let userCredentials = localStorage.accessToken;	
+	// console.log(id)
+	// let unmounted = false;
+	// if (!unmounted) {
+	// 	setInventory(inventoryCollection.map(inventoryInfo => {	
+	// 		setListings(inventoryInfo)
+	// 	}));
+	// }		
+	// return () => {
+	// 	unmounted = true;
+	// }		
 
 	// Create a table for the inventory
 	// Get the boolean
@@ -55,8 +51,8 @@ export default function ManageProduct() {
 		}).then(res => res.json()).then(inventoryData => {	
 			setInventoryCollection(inventoryData);
 			// if (!unmounted) {
-			// 	setInventoryCollection(inventoryData.map(inventoryInfo => {	
-			// 		setInventory(inventoryInfo);
+			// 	setInventory(inventoryData.map(inventoryInfo => {	
+			// 		setListings(inventoryInfo)
 			// 	}));
 			// }		
 			// return () => {
@@ -67,16 +63,23 @@ export default function ManageProduct() {
 	},[]);
 
 	const listingData = (val, key) => {
+		// console.log(val.productImg)
+		let image = val.productImg
+		let id = val._id
 		let status = val.isActive
-		let listStatus = status === true ? 'Active' : 'Inactive';
-		// console.log(val.isActive)
+		let listStatus = status === true ? 'Active' : 'Inactive';		
 		return(
 			<tr key={key}>
+				<td><img style={{width:50, height:70}} src={image} /></td>
 				<td>{val.productName}</td>
 				<td>P{val.sellingPrice}</td>
+				<td>{val.stock}</td>
 				<td>{listStatus}</td>
-				<td data-href="update-product/">Update</td>
-				{/*<Link>Update</Link>*/}
+				<td>
+					<Link to={"/manage-product/update-product/" + id } className="mr-4">Update</Link>
+					<Link to={"/manage-product/update-product/" + id }>Delete</Link>
+				</td>
+
 			</tr>
 		)
 	}
@@ -91,15 +94,16 @@ export default function ManageProduct() {
 				<table className="table table-striped mt-4">
 					<thead>
 					<tr>
+						<th>Image</th>
 						<th>Product Name</th>
 						<th>Price</th>
+						<th>Stock</th>
 						<th>Status</th>
 						<th>Update/Delete</th>
 					</tr>
 					</thead>
 					<tbody>
-						{inventoryCollection.map(listingData)}
-						{/*<Link>Update</Link>*/}
+						{inventoryCollection.map(listingData)}						
 					</tbody>
 					
 				</table>
