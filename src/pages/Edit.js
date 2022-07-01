@@ -19,12 +19,10 @@ export default function Edit() {
 	let toggleChecked = () => setIsActive(value => !value)
 	let productImgSize = productImg.size;
 	let [isAcceptable, setIsAcceptable] = useState(false);
-	let [isFilled, setIsFilled] = useState(false);
-	// console.log(productName)
+	let [isFilled, setIsFilled] = useState(false);		
 
 	useEffect(() => {
-		productInfo();	
-		// effect();
+		productInfo();			
 	},[])	
 
 	// Get the product details

@@ -14,6 +14,7 @@ import Inventory from '../components/Inventory';
 import Edit from '../pages/Edit';
 import { useState, useEffect } from 'react';
 import { useTable } from 'react-table';
+import Swal from 'sweetalert2';
 
 
 export default function ManageProduct() {
@@ -22,18 +23,7 @@ export default function ManageProduct() {
 	const [inventoryCollection, setInventoryCollection] = useState([]);	
 	let [inventory, setInventory] = useState([]);
 	let [listings, setListings] = useState([])	
-	// let id = listings._id
-	let userCredentials = localStorage.accessToken;	
-	// console.log(id)
-	// let unmounted = false;
-	// if (!unmounted) {
-	// 	setInventory(inventoryCollection.map(inventoryInfo => {	
-	// 		setListings(inventoryInfo)
-	// 	}));
-	// }		
-	// return () => {
-	// 	unmounted = true;
-	// }		
+	let userCredentials = localStorage.accessToken;		
 
 	// Create a table for the inventory
 	// Get the boolean
@@ -49,25 +39,48 @@ export default function ManageProduct() {
 				Authorization: `Bearer ${userCredentials}`
 			}
 		}).then(res => res.json()).then(inventoryData => {	
-			setInventoryCollection(inventoryData);
-			// if (!unmounted) {
-			// 	setInventory(inventoryData.map(inventoryInfo => {	
-			// 		setListings(inventoryInfo)
-			// 	}));
-			// }		
-			// return () => {
-			// 	unmounted = true;
-			// }		
-				
+			setInventoryCollection(inventoryData);				
 		});
 	},[]);
 
-	const listingData = (val, key) => {
-		// console.log(val.productImg)
+	// const remove = async () => {
+	// 	await fetch(`http://localhost:8000/products/${}/archive`)
+	// }
+
+	const listingData = (val, key) => {	
 		let image = val.productImg
 		let id = val._id
 		let status = val.isActive
-		let listStatus = status === true ? 'Active' : 'Inactive';		
+		let listStatus = status === true ? 'Active' : 'Inactive';	
+		// console.log(key)
+
+		const remove = async () => {
+			await Swal.fire({
+				title: 'Are you sure?',
+				text: "You won't be able to revert this!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#084887',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete it!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					fetch(`http://localhost:8000/products/${id}/delete`, {
+						method: 'DELETE',
+						headers: {
+							Authorization: `Bearer ${userCredentials}`
+						}
+					}).then(res => res.json()).then(removeData => {})
+						Swal.fire({
+								icon: "success",
+								text: "Product listing has been deleted",											
+								timer: 1500
+							});
+				}
+			})	
+			window.location.href="/manage-product";			
+		}
+
 		return(
 			<tr key={key}>
 				<td><img style={{width:50, height:70}} src={image} /></td>
@@ -76,14 +89,13 @@ export default function ManageProduct() {
 				<td>{val.stock}</td>
 				<td>{listStatus}</td>
 				<td>
-					<Link to={"/manage-product/update-product/" + id } className="mr-4">Update</Link>
-					<Link to={"/manage-product/update-product/" + id }>Delete</Link>
+					<Button href={"/manage-product/update-product/" + id } className="mr-4">Update</Button>
+					<Button onClick={e => remove(e)} className="btn-danger">Delete</Button>
 				</td>
 
 			</tr>
 		)
 	}
-
 
 
 	return(
@@ -103,11 +115,9 @@ export default function ManageProduct() {
 					</tr>
 					</thead>
 					<tbody>
-						{inventoryCollection.map(listingData)}						
-					</tbody>
-					
+						{inventoryCollection.map(listingData)}
+					</tbody>						
 				</table>
-
 			</Container>
 		</div>
 	)
