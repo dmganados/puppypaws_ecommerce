@@ -1,13 +1,3 @@
-// Make a Create Button and create page
-	// In the create page include upload photo option
-	// Description
-	// Price
-	// Product Name
-// Lists of all active and inactive products
-// Button and page to update product info
-// Button to deactivate and reactivate product
-// Do all these in a separate module
-
 import { Button, Col, Row, Container, Table } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Inventory from '../components/Inventory';
@@ -25,14 +15,10 @@ export default function ManageProduct() {
 	let [listings, setListings] = useState([])	
 	let userCredentials = localStorage.accessToken;		
 
-	// Create a table for the inventory
-	// Get the boolean
-	// Resolve the .map error
+	useEffect(async() =>  {		
 
-	useEffect(async() =>  {	
 		
-		let unmounted = false;
-
+		// Fetch endpoint for all the products
 		await fetch('https://limitless-brushlands-90925.herokuapp.com/products/all', {
 			method: 'GET',
 			headers: {
@@ -43,17 +29,15 @@ export default function ManageProduct() {
 		});
 	},[]);
 
-	// const remove = async () => {
-	// 	await fetch(`http://localhost:8000/products/${}/archive`)
-	// }
 
+	// Getting the data of each product
 	const listingData = (val, key) => {	
 		let image = val.productImg
 		let id = val._id
 		let status = val.isActive
-		let listStatus = status === true ? 'Active' : 'Inactive';	
-		// console.log(key)
+		let listStatus = status === true ? 'Active' : 'Inactive';			
 
+		// Delete function
 		const remove = async () => {
 			await Swal.fire({
 				title: 'Are you sure?',
@@ -71,16 +55,17 @@ export default function ManageProduct() {
 							Authorization: `Bearer ${userCredentials}`
 						}
 					}).then(res => res.json()).then(removeData => {})
-						Swal.fire({
-								icon: "success",
-								text: "Product listing has been deleted",											
-								timer: 1500
-							});
+						Swal.fire(
+							'Deleted!',
+							'Your file has been deleted.',
+							'success'
+						);
 				}
 			})	
 			window.location.href="/manage-product";			
 		}
 
+		// Tables and data for all the product listing
 		return(
 			<tr key={key}>
 				<td><img style={{width:50, height:70}} src={image} /></td>

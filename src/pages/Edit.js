@@ -27,7 +27,7 @@ export default function Edit() {
 
 	// Get the product details
 	const productInfo = async () => {
-		await fetch(`http://localhost:8000/products/${id}`).then(res => res.json()).then(data => {			
+		await fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}`).then(res => res.json()).then(data => {			
 			setProductName(data.productName);
 			setDescription(data.description);
 			setSellingPrice(data.sellingPrice);
@@ -49,7 +49,7 @@ export default function Edit() {
 
 		// Created two API to let user choose to upload a new image or not
 		if (productImg) {
-			 await fetch(`http://localhost:8000/products/${id}/update-product`, {
+			 await fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}/update-product`, {
 				method: 'PUT',
 				headers: {
 					Authorization: `Bearer ${userCredentials}`
@@ -64,7 +64,7 @@ export default function Edit() {
 			 		timer: 1500
 			 	});		
 		} else {
-			await fetch(`http://localhost:8000/products/${id}/update-no-image`, {
+			await fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}/update-no-image`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type' : 'application/json',
