@@ -49,17 +49,18 @@ export default function ManageProduct() {
 				confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
 				if (result.isConfirmed) {
-					fetch(`http://localhost:8000/products/${id}/delete`, {
+					fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}/delete`, {
 						method: 'DELETE',
 						headers: {
 							Authorization: `Bearer ${userCredentials}`
 						}
-					}).then(res => res.json()).then(removeData => {})
-						Swal.fire(
-							'Deleted!',
-							'Your file has been deleted.',
-							'success'
-						);
+					})
+						Swal.fire({
+							title: 'Deleted!',
+							text: 'Product listing has been destroyed',
+							icon: 'success',
+							showConfirmButton: false
+						});
 				}
 			})	
 			window.location.href="/manage-product";			

@@ -42,19 +42,7 @@ export default function CreateProduct() {
 			}		
 	},[productName, description, sellingPrice, stock, productImg])	
 
-	// const changeHandler = (event) => {
-	// 	setProductName(event.target.files)
-	// 	setDescription(event.target.files)
-	// 	setSellingPrice(event.target.files)
-	// 	setStock(event.target.files)
-	// 	setProductImg(event.target.files[0])
-	// }	
-
-	// const handleSubmission = () => {
-
-	// };
-
-	
+		
 	const createListing = async (submitEvent) => {		
 		submitEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;	
@@ -73,7 +61,7 @@ export default function CreateProduct() {
 			}, 
 			body: formData
 		}).then(result => result.json()).then(itemData => {
-			console.log(itemData)
+			
 			if (itemData) {
 				return true;
 			} else {
