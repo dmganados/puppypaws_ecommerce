@@ -48,22 +48,22 @@ export default function ManageProduct() {
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'Yes, delete it!'
 			}).then((result) => {
+				console.log(result)
 				if (result.isConfirmed) {
 					fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}/delete`, {
 						method: 'DELETE',
 						headers: {
 							Authorization: `Bearer ${userCredentials}`
 						}
-					})
+					})									
 						Swal.fire({
 							title: 'Deleted!',
-							text: 'Product listing has been destroyed',
+							text: 'Listing has been destroyed. Refresh to see the result.',	
 							icon: 'success',
-							showConfirmButton: false
+							showConfirmButton: false						
 						});
-				}
-			})	
-			window.location.href="/manage-product";			
+				}				
+			})						
 		}
 
 		// Tables and data for all the product listing

@@ -212,12 +212,12 @@
 
 @media only screen and (max-width: 600px) {
 .img {  
-  margin-left: 30%;  
+  /*margin-left: auto;  */
 }
 
-.title {
-  margin-top: 10%;
-}
+/*.title {
+  margin-top: ;
+}*/
 
 #editFunction {
   color: green;
@@ -230,22 +230,25 @@
 }
 
 @media only screen and (min-width: 600px) {
-.title {
- margin-left: 30%;
+
+/*.title {
+ margin-left: auto;
  font-size: 100% !important;
  font-family: 'Merriweather Sans', sans-serif;
+ margin-top: -20%;
+ margin-bottom: 50%;
 }
-
-.subtext {
-  margin-left: 30%;
+*/
+/*.subtext {
+  margin-left: auto;
   font-size: 95%;
 }
-
-.img {
+*/
+/*.img {
   position: absolute;  
   margin-top: 2%;
   margin-left: 3%;
-}
+}*/
 
 #editFunction {
   color: green;
@@ -257,24 +260,26 @@
   color: red;
   font-size: 95%;  
 }
+
 }
 
 @media only screen and (min-width: 992px) {
 .title {
- margin-left: 20%;
- font-size: 100% !important;
+ position: static;
+ margin-top: -25%;
+ text-align: justify;
+ font-size: 150% !important;
  font-family: 'Merriweather Sans', sans-serif;
 }
 
 .subtext {
-  margin-left: 20%;
-  font-size: 95%;
+  font-size: 105%;
 }
 
 .img {
-  position: absolute;  
-  margin-top: 2%;
-  margin-left: 3%;
+  position: static; 
+  margin: 2% auto -1% 1%; 
+ 
 }
 
 #editFunction {
@@ -289,6 +294,11 @@
   font-size: 95%;
   
 }
+
+.cardText {
+  margin-left: 30%;
+}
+
 }
 
 .fileError {

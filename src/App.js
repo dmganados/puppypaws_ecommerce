@@ -6,7 +6,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import ManageProduct from './pages/ManageProduct';
 import CreateProduct from './components/CreateProduct';
-import Edit from './pages/Edit'
+import Edit from './pages/Edit';
+import ProductInfo from './pages/ProductInfo';
 import { UserProvider } from './UserContext'
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
 
@@ -68,6 +69,7 @@ function App() {
             <Route path='/manage-product/update-product/:id' element={<Edit />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/products/:productId' element={ProductInfo} />
           </Routes>
       </Router>
       </UserProvider>
