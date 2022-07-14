@@ -2,7 +2,6 @@ import {Button, Col, Row, Container, Form} from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { FilePond, registerPlugin} from 'react-filepond';
 import Upload from '../components/Uploads'
 
@@ -19,7 +18,8 @@ export default function Edit() {
 	let toggleChecked = () => setIsActive(value => !value)
 	let productImgSize = productImg.size;
 	let [isAcceptable, setIsAcceptable] = useState(false);
-	let [isFilled, setIsFilled] = useState(false);		
+	let [isFilled, setIsFilled] = useState(false);	
+	// console.log(id)	
 
 	useEffect(() => {
 		productInfo();			

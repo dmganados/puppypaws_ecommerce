@@ -6,6 +6,8 @@ import {Col, Row, Container} from 'react-bootstrap';
 export default function Catalog() {
 
 	const [productCollection, setProductCollection] = useState([]);
+	// console.log(productCollection)
+	// console.log("Hello")
 
 	useEffect(() => {
 		fetch('https://limitless-brushlands-90925.herokuapp.com/products/all-active').then(res => res.json()).then(productData => {	

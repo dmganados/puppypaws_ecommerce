@@ -1,5 +1,5 @@
 import { Button, Col, Row, Container, Table } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Inventory from '../components/Inventory';
 import Edit from '../pages/Edit';
 import { useState, useEffect } from 'react';
@@ -70,13 +70,13 @@ export default function ManageProduct() {
 		return(
 			<tr key={key}>
 				<td><img style={{width:50, height:70}} src={image} /></td>
-				<td>{val.productName}</td>
-				<td>P{val.sellingPrice}</td>
-				<td>{val.stock}</td>
-				<td>{listStatus}</td>
+				<td className="tableData">{val.productName}</td>
+				<td className="tableData">P{val.sellingPrice}</td>
+				<td className="tableData">{val.stock}</td>
+				<td className="tableData">{listStatus}</td>
 				<td>
-					<Button href={"/manage-product/update-product/" + id } className="mr-4">Update</Button>
-					<Button onClick={e => remove(e)} className="btn-danger">Delete</Button>
+					<Button href={"/manage-product/update-product/" + id } className="mr-4 btn-sm buttonColor ">Update</Button>
+					<Button onClick={e => remove(e)} className="btn-danger btn-sm">Delete</Button>
 				</td>
 
 			</tr>
@@ -92,12 +92,12 @@ export default function ManageProduct() {
 				<table className="table table-striped mt-4">
 					<thead>
 					<tr>
-						<th>Image</th>
-						<th>Product Name</th>
-						<th>Price</th>
-						<th>Stock</th>
-						<th>Status</th>
-						<th>Update/Delete</th>
+						<th className="tableTitle">Image</th>
+						<th className="tableTitle">Product Name</th>
+						<th className="tableTitle">Price</th>
+						<th className="tableTitle">Stock</th>
+						<th className="tableTitle">Status</th>
+						<th className="tableTitle">Update/Delete</th>
 					</tr>
 					</thead>
 					<tbody>

@@ -227,6 +227,18 @@
   color: red;    
 }
 
+.tableTitle {
+  font-size: 80%;
+}
+
+.tableData {
+  font-size: 70%;
+}
+
+.buttonText {
+  font-size: 70%;
+}
+
 }
 
 @media only screen and (min-width: 600px) {
@@ -304,4 +316,8 @@
 .fileError {
   color: red;
   font-size: 90%;
+}
+
+.buttonColor {
+  background-color: #084887 !important;
 }
