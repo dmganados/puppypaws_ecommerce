@@ -210,7 +210,8 @@
 
 @media only screen and (max-width: 600px) {
 .img {  
-  /*margin-left: auto;  */
+  margin: auto;  
+
 }
 
 /*.title {
@@ -218,15 +219,18 @@
 }*/
 
 #editFunction {
-  color: green;
+  background-color: #084887;
+  font-size: 70%;
 }
 
 #deleteFunction {
-  color: red;    
+  background-color: #d33;
+  font-size: 70%;  
+  border: none;
 }
 
 .tableTitle {
-  font-size: 60%;
+  font-size: 66%;
 }
 
 .tableData {
@@ -242,6 +246,7 @@
   padding: 3%;
   border-radius: 4px;
   text-decoration: none;
+  display: none;
 }
 
 .deleteButton {
@@ -252,6 +257,7 @@
   padding: 3%;
   border-radius: 4px;
   text-decoration: none;
+  display: none;
 }
 
 .tableImage {
@@ -264,10 +270,46 @@
   font-size: 70% !important;
 }
 
-/*.productTable {
-  display: none;
-}*/
 
+.sellerImg {
+  position: static;
+  margin-left: auto;
+  width: 60%;
+  height: 50%;
+}
+
+.subtext {
+  font-size: 80%;
+}
+
+.title {
+  font-size: 95% !important;
+  margin-left: 5%;
+  margin-top: 2%;
+  text-align: center;
+}
+
+.inventoryCard {
+  display: none !important;
+}
+
+.tableTitle6 {
+  display: none;
+}
+
+.updateSmallScrn {
+  display: block;
+  font-size: 100%;
+}
+
+.deleteSmallScrn {
+  color: #d33;
+  cursor: pointer;
+}
+
+.productTable {
+  display: none;
+}
 }
 
 @media only screen and (min-width: 600px) {
@@ -291,7 +333,7 @@
   margin-left: 3%;
 }*/
 
-#editFunction {
+/*#editFunction {
   color: green;
   margin-left: 80%;
   font-size: 95%;
@@ -300,6 +342,22 @@
 #deleteFunction {
   color: red;
   font-size: 95%;  
+}*/
+
+.inventoryCard {
+  display: none !important;
+}
+
+.updateSmallScrn {
+  display: none;
+}
+
+.deleteSmallScrn {
+  display: none;
+}
+
+.tableSmallScrn {
+  display: none;
 }
 
 }
@@ -363,6 +421,24 @@
 .createBtn {
   background-color: #084887 !important;
 }
+
+.inventoryCard {
+  display: none !important;
+}
+
+.updateSmallScrn {
+  display: none !important;
+}
+
+.deleteSmallScrn {
+  display: none !important;
+}
+
+.tableSmallScrn {
+  display: none;
+}
+
+
 }
 
 .fileError {

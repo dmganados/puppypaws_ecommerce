@@ -12,9 +12,12 @@ export default function ManageProduct() {
 	
 	const [inventoryCollection, setInventoryCollection] = useState([]);	
 	let [inventory, setInventory] = useState([]);
-	let [listings, setListings] = useState([])	
-	let userCredentials = localStorage.accessToken;		
-	// console.log(inventoryCollection)
+	
+	let userCredentials = localStorage.accessToken;	
+
+
+
+
 	useEffect(async() =>  {		
 
 		
@@ -25,7 +28,12 @@ export default function ManageProduct() {
 				Authorization: `Bearer ${userCredentials}`
 			}
 		}).then(res => res.json()).then(inventoryData => {	
-			setInventoryCollection(inventoryData);				
+			setInventoryCollection(inventoryData);	
+			setInventory(inventoryData.map(listingInfo => {
+				return(
+					<Inventory key={listingInfo._id} inventoryProp={listingInfo} />
+				)
+			}))
 		});
 	},[]);
 
@@ -35,7 +43,8 @@ export default function ManageProduct() {
 		let image = val.productImg
 		let id = val._id
 		let status = val.isActive
-		let listStatus = status === true ? 'Active' : 'Inactive';			
+		let listStatus = status === true ? 'Active' : 'Inactive';		
+		// console.log(val)	
 
 		// Delete function
 		const remove = async () => {
@@ -67,28 +76,36 @@ export default function ManageProduct() {
 		}
 
 		// Tables and data for all the product listing
-		return(
+		return( 
 			<tr key={key}>
 				<td><img style={{width:50, height:70}} src={image} className="tableImage" /></td>
 				<td className="tableData">{val.productName}</td>
 				<td className="tableData">P{val.sellingPrice}</td>
 				<td className="tableData">{val.stock}</td>
-				<td className="tableData">{listStatus}</td>
+				<td className="tableData">
+				{listStatus}
+				<a href={"/manage-product/update-product/" + id } className="mr-3 mt-2 updateSmallScrn">Update</a>
+				<p onClick={e => remove(e)} className="mt-2 deleteSmallScrn">Delete</p>
+				</td>
 				<td>
 					<a href={"/manage-product/update-product/" + id } className="button mr-3 updateButton">Update</a>
 					<button onClick={e => remove(e)} className="deleteButton">Delete</button>
-				</td>
-
-			</tr>
-		)
+				</td>				
+			</tr>	
+		)	
 	}
+
+	// Clean the unnecessary codes
+	// Fix and make responsive
+
 
 
 	return(
 		<div className="App">
 			<Container>			
 				<Button className="mt-5 createBtn" href="/create-product">Create Product +</Button>		
-
+			</Container>
+			<Container>
 				<table className="table table-striped mt-4 productTable">
 					<thead>
 					<tr>
@@ -97,14 +114,35 @@ export default function ManageProduct() {
 						<th className="tableTitle">Price</th>
 						<th className="tableTitle">Stock</th>
 						<th className="tableTitle">Status</th>
-						<th className="tableTitle">Update/Delete</th>
+						<th className="tableTitle6">Update/Delete</th>
 					</tr>
 					</thead>
 					<tbody>
 						{inventoryCollection.map(listingData)}
 					</tbody>						
-				</table>
+				</table>	
 			</Container>
+
+				<table className="table table-striped mt-4 tableSmallScrn">
+					<thead>
+					<tr>
+						<th className="tableTitle">Image</th>
+						<th className="tableTitle">Product Name</th>
+						<th className="tableTitle">Price</th>
+						<th className="tableTitle">Stock</th>
+						<th className="tableTitle">Status</th>
+						<th className="tableTitle6">Update/Delete</th>
+					</tr>
+					</thead>
+					<tbody>
+						{inventoryCollection.map(listingData)}
+					</tbody>						
+				</table>					
+
+			<Col>				
+				{inventory}				
+			</Col>
+
 
 		</div>
 	)
