@@ -176,7 +176,7 @@ export default function CreateProduct() {
 			{/*Form for small screen*/}
 			<Form className="createSmallScrn">
 				<Form.Group>
-					<Form.Label className="editText">Product Name</Form.Label>
+					<Form.Label className="formText">Product Name</Form.Label>
 					<Form.Control 
 					type="text" 
 					required 
@@ -188,7 +188,7 @@ export default function CreateProduct() {
 				</Form.Group>
 
 				<Form.Group>
-					<Form.Label className="editText">Description</Form.Label>
+					<Form.Label className="formText">Description</Form.Label>
 					<Form.Control 
 					type="text" 
 					required
@@ -200,7 +200,7 @@ export default function CreateProduct() {
 				</Form.Group>
 
 				<Form.Group>
-					<Form.Label className="editText">Price</Form.Label>
+					<Form.Label className="formText">Price</Form.Label>
 					<Form.Control 
 					type="number" 
 					required
@@ -212,7 +212,7 @@ export default function CreateProduct() {
 				</Form.Group>
 
 				<Form.Group>
-					<Form.Label className="editText">Stock</Form.Label>
+					<Form.Label className="formText">Stock</Form.Label>
 					<Form.Control 
 					type="number" 
 					required
@@ -223,7 +223,7 @@ export default function CreateProduct() {
 					/>
 				</Form.Group>
 
-				<div className="mb-4 editText">
+				<div className="mb-4 formText">
 					<input 
 					type="checkbox" 
 					checked={isActive} 					
@@ -235,7 +235,7 @@ export default function CreateProduct() {
 				<input 
 				type="file" 				
 				onChange={e => setProductImg(e.target.files[0])} 
-				className="editText"
+				className="formText"
 
 				/>	<br/>
 

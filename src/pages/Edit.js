@@ -156,7 +156,7 @@ export default function Edit() {
 			
 			{/*This will appear for small screen*/}
 			<Form className="p-5 smallScrnEdit">
-				<Form.Group className="editText">
+				<Form.Group className="formText">
 					<Form.Label>Product Name</Form.Label>
 					<Form.Control					
 					type="text"
@@ -168,7 +168,7 @@ export default function Edit() {
 					 />						
 				</Form.Group>
 
-				<Form.Group className="editText">
+				<Form.Group className="formText">
 					<Form.Label>Description</Form.Label>
 					<Form.Control 
 					type="text" 
@@ -180,7 +180,7 @@ export default function Edit() {
 					/>
 				</Form.Group>
 
-				<Form.Group className="editText">
+				<Form.Group className="formText">
 					<Form.Label>Price</Form.Label>
 					<Form.Control 
 					type="number" 
@@ -192,7 +192,7 @@ export default function Edit() {
 				 	/>
 				</Form.Group>	
 
-				<Form.Group className="editText">
+				<Form.Group className="formText">
 					<Form.Label>Stock</Form.Label>
 					<Form.Control 
 					type="number" 
@@ -204,7 +204,7 @@ export default function Edit() {
 					/>
 				</Form.Group>
 
-				<div className="mb-4 editText">
+				<div className="mb-4 formText">
 					<input 
 					type="checkbox"
 					checked={isActive}
@@ -216,9 +216,9 @@ export default function Edit() {
 				<input 
 				type="file"								 
 				onChange={e => setProductImg(e.target.files[0])}
-				className="editText"
+				className="formText"
 				 />
-				 <p className="editText"><small>Choose jpg, png, or jpeg file type, and a maximum of 5MB.</small></p>
+				 <p className="formText"><small>Choose jpg, png, or jpeg file type, and a maximum of 5MB.</small></p>
 				 <Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>						 			
 			</Form>			
 		</div>

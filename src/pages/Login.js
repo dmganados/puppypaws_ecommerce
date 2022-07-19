@@ -96,7 +96,7 @@ export default function Login() {
 		// :
 		<>
 		<Container >
-			<h3 className="d-flex justify-content-center">Login to your Account</h3>
+			<h3 className="d-flex justify-content-center loginTitle">Login to your Account</h3>
 			<Form onSubmit={e => userToken(e)} >
 				<Card className="d-block mt-lg-5 p-4 loginCard">
 					{/*Email Address Field*/}
@@ -108,12 +108,13 @@ export default function Login() {
 						required
 						value={email}
 						onChange={event => {setEmail(event.target.value)}}
+						className="loginInput"
 						/>
 						{
 							isValid ?
-								<h6 className="text-success">&#10003; Email verified</h6>
+								<h6 className="mt-1 text-success loginInput">&#10003; Email verified</h6>
 							:
-								<h6 className="text-mute">Enter a valid email</h6>
+								<h6 className="mt-1 text-mute loginInput">Enter a valid email</h6>
 						}						
 					</Form.Group>
 
@@ -128,6 +129,7 @@ export default function Login() {
 						required	
 						value={password}
 						onChange={e => {setPassword(e.target.value)}}
+						className="loginInput"
 						/>
 					</Form.Group>
 

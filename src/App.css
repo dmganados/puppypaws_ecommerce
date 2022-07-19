@@ -122,13 +122,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  #regCard {
-    width: 100% !important;
-    padding-left: 10% !important;
-    padding-right: 10% !important;
-    margin: 20px !important;
-
-  }
+  
 }
 
 @media only screen and (min-width: 600px) {
@@ -191,16 +185,12 @@
 }
 
 @media only screen and (max-width: 600px) {
-.loginCard {
-  width: 100%;
-}
+
 
 
 }
 
-.loginBtn {
-  background-color: #084887 !important;
-}
+
 
 .react-tel-input .form-control {
   width: 100% !important;
@@ -210,7 +200,7 @@
 
 @media only screen and (max-width: 600px) {
 .img {  
-  margin: auto;  
+  margin: 4% auto auto auto;  
 
 }
 
@@ -311,7 +301,7 @@
   display: none;
 }
 
-.editText {
+.formText {
   font-size: 80%;
 }
 
@@ -348,6 +338,46 @@
 
 .buttonColor {
   background-color: #084887 !important;
+}
+
+#regCard {
+    width: 100% !important;
+    padding-left: 10% !important;
+    padding-right: 10% !important;
+    margin: 0% 4% auto 4% !important;
+    font-size: 90%;
+}
+
+.registerField {
+  font-size: 90% !important;
+}
+
+.register {
+  margin-top: 200px !important;  
+  font-size: 80%;
+}
+
+.registerTitle {
+  font-size: 120%;
+}
+
+.loginTitle {
+  font-size: 120%;
+  margin: 6% auto 8% auto;
+}
+
+.loginCard {
+  width: 100%;
+  font-size: 90%;
+}
+
+.loginInput {
+  font-size: 80% !important;
+}
+
+.loginBtn {
+  background-color: #084887 !important;
+  font-size: 80% !important;
 }
 }
 
@@ -405,7 +435,17 @@
   display: none;
 }
 
+.loginBtn {
+  background-color: #084887 !important;
 }
+
+.loginTitle {
+  margin: 4% auto 4% auto;
+}
+
+
+}
+
 
 @media only screen and (min-width: 992px) {
 .title {
@@ -493,6 +533,14 @@
 
 .createSmallScrn {
   display: none;
+}
+
+.loginBtn {
+  background-color: #084887 !important;
+}
+
+.loginTitle {
+  margin: 4% auto 4% auto;
 }
 
 }

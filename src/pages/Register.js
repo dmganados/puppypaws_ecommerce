@@ -1,10 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
-import PhoneInput from 'react-phone-number-input'
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
-import Phone from '../components/Phone'
 
 
 export default function Register() {
@@ -24,7 +22,7 @@ export default function Register() {
 	const [isMatched, setIsMatched] = useState(false);
 	const [isPresent, setIsPresent] = useState(false);
 	const [isPassValid, setIsPassValid] = useState(false);
-	// console.log(dns);
+	
 
 	useEffect(() => {
 
@@ -54,7 +52,7 @@ export default function Register() {
 			setIsMatched(false);
 			setIsBuyer(false);			
 		}		
-	},[firstName, lastName, password1, password2, addressSign, dns1, dns2, mobileNo])	
+	},[firstName, lastName, password1, password2, addressSign, dns1, dns2, mobileNo, email])	
 
 	const registerUser = async (submit) => {
 		submit.preventDefault()
@@ -115,7 +113,7 @@ export default function Register() {
 		:		
 		<>
 		<Container >
-			<h3 className="text-center" >Create your Account</h3>
+			<h3 className="my-4 text-center registerTitle">Create your Account</h3>
 			<Form className="p-1 mt-2" onSubmit={e => registerUser(e)}>		
 			<Row >			
 			<Card className="px-5 py-4" id="regCard">
@@ -129,6 +127,8 @@ export default function Register() {
 						required
 						value={firstName}
 						onChange={event => setFirstName(event.target.value)}
+						className="registerField"
+						
 						 />						
 					</Form.Group>
 					
@@ -141,6 +141,8 @@ export default function Register() {
 						required
 						value={lastName}
 						onChange={e => setLastName(e.target.value)}
+						className="registerField"
+						
 						 />
 					</Form.Group>			
 
@@ -153,6 +155,8 @@ export default function Register() {
 						required
 						value={email}
 						onChange={e => setEmail(e.target.value)}
+						className="registerField"
+						
 						 />
 						 {
 						 	isPresent ?
@@ -173,6 +177,8 @@ export default function Register() {
 						required
 						value={mobileNo}
 						onChange={e => setMobileNo(e.target.value)}
+						className="registerField"
+						
 						/>
 
 					</Form.Group>
@@ -187,6 +193,8 @@ export default function Register() {
 						required
 						value={password1}
 						onChange={e => setPassword1(e.target.value)}
+						className="registerField"
+						
 						 />
 						{
 							isPassValid ?
@@ -206,6 +214,7 @@ export default function Register() {
 						required
 						value={password2}
 						onChange={e => setPassword2(e.target.value)}
+						className="registerField"						
 
 						 />	
 						 {
