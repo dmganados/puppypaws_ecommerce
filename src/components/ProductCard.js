@@ -14,8 +14,8 @@ export default function ProductCard({productProp}) {
 	return(
 		<Col xs={12} md={12} className="p-2" >
 		
-			<Card className="p-1 mt-4">
-				<img style={{width:190, height:200}} src={image} className="d-inline img" />
+			<Card className="p-1 mt-3">
+				<img style={{width:190, height:200}} src={image} className="d-inline mt-3 img" />
 				<Card.Body className="d-inline cardText">					
 					<Card.Title to={"/products/:productId"} className="title">
 						{productProp.productName}

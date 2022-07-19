@@ -1,7 +1,6 @@
-import { Button, Col, Row, Container, Table, Card } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Button, Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { useTable } from 'react-table';
+
 import Swal from 'sweetalert2';
 
 

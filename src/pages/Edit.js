@@ -1,9 +1,7 @@
-import {Button, Col, Row, Container, Form} from 'react-bootstrap';
+import {Button, Col, Container, Form} from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
-import { FilePond, registerPlugin} from 'react-filepond';
-import Upload from '../components/Uploads'
 
 export default function Edit() {
 		
@@ -13,12 +11,8 @@ export default function Edit() {
 	let [sellingPrice, setSellingPrice] = useState('');
 	let [stock, setStock] = useState('');	
 	let [productImg, setProductImg] = useState('');	
-	let [isActive, setIsActive] = useState(false);	
-	let [newFile, setNewFile] = useState([])
-	let toggleChecked = () => setIsActive(value => !value)
-	let productImgSize = productImg.size;
-	let [isAcceptable, setIsAcceptable] = useState(false);
-	let [isFilled, setIsFilled] = useState(false);			
+	let [isActive, setIsActive] = useState(false);		
+	let toggleChecked = () => setIsActive(value => !value)				
 
 	useEffect(() => {
 		productInfo();			

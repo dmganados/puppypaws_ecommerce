@@ -214,9 +214,9 @@
 
 }
 
-/*.title {
-  margin-top: ;
-}*/
+.title {
+  margin-top: -2% !important;
+}
 
 #editFunction {
   background-color: #084887;
@@ -323,39 +323,35 @@
 .editForm {
   display: none;
 }
+
+.createForm {
+  display: none;
+}
+
+.createSmallScrn {
+  width: 80%;
+  margin: auto;
+}
+
+.createSmallScrn {
+  margin-top: -15% !important;
+}
+
+.fileError {
+  color: red;
+  font-size: 80% !important;
+}
+
+.inputCreate {
+  font-size: 80% !important;
+}
+
+.buttonColor {
+  background-color: #084887 !important;
+}
 }
 
 @media only screen and (min-width: 600px) {
-
-/*.title {
- margin-left: auto;
- font-size: 100% !important;
- font-family: 'Merriweather Sans', sans-serif;
- margin-top: -20%;
- margin-bottom: 50%;
-}
-*/
-/*.subtext {
-  margin-left: auto;
-  font-size: 95%;
-}
-*/
-/*.img {
-  position: absolute;  
-  margin-top: 2%;
-  margin-left: 3%;
-}*/
-
-/*#editFunction {
-  color: green;
-  margin-left: 80%;
-  font-size: 95%;
-}
-
-#deleteFunction {
-  color: red;
-  font-size: 95%;  
-}*/
 
 .inventoryCard {
   display: none !important;
@@ -374,6 +370,38 @@
 }
 
 .smallScrnEdit {
+  display: none;
+}
+
+.updateButton, .updateButton:hover {
+  background-color: #084887;
+  color: white;
+  font-size: 90%;
+  border: none;
+  padding: 3%;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.deleteButton {
+  background-color: #d33;
+  color: white;
+  font-size: 90%;
+  border: none;
+  padding: 3%;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.createBtn {
+  background-color: #084887 !important;  
+}
+
+.buttonColor {
+  background-color: #084887 !important;
+}
+
+.createSmallScrn {
   display: none;
 }
 
@@ -456,6 +484,14 @@
 }
 
 .smallScrnEdit {
+  display: none;
+}
+
+.buttonColor {
+  background-color: #084887 !important;
+}
+
+.createSmallScrn {
   display: none;
 }
 

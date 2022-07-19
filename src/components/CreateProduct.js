@@ -1,10 +1,6 @@
-import React, { useState, useEffect, Component } from 'react';
-import { Container, Col, Form, Button, Text } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Col, Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import axios from 'axios';
-import { FilePond, registerPlugin} from 'react-filepond';
-
-
 
 export default function CreateProduct() {
 	let [productName, setProductName] = useState('');
@@ -40,7 +36,7 @@ export default function CreateProduct() {
 				setIsImageSize(false);
 				setIsFilled(false);
 			}		
-	},[productName, description, sellingPrice, stock, productImg])	
+	},[productName, description, sellingPrice, stock, productImg, productImgType])	
 
 		
 	const createListing = async (submitEvent) => {		
@@ -95,9 +91,10 @@ export default function CreateProduct() {
 	return(
 		<>
 
+		{/*Form for large screen*/}
 		<Container>
 		<Col className='p-5'>
-			<Form  >
+			<Form className="createForm">
 				<Form.Group>
 					<Form.Label>Product Name</Form.Label>
 					<Form.Control 
@@ -175,6 +172,97 @@ export default function CreateProduct() {
 
 		</Col>			
 		</Container>
+
+			{/*Form for small screen*/}
+			<Form className="createSmallScrn">
+				<Form.Group>
+					<Form.Label className="editText">Product Name</Form.Label>
+					<Form.Control 
+					type="text" 
+					required 
+					value={productName}
+					onChange={event => setProductName(event.target.value)}
+					className="inputCreate"
+
+					/>
+				</Form.Group>
+
+				<Form.Group>
+					<Form.Label className="editText">Description</Form.Label>
+					<Form.Control 
+					type="text" 
+					required
+					value={description}
+					onChange={e => setDescription(e.target.value)} 
+					className="inputCreate"
+
+					/>
+				</Form.Group>
+
+				<Form.Group>
+					<Form.Label className="editText">Price</Form.Label>
+					<Form.Control 
+					type="number" 
+					required
+					value={sellingPrice}
+					onChange={e => setSellingPrice(e.target.value)}
+					className="inputCreate"
+
+					/>
+				</Form.Group>
+
+				<Form.Group>
+					<Form.Label className="editText">Stock</Form.Label>
+					<Form.Control 
+					type="number" 
+					required
+					value={stock}
+					onChange={e => setStock(e.target.value)} 
+					className="inputCreate"
+
+					/>
+				</Form.Group>
+
+				<div className="mb-4 editText">
+					<input 
+					type="checkbox" 
+					checked={isActive} 					
+					onChange={toggleChecked}
+					 
+					/> Display product as Active
+				</div>
+				
+				<input 
+				type="file" 				
+				onChange={e => setProductImg(e.target.files[0])} 
+				className="editText"
+
+				/>	<br/>
+
+				{
+					isImageSize ?								
+						<p></p>
+					:								
+						<p className="fileError">Please select a file less than 6mb</p>
+				}
+
+				{
+					isImageType ?
+						<p></p>		
+					:							
+						<p className="fileError">Acceptable file type: .jpeg, .jpg, and .png</p>
+				}				
+				
+
+				{
+					isFilled ?
+						<Button onClick={e => createListing(e)} className="createBtn">Create Product</Button>
+					:
+						<Button className="createBtn" disabled>Create Product</Button>	
+				}						
+				
+			</Form>
+
 		</>
 	)
 
