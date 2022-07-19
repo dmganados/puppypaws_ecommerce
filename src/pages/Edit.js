@@ -18,8 +18,7 @@ export default function Edit() {
 	let toggleChecked = () => setIsActive(value => !value)
 	let productImgSize = productImg.size;
 	let [isAcceptable, setIsAcceptable] = useState(false);
-	let [isFilled, setIsFilled] = useState(false);	
-	// console.log(id)	
+	let [isFilled, setIsFilled] = useState(false);			
 
 	useEffect(() => {
 		productInfo();			
@@ -91,7 +90,9 @@ export default function Edit() {
 
 	return (
 		<div>
-			<Container>
+
+			{/*This will appear for large screen*/}
+			<Container className="editForm">
 				<Col>
 
 				<Form className="p-5">
@@ -103,6 +104,7 @@ export default function Edit() {
 						value={productName}
 						onChange={e => setProductName(e.target.value)}
 						
+						
 						 />						
 					</Form.Group>
 
@@ -112,7 +114,7 @@ export default function Edit() {
 						type="text" 
 						required
 						value={description}
-						onChange={(e) => {setDescription(e.target.value)}}
+						onChange={(e) => {setDescription(e.target.value)}}						
 								
 						/>
 					</Form.Group>
@@ -124,7 +126,7 @@ export default function Edit() {
 						required
 						value={sellingPrice}
 						onChange={(e) => {setSellingPrice(e.target.value)}}
-							
+													
 					 	/>
 					</Form.Group>	
 
@@ -134,7 +136,7 @@ export default function Edit() {
 						type="number" 
 						required
 						value={stock}
-						onChange={(e) => {setStock(e.target.value)}}
+						onChange={(e) => {setStock(e.target.value)}}						
 											
 						/>
 					</Form.Group>
@@ -143,13 +145,14 @@ export default function Edit() {
 						<input 
 						type="checkbox"
 						checked={isActive}
-						onChange={toggleChecked}				
+						onChange={toggleChecked}
+
 						/> Display product as Active
 					</div>					
 
 					<input 
 					type="file"								 
-					onChange={e => setProductImg(e.target.files[0])}
+					onChange={e => setProductImg(e.target.files[0])}					
 					 />
 					 <p><small>Choose jpg, png, or jpeg file type, and a maximum of 5MB.</small></p>
 					 <Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>						 			
@@ -157,6 +160,73 @@ export default function Edit() {
 				</Col>
 			</Container>	
 			
+			{/*This will appear for small screen*/}
+			<Form className="p-5 smallScrnEdit">
+				<Form.Group className="editText">
+					<Form.Label>Product Name</Form.Label>
+					<Form.Control					
+					type="text"
+					required
+					value={productName}
+					onChange={e => setProductName(e.target.value)}
+					className="inputField"
+					
+					 />						
+				</Form.Group>
+
+				<Form.Group className="editText">
+					<Form.Label>Description</Form.Label>
+					<Form.Control 
+					type="text" 
+					required
+					value={description}
+					onChange={(e) => {setDescription(e.target.value)}}
+					className="inputField"
+							
+					/>
+				</Form.Group>
+
+				<Form.Group className="editText">
+					<Form.Label>Price</Form.Label>
+					<Form.Control 
+					type="number" 
+					required
+					value={sellingPrice}
+					onChange={(e) => {setSellingPrice(e.target.value)}}
+					className="inputField"
+						
+				 	/>
+				</Form.Group>	
+
+				<Form.Group className="editText">
+					<Form.Label>Stock</Form.Label>
+					<Form.Control 
+					type="number" 
+					required
+					value={stock}
+					onChange={(e) => {setStock(e.target.value)}}
+					className="inputField"
+										
+					/>
+				</Form.Group>
+
+				<div className="mb-4 editText">
+					<input 
+					type="checkbox"
+					checked={isActive}
+					onChange={toggleChecked}
+
+					/> Display product as Active
+				</div>					
+
+				<input 
+				type="file"								 
+				onChange={e => setProductImg(e.target.files[0])}
+				className="editText"
+				 />
+				 <p className="editText"><small>Choose jpg, png, or jpeg file type, and a maximum of 5MB.</small></p>
+				 <Button onClick={e => productUpdate(e)} className="createBtn">Update Product Info</Button>						 			
+			</Form>			
 		</div>
 	)
 }

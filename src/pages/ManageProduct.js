@@ -1,25 +1,16 @@
 import { Button, Col, Row, Container, Table, Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import Inventory from '../components/Inventory';
-import Edit from '../pages/Edit';
 import { useState, useEffect } from 'react';
 import { useTable } from 'react-table';
 import Swal from 'sweetalert2';
 
 
 export default function ManageProduct() {
-
 	
-	const [inventoryCollection, setInventoryCollection] = useState([]);	
-	let [inventory, setInventory] = useState([]);
-	
+	const [inventoryCollection, setInventoryCollection] = useState([]);			
 	let userCredentials = localStorage.accessToken;	
 
-
-
-
-	useEffect(async() =>  {		
-
+	useEffect(async() =>  {	
 		
 		// Fetch endpoint for all the products
 		await fetch('https://limitless-brushlands-90925.herokuapp.com/products/all', {
@@ -28,15 +19,9 @@ export default function ManageProduct() {
 				Authorization: `Bearer ${userCredentials}`
 			}
 		}).then(res => res.json()).then(inventoryData => {	
-			setInventoryCollection(inventoryData);	
-			setInventory(inventoryData.map(listingInfo => {
-				return(
-					<Inventory key={listingInfo._id} inventoryProp={listingInfo} />
-				)
-			}))
+			setInventoryCollection(inventoryData);				
 		});
 	},[]);
-
 
 	// Getting the data of each product
 	const listingData = (val, key) => {	
@@ -44,7 +29,7 @@ export default function ManageProduct() {
 		let id = val._id
 		let status = val.isActive
 		let listStatus = status === true ? 'Active' : 'Inactive';		
-		// console.log(val)	
+		
 
 		// Delete function
 		const remove = async () => {
@@ -95,16 +80,13 @@ export default function ManageProduct() {
 		)	
 	}
 
-	// Clean the unnecessary codes
-	// Fix and make responsive
-
-
-
 	return(
 		<div className="App">
 			<Container>			
-				<Button className="mt-5 createBtn" href="/create-product">Create Product +</Button>		
+				<Button className="mt-4 createBtn" href="/create-product">Create Product +</Button>		
 			</Container>
+
+			{/*This appears when screen is 600px min - 992px min*/}
 			<Container>
 				<table className="table table-striped mt-4 productTable">
 					<thead>
@@ -123,6 +105,7 @@ export default function ManageProduct() {
 				</table>	
 			</Container>
 
+				{/*This appears when screen is 600px max*/}
 				<table className="table table-striped mt-4 tableSmallScrn">
 					<thead>
 					<tr>
@@ -137,12 +120,7 @@ export default function ManageProduct() {
 					<tbody>
 						{inventoryCollection.map(listingData)}
 					</tbody>						
-				</table>					
-
-			<Col>				
-				{inventory}				
-			</Col>
-
+				</table>	
 
 		</div>
 	)

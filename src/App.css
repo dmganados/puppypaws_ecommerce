@@ -234,7 +234,7 @@
 }
 
 .tableData {
-  font-size: 60%;
+  font-size: 66%;
   margin-left: -10%;
 }
 
@@ -261,13 +261,13 @@
 }
 
 .tableImage {
-  width: 70% !important;
+  width: 100% !important;
   height: 70% !important;
 }
 
 .createBtn {
   background-color: #084887 !important;
-  font-size: 70% !important;
+  font-size: 80% !important;
 }
 
 
@@ -308,6 +308,19 @@
 }
 
 .productTable {
+  display: none;
+}
+
+.editText {
+  font-size: 80%;
+}
+
+.inputField {
+  width: 100% !important;
+  font-size: 95% !important;
+}
+
+.editForm {
   display: none;
 }
 }
@@ -357,6 +370,10 @@
 }
 
 .tableSmallScrn {
+  display: none;
+}
+
+.smallScrnEdit {
   display: none;
 }
 
@@ -419,7 +436,7 @@
 }
 
 .createBtn {
-  background-color: #084887 !important;
+  background-color: #084887 !important;  
 }
 
 .inventoryCard {
@@ -438,6 +455,9 @@
   display: none;
 }
 
+.smallScrnEdit {
+  display: none;
+}
 
 }
 
