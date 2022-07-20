@@ -36,10 +36,7 @@ export default function Banner () {
 				</div>
 				<div className="img-fluid each-slide" >
 					<img src={running} className="banner" alt="" />
-				</div>	
-				<div className="img-fluid each-slide" >
-					<img src={cycling} className="banner" alt="" />
-				</div>	
+				</div>					
 			</Slide>
 		</div>
 	)

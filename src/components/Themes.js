@@ -7,9 +7,9 @@ import airpods from './banner/airpods.jpg'
 export default function Theme() {
 	return(
 		<Container>
-			<Row className="p-2 mb-5 d-flex align-items-lg-start align-items-md-start align-items-sm-end cardPosition">
+			<Row className=" cardPosition">
 				<Col xs={12} md={4} className="mb-4 mt-lg-0 mt-md-0 mt-sm-5 align-items-end">
-					<Card className="p-4 cardHighlight">
+					<Card className="cardHighlight">
 						<Card.Body>
 							<Col>
 							<Card.Img src={phone} className="img-fluid mb-2 mr-2 p-1 d-inline d-sm-inline d-md-inline d-lg-inline gadgetImage1" />
@@ -20,28 +20,28 @@ export default function Theme() {
 							<Card.Img src={controller} className="img-fluid d-inline d-sm-inline d-md-inline d-lg-inline p-2 gadgetImage4" />							
 							</Col>
 
-							<Card.Title className="pt-4 fw-bolder">Phones and Gadgets</Card.Title>
-							<Card.Text >
-								See more		
+							<Card.Title className="pt-4 fw-bolder themeText">Phones and Gadgets</Card.Title>
+							<Card.Text className="themeSubtext">
+								<a href="/catalog">See more	</a>	
 							</Card.Text>
 						</Card.Body>
 					</Card>					
 				</Col>
 				<Col xs={12} md={4} className="mb-4">
-					<Card className="p-4 cardHighlight">
+					<Card className="cardHighlight">
 						<Card.Body>
-							<Card.Title>E-commerce</Card.Title>
-							<Card.Text>
+							<Card.Title className="themeText">E-commerce</Card.Title>
+							<Card.Text className="themeSubtext">
 								Lorem ipsum, dolor sit amet consectetur, adipisicing elit. Ea, quas?		
 							</Card.Text>
 						</Card.Body>
 					</Card>					
 				</Col>
 				<Col xs={12} md={4} className="mb-4">
-					<Card className="p-4 cardHighlight">
+					<Card className="cardHighlight">
 						<Card.Body>
-							<Card.Title>E-commerce</Card.Title>
-							<Card.Text>
+							<Card.Title className="themeText">E-commerce</Card.Title>
+							<Card.Text className="themeSubtext">
 								Lorem ipsum, dolor sit amet consectetur, adipisicing elit. Ea, quas?		
 							</Card.Text>
 						</Card.Body>

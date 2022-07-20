@@ -1,4 +1,4 @@
-import {Button, Container} from 'react-bootstrap';
+import {Button, Container, Col, Row} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -6,7 +6,12 @@ import { useState, useEffect } from 'react';
 export default function ProductInfo() {
 
 	const {id} = useParams();
-	// console.log(id)
+	let [productName, setProductName] = useState('');
+	let [productImage, setProductImage] = useState('');
+	let [description, setDescription] = useState('');
+	let [sellingPrice, setSellingPrice] = useState('');
+
+	// console.log(productName)
 	useEffect(() => {
 		pruductDetails();
 	},[])
@@ -14,13 +19,37 @@ export default function ProductInfo() {
 	const pruductDetails = async () => {
 		await fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}`).then(res => res.json()).then(data =>
 		{
-			console.log(data)
+			setProductName(data.productName);
+			setProductImage(data.productImg);
+			setDescription(data.description);
+			setSellingPrice(data.sellingPrice);
+			// console.log(data.productImg)
 		})
 
 	}
 
 	return(
 		<div>
+			<Container className="productInfo">
+				<Row>
+					<Col>
+						<img src={productImage} className="infoImage" />
+					</Col>
+					<Col className="infoText">
+						<h1>{productName}</h1>	
+						<p>{description}</p>
+						<h3>PHP {sellingPrice}</h3>					
+					</Col>
+					
+				</Row>
+					
+				
+				
+					
+			
+				
+				
+			</Container>
 		</div>
 	)
 }

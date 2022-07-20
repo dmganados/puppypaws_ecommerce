@@ -71,6 +71,7 @@ export default function Login() {
 						 	title: 'Login Successful',
 						 	text: 'Welcome'
 						 })	
+						// window.location.href="/";
 					} else {
 						setUser({
 							id: null,
@@ -91,9 +92,9 @@ export default function Login() {
 	};		
 
 	return (
-		// user.id ?
-			// <Navigate to="/" replace={true} />
-		// :
+		user.id ?
+			<Navigate to="/" replace={true} />
+		:
 		<>
 		<Container >
 			<h3 className="d-flex justify-content-center loginTitle">Login to your Account</h3>
