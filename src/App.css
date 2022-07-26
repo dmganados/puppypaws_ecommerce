@@ -608,6 +608,11 @@
   margin-top: 10%;
 }
 
+.cartFont {
+  width: 4% !important;
+  /*margin-left: 20px !important;*/
+}
+
 }
 
 .fileError {
