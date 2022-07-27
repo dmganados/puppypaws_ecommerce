@@ -405,6 +405,13 @@
 .infoText {
   font-size: 10px !important;
 }
+
+.cartFont {
+  width: 10% !important;
+/*  margin-left: 5px !important;
+  margin-right: -280px !important;*/
+  
+}
 }
 
 @media only screen and (min-width: 600px) {
@@ -609,8 +616,10 @@
 }
 
 .cartFont {
-  width: 4% !important;
-  /*margin-left: 20px !important;*/
+  width: 6% !important;
+  margin-left: 5px !important;
+  margin-right: -280px !important;
+
 }
 
 }
