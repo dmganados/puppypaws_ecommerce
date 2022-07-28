@@ -5,14 +5,14 @@ export default function Cart() {
 	return (
 		<div>
 			<Container>
-				<table className="table table-striped mt-4 productTable">
+				<table className="table table-striped mt-4 tableSmallScrn">
 					<thead>
 						<tr>
-							<th>Image</th>
-							<th>Product Name</th>
-							<th>Price</th>
-							<th>Quantity</th>
-							<th>Subtotal</th>
+							<th className="tableTitle">Image</th>
+							<th className="tableTitle">Product Name</th>
+							<th className="tableTitle">Price</th>
+							<th className="tableTitle">Quantity</th>
+							<th className="tableTitle">Subtotal</th>
 
 						</tr>
 					</thead>

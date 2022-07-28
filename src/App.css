@@ -396,14 +396,11 @@
 .infoImage {
   width: 80%;
   height: 70%;
+  margin-left: 5% !important;
 }
 
 .productInfo {
   margin-top: 10%;
-}
-
-.infoText {
-  font-size: 10px !important;
 }
 
 .cartFont {
@@ -411,6 +408,27 @@
 /*  margin-left: 5px !important;
   margin-right: -280px !important;*/
   
+}
+
+.infoTitle {
+  font-size: 150% !important;
+}
+
+.infoPrice {
+  font-size: 105%;
+}
+
+.infoDescrip {
+  font-size: 90% !important;
+}
+
+.infoQuantity {
+  font-size: 80%;
+}
+
+.infoInput {
+  width: 50%;
+  font-size: 80%;
 }
 }
 
@@ -487,6 +505,19 @@
   width: 100%;
   height: 100% !important;
   margin: 0px;
+}
+
+.infoImage {
+  width: 80%;
+  height: 70%;
+}
+
+.productInfo {
+  margin-top: 10%;
+}
+
+.infoInput {
+  margin-top: 2%;  
 }
 
 }
