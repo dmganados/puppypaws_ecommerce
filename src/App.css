@@ -394,13 +394,13 @@
 }
 
 .infoImage {
-  width: 80%;
-  height: 70%;
-  margin-left: 5% !important;
+  width: 60% !important;
+  margin-top: 10%;
+  margin-left: 20%; 
 }
 
 .productInfo {
-  margin-top: 10%;
+  display: none;
 }
 
 .cartFont {
@@ -412,6 +412,9 @@
 
 .infoTitle {
   font-size: 150% !important;
+  margin-top: 5% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .infoPrice {
@@ -518,6 +521,10 @@
 
 .infoInput {
   margin-top: 2%;  
+}
+
+.productInfoSmlScrn {
+  display: none;
 }
 
 }
@@ -650,7 +657,10 @@
   width: 6% !important;
   margin-left: 5px !important;
   margin-right: -280px !important;
+}
 
+.productInfoSmlScrn {
+  display: none;
 }
 
 }

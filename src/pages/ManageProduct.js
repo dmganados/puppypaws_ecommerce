@@ -17,7 +17,8 @@ export default function ManageProduct() {
 				Authorization: `Bearer ${userCredentials}`
 			}
 		}).then(res => res.json()).then(inventoryData => {	
-			setInventoryCollection(inventoryData);				
+			setInventoryCollection(inventoryData);	
+			// console.log(inventoryData)			
 		});
 	},[]);
 

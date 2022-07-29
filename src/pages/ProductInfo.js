@@ -16,8 +16,7 @@ export default function ProductInfo() {
 
 	// console.log(productName)
 	useEffect(() => {
-		pruductDetails();
-		addToCart();
+		pruductDetails();		
 	},[])
 
 	// Display the product information
@@ -32,17 +31,13 @@ export default function ProductInfo() {
 		})
 
 	}
-	// console.log(pruductDetails)
-
-	// Work on preventDefault
-	// Continue if else
-	// Work on Cart
-
+		
+	// Function for adding products to the cart	
 	const addToCart = async (submitEvent) => {
 		submitEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;	
 
-		await fetch('http://localhost:8000/orders/create-order/', {
+		await fetch('https://limitless-brushlands-90925.herokuapp.com/orders/create-order/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -53,7 +48,9 @@ export default function ProductInfo() {
 				quantity: quantity
 			})
 		}).then(res => res.json()).then(cart => {
-			if (cart) {
+
+			// User will receive responses if quantity field is filled or not
+			if (quantity != 0) {
 				setQuantity('');
 				Swal.fire({
 				  position: 'center',
@@ -63,13 +60,20 @@ export default function ProductInfo() {
 				  timer: 1500
 				})
 			} else {
-
+				Swal.fire({
+				  position: 'center',
+				  icon: 'error',
+				  title: 'Quantity is required',
+				  showConfirmButton: false,
+				  timer: 1500
+				})
 			}
 		})
 	}
 
 	return(
 		<div>
+			{/*This appears in large screen*/}
 			<Container className="productInfo">
 				<Row>
 					<Col>
@@ -81,13 +85,27 @@ export default function ProductInfo() {
 						<h3 className="infoPrice">PHP {sellingPrice}</h3><br/>
 						<h6 className="infoQuantity">Quantity</h6>	
 						<input type="number" min="1" className="infoInput" value={quantity} onChange={e=> setQuantity(e.target.value)} />	<br/><br/>
-						<Button onClick={e => addToCart(e)} className="createBtn">Add to Cart</Button>
-
-						
+						<Button onClick={e => addToCart(e)} className="createBtn">Add to Cart</Button>						
 					</Col>				
 				</Row>				
-			</Container>		
+			</Container>	
 
+		{/*This appears in small screen*/}
+			<Container className="productInfoSmlScrn">				
+					<img src={productImage} className="infoImage" />					
+					<Col>
+						<h1 className="infoTitle">{productName}</h1>
+					</Col>					
+					<p className="infoDescrip">{description}</p>
+					<h3 className="infoPrice">PHP {sellingPrice}</h3>
+					<h6 className="infoQuantity">Quantity</h6>	
+					<input type="number" min="1" className="infoInput" value={quantity} onChange={e=> setQuantity(e.target.value)} />	<br/><br/>
+					<Button onClick={e => addToCart(e)} className="createBtn">Add to Cart</Button>
+
+			</Container>	
+
+				
+				
 		
 			
 		</div>
