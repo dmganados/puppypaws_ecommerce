@@ -3,11 +3,8 @@ import { useState, useEffect } from 'react';
 
 export default function Cart() {
 
-	const [ordersCollection, setOrdersCollection] = useState([]);
+	const [ordersCollection, setOrdersCollection] = useState([]);	
 	let userCredentials = localStorage.accessToken;	
-	let ordersObject = ordersCollection.orders;
-	// console.log(ordersObject)
-	// let data = ordersObject.map(displayOrders)
 
 	// Get the order list
 	useEffect(async() => {
@@ -17,44 +14,35 @@ export default function Cart() {
 			headers: {
 				Authorization: `Bearer ${userCredentials}`
 			}
-		}).then(res => res.json()).then(orders => {
-			setOrdersCollection(orders);
-			// console.log(orders)
-		})		
-		// displayOrders();
-	},[])
+		}).then(res => res.json()).then(order => {
+			setOrdersCollection(order.orders);					
+		});	
+		
+	},[]);
+
 
 	// Displaying the order list in the table
-	const displayOrders = async (val, key) => {
-		// console.log(val.productId)
-		// await fetch('https://limitless-brushlands-90925.herokuapp.com/products/:productId')
-
-		// let image = val.productImg
-		// console.log(val)
-
+	const displayOrders = (val, key) => {
+		let id = val.productId;
 		return(
 			<tr key={key}>
-				<td></td>
-				<td>{val.productName}</td>
-				<td>PHP {val.sellingPrice}</td>
-				<td>{val.quantity}</td>
-				<td>PHP {val.subtotal}</td>
+				<td><img style={{width:50, height:70}} src={val.productImg} className="tableImage" /></td>
+				<td className="tableData">{val.productName}</td>
+				<td className="tableData">PHP {val.sellingPrice}</td>
+				<td className="tableData">{val.quantity}</td>
+				<td className="tableData">PHP {val.subtotal}</td>
 			</tr>
-		)
-
-		
+		)		
 	}
 
-	// console.log(displayOrders)	
-
-	// Work on diplaying image
-	// Adjust the font of the table
-	// Work on diplaying the product info
+	// Work on hiding orders with 0 quantity
+	// Work on the total amount
+	// Try to work on removing an order
 
 	return (
 		<div className="App">
 			<Container>
-				<table className="table table-striped mt-4 productTable">
+				<table className="table table-striped mt-4">
 					<thead>
 						<tr>
 							<th className="tableTitle">Image</th>
@@ -63,28 +51,12 @@ export default function Cart() {
 							<th className="tableTitle">Quantity</th>
 							<th className="tableTitle">Subtotal</th>
 						</tr>
-					</thead>
+					</thead>	
 					<tbody>
-						{/*{ordersObject.map(displayOrders)}*/}
+						{ordersCollection.map(displayOrders)}
 					</tbody>
 				</table>
-			</Container>
-
-			<table className="table table-striped mt-4 tableSmallScrn">
-					<thead>
-						<tr>
-							<th className="tableTitle">Image</th>
-							<th className="tableTitle">Product Name</th>
-							<th className="tableTitle">Price</th>
-							<th className="tableTitle">Quantity</th>
-							<th className="tableTitle">Subtotal</th>
-
-						</tr>
-					</thead>
-					<tbody>
-						{/*{ordersObject.map(displayOrders)}*/}
-					</tbody>
-				</table>
+			</Container>		
 		</div>
 	)
 }

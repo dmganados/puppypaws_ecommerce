@@ -7,6 +7,7 @@ export default function ManageProduct() {
 	
 	const [inventoryCollection, setInventoryCollection] = useState([]);			
 	let userCredentials = localStorage.accessToken;	
+	// console.log(inventoryCollection)
 
 	useEffect(async() =>  {	
 		

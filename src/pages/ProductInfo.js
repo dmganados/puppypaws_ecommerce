@@ -1,7 +1,6 @@
 import {Button, Container, Col, Row} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Cart from './Cart';
 import Swal from 'sweetalert2';
 
 
