@@ -24,6 +24,7 @@ export default function Cart() {
 	// Displaying the order list in the table
 	const displayOrders = (val, key) => {
 		let id = val.productId;
+		// console.log(val)
 		return(
 			<tr key={key}>
 				<td><img style={{width:50, height:70}} src={val.productImg} className="tableImage" /></td>
@@ -35,7 +36,7 @@ export default function Cart() {
 		)		
 	}
 
-	// Work on hiding orders with 0 quantity
+	// Can't hide the zero, instead, made a function in the input that user can't input a zero alone. Will work on if the input is more than 1 zero.
 	// Work on the total amount
 	// Try to work on removing an order
 
