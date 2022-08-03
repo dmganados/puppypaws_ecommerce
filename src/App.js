@@ -9,6 +9,7 @@ import CreateProduct from './components/CreateProduct';
 import Edit from './pages/Edit';
 import ProductInfo from './pages/ProductInfo';
 import Cart from './pages/Cart'
+import Profile from './pages/Profile'
 import { UserProvider } from './UserContext'
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
 
@@ -72,6 +73,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/products/:id' element={<ProductInfo />} />
             <Route path='/my-orders' element={<Cart />} />
+            <Route path='/profile' element={<Profile />} />
           </Routes>
       </Router>
       </UserProvider>

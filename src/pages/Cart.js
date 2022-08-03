@@ -17,6 +17,7 @@ export default function Cart() {
 			}
 		}).then(res => res.json()).then(order => {
 			let granTotal = order.totalAmount;
+			// Filter the subtotal that is not zero so that only the ones that has amount will be displayed.			
 			let orderList = order.orders;
 			let notZero = orderList.filter(obj => obj.subtotal > 0);
 			setOrdersCollection(notZero);	
@@ -27,11 +28,8 @@ export default function Cart() {
 
 
 	// Displaying the order list in the table
-	const displayOrders = (val, key) => {
-		let id = val.productId;
-		let amount = val
-		// let result = amount.includes('null', 0)
-		// console.log(val)
+	const displayOrders = (val, key) => {		
+	
 		return(
 			<tr key={key}>
 				<td><img style={{width:50, height:70}} src={val.productImg} className="tableImage" /></td>
@@ -43,7 +41,7 @@ export default function Cart() {
 		)		
 	}
 
-	// Try to work on removing an order
+	
 	return (
 		<div className="App">
 			<Container>
@@ -60,12 +58,6 @@ export default function Cart() {
 					<tbody>
 						{ordersCollection.map(displayOrders)}
 					</tbody>
-
-					{/*<Row>
-						<Col>
-							<td className="grossTotal"><h5 >Total Amount: </h5></td>	
-						</Col>
-					</Row>*/}
 				</table>
 				<Row >
 					<Col >
