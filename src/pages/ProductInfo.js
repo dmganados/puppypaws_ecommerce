@@ -11,18 +11,11 @@ export default function ProductInfo() {
 	let [productImage, setProductImage] = useState('');
 	let [description, setDescription] = useState('');
 	let [sellingPrice, setSellingPrice] = useState('');
-	let [quantity, setQuantity] = useState('');
-	let [isAssign, setIsAssign] = useState(false);
-
+	let [quantity, setQuantity] = useState('');		
+	
 	useEffect(() => {
-		pruductDetails();	
-
-		if (quantity !== '' && quantity !== '0') {
-			setIsAssign(true);
-		} else {
-			setIsAssign(false);
-		}	
-	},[quantity])
+		pruductDetails();			
+	},[])
 
 	// Display the product information
 	const pruductDetails = async () => {
@@ -34,7 +27,6 @@ export default function ProductInfo() {
 			setSellingPrice(data.sellingPrice);			
 			
 		})
-
 	}
 		
 	// Function for adding products to the cart	
@@ -42,7 +34,7 @@ export default function ProductInfo() {
 		submitEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;	
 
-		await fetch('http://localhost:8000/orders/create-order/', {
+		await fetch('https://limitless-brushlands-90925.herokuapp.com/orders/create-order/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -90,20 +82,12 @@ export default function ProductInfo() {
 						<h3 className="infoPrice">PHP {sellingPrice}</h3><br/>
 						<h6 className="infoQuantity">Quantity</h6>	
 						<input type="number" min="1" className="infoInput" value={quantity} onChange={e=> setQuantity(e.target.value)} />	<br/><br/>
-
-						{
-							isAssign ?
-								<Button onClick={e => addToCart(e)} className="createBtn">Add to Cart</Button>								
-							:							
-								<Button className="createBtn" disabled>Add to Cart</Button>
-						}
-						
-												
+						<Button onClick={e => addToCart(e)} className="createBtn">Add to Cart</Button>										
 					</Col>				
 				</Row>				
 			</Container>	
 
-		{/*This appears in small screen*/}
+			{/*This appears in small screen*/}
 			<Container className="productInfoSmlScrn">				
 					<img src={productImage} className="infoImage" />					
 					<Col>
@@ -113,20 +97,8 @@ export default function ProductInfo() {
 					<h3 className="infoPrice">PHP {sellingPrice}</h3>
 					<h6 className="infoQuantity">Quantity</h6>	
 					<input type="number" min="1" className="infoInput" value={quantity} onChange={e=> setQuantity(e.target.value)} />	<br/><br/>
-					
-					{
-						isAssign ?
-							<Button onClick={e => addToCart(e)} className="createBtn">Add to Cart</Button>								
-						:							
-							<Button className="createBtn" disabled>Add to Cart</Button>
-					}
-
-			</Container>	
-
-				
-				
-		
-			
+					<Button onClick={e => addToCart(e)} className="createBtn">Add to Cart</Button>
+			</Container>			
 		</div>
 	)
 }

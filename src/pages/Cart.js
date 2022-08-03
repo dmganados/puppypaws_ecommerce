@@ -1,10 +1,11 @@
-import { Button, Container } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
 export default function Cart() {
 
 	const [ordersCollection, setOrdersCollection] = useState([]);	
-	let userCredentials = localStorage.accessToken;	
+	const [total, setTotal] = useState('')
+	let userCredentials = localStorage.accessToken;
 
 	// Get the order list
 	useEffect(async() => {
@@ -15,7 +16,11 @@ export default function Cart() {
 				Authorization: `Bearer ${userCredentials}`
 			}
 		}).then(res => res.json()).then(order => {
-			setOrdersCollection(order.orders);					
+			let granTotal = order.totalAmount;
+			let orderList = order.orders;
+			let notZero = orderList.filter(obj => obj.subtotal > 0);
+			setOrdersCollection(notZero);	
+			setTotal(granTotal);		
 		});	
 		
 	},[]);
@@ -24,6 +29,8 @@ export default function Cart() {
 	// Displaying the order list in the table
 	const displayOrders = (val, key) => {
 		let id = val.productId;
+		let amount = val
+		// let result = amount.includes('null', 0)
 		// console.log(val)
 		return(
 			<tr key={key}>
@@ -36,14 +43,11 @@ export default function Cart() {
 		)		
 	}
 
-	// Can't hide the zero, instead, made a function in the input that user can't input a zero alone. Will work on if the input is more than 1 zero.
-	// Work on the total amount
 	// Try to work on removing an order
-
 	return (
 		<div className="App">
 			<Container>
-				<table className="table table-striped mt-4">
+				<table className="table table-striped mt-5">
 					<thead>
 						<tr>
 							<th className="tableTitle">Image</th>
@@ -56,7 +60,24 @@ export default function Cart() {
 					<tbody>
 						{ordersCollection.map(displayOrders)}
 					</tbody>
+
+					{/*<Row>
+						<Col>
+							<td className="grossTotal"><h5 >Total Amount: </h5></td>	
+						</Col>
+					</Row>*/}
 				</table>
+				<Row >
+					<Col >
+						<h5 className="totalAmount">Total Amount: </h5>
+					</Col>
+					
+					<Col className="total">
+					<span >PHP {total}</span>
+					</Col>
+				</Row>
+				<Button className="mt-3 checkout">Checkout</Button>
+
 			</Container>		
 		</div>
 	)
