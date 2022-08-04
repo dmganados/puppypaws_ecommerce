@@ -714,6 +714,57 @@
   background-color: #084887 !important; 
 }
 
+.name {
+  display: inline !important;
+}
+
+.nameData {
+  margin-left: 3% !important;
+  display: inline-block;
+}
+
+.phone {
+  margin-top: 2% !important;
+  display: inline-block;
+}
+
+.phonData {
+  display: inline-block !important;
+  margin-left: 3% !important;
+}
+
+.email {
+  display: inline;
+}
+
+.emailData {
+  margin-left: 3%;
+}
+
+.footer {
+  background-color: #F7F5FB;
+
+}
+
+.footerText {
+  /*margin-top: 20%;*/
+}
+
+.contact {
+  display: block;
+}
+
+
+.contactDetails {
+  margin-left: 1% !important;
+}
+
+.socialMedia {
+  width: 3%;
+  margin-left: 2%;
+  margin-top: 1%;
+}
+
 }
 
 .fileError {

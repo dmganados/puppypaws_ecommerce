@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import AppNavBar from './components/AppNavBar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import Register from './pages/Register';
@@ -75,6 +76,7 @@ function App() {
             <Route path='/my-orders' element={<Cart />} />
             <Route path='/profile' element={<Profile />} />
           </Routes>
+        <Footer />
       </Router>
       </UserProvider>
   );

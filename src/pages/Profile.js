@@ -17,7 +17,7 @@ export default function Profile() {
 	});
 
 	const getProfile = async () => {
-		await fetch('http://localhost:8000/users/users', {
+		await fetch('https://limitless-brushlands-90925.herokuapp.com/users/users', {
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${userCredentials}`
@@ -35,13 +35,21 @@ export default function Profile() {
 			<Container className="mt-5">
 				<Row>
 					<Col>
-						<h5>Name:</h5>
-						<span>{firstName} {lastName}</span>
-						<h5>Phone:</h5>
-						<span >{phone}</span>
-						<h5>Email:</h5>
-						<span>{email}</span>
+						<h5 className="name">Name:</h5>
+						<span className="nameData">{firstName} {lastName}</span>						
 					</Col>				
+				</Row>
+				<Row>
+					<Col>
+						<h5 className="phone">Phone:</h5>
+						<span className="phonData">{phone}</span>
+					</Col>
+				</Row>
+				<Row className="mt-3">
+					<Col>
+						<h5 className="email">Email:</h5>
+						<span className="emailData">{email}</span>
+					</Col>
 				</Row>
 			</Container>
 		</>

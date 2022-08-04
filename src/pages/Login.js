@@ -9,15 +9,12 @@ import { Navigate } from 'react-router-dom';
 export default function Login() {
 
 	const { user, setUser } = useContext(UserContext);
-	// console.log(user);
-
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	let addressSign = email.search('@')
 	let dns = email.search('com')
 	const [isActive, setIsActive] = useState(false);
-	const [isValid, setIsValid] = useState(false);
-	// console.log(localStorage)
+	const [isValid, setIsValid] = useState(false);	
 
 	useEffect(() => {
 		if (dns !== -1 && addressSign !== -1 ) {
