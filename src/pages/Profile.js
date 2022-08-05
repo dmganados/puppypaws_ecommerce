@@ -45,7 +45,7 @@ export default function Profile() {
 						<span className="phonData">{phone}</span>
 					</Col>
 				</Row>
-				<Row className="mt-3">
+				<Row>
 					<Col>
 						<h5 className="email">Email:</h5>
 						<span className="emailData">{email}</span>
