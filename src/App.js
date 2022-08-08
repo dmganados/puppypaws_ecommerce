@@ -76,7 +76,7 @@ function App() {
             <Route path='/my-orders' element={<Cart />} />
             <Route path='/profile' element={<Profile />} />
           </Routes>
-        <Footer className="appFooter" />
+        <Footer />
       </Router>
       </UserProvider>
   );

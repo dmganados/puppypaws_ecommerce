@@ -12,10 +12,11 @@ function AppNavBar() {
 	return(
 		<Navbar id="navigationBar" expand="lg">
 			<Container>
-				<Navbar.Brand>E-commerce App</Navbar.Brand>	
-					<Navbar.Toggle aria-controls="basic-navbar-nav"  />
-					<Navbar.Collapse id="basic-navbar-nav">						
-						<Nav className="ml-auto d-block navLists">					
+				<Navbar.Brand><a href="/"><img className="navLogo" src="https://res.cloudinary.com/dc7ygfgw5/image/upload/c_thumb,w_200,g_face/v1659935305/theme%20photos/Puppy_Paws__1_-removebg-preview_tvf4ay.png" alt="Puppy Paws logo" /></a></Navbar.Brand>	
+				<Navbar.Brand><a href="/"><img className="navLogoLg" src="https://res.cloudinary.com/dc7ygfgw5/image/upload/v1659935305/theme%20photos/Puppy_Paws__1_-removebg-preview_tvf4ay.png" alt="Puppy Paws logo" /></a></Navbar.Brand>
+					<Navbar.Toggle aria-controls="basic-navbar-nav "/>
+					<Navbar.Collapse id="basic-navbar-nav ">						
+						<Nav className="ml-auto d-block navList">					
 							<Nav.Link href="/" className="nav-link d-block d-sm-inline d-md-block d-lg-inline navOptions">Home</Nav.Link>
 							
 							<Nav.Link href="/catalog"className="nav-link d-block d-sm-inline d-md-block d-lg-inline navOptions">Catalog</Nav.Link>
