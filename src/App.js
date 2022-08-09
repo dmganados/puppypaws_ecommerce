@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import AppNavBar from './components/AppNavBar';
+import UserNavBar from './components/UserNavBar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
@@ -63,6 +64,7 @@ function App() {
     
       <UserProvider value={{user, setUser}} >
       <Router>
+        <UserNavBar />
         <AppNavBar />
           <Routes>          
             <Route path='/' element={<Home />} />
