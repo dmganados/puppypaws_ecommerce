@@ -6,7 +6,7 @@ export default function UserNavBar() {
 		<Navbar className="userNav">
 			<Container className="userContainer">
 				<Dropdown className="navigationUser">
-					<Dropdown.Toggle className="dropdown-basic">
+					<Dropdown.Toggle variant="none" className="userDropdown">
 						<svg xmlns="http://www.w3.org/2000/svg" className="bi bi-person-fill personNav" viewBox="0 0 16 16">
 						  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 						</svg>
@@ -27,9 +27,5 @@ export default function UserNavBar() {
 	)
 }
 
-// Finish UserNavBar
-// Adjust the height of the Navbar
-// Set what tab is shown in the navbar when a user logs in
-// Change the images
-// Finish the theme
+
 

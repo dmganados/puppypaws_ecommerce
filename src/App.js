@@ -64,7 +64,7 @@ function App() {
     
       <UserProvider value={{user, setUser}} >
       <Router>
-        <UserNavBar />
+        {/*// <UserNavBar />*/}
         <AppNavBar />
           <Routes>          
             <Route path='/' element={<Home />} />

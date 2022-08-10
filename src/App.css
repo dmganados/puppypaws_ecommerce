@@ -171,6 +171,16 @@
   font-size: 90%;
 }
 
+.personNav {
+  margin-left: -92% !important;
+  width: 12% !important;   
+}
+
+.userDropdown {
+  background-color: #F58A07 !important;
+  color: black !important;  
+}
+
 .title {
   margin-top: -2% !important;
 }
@@ -542,6 +552,11 @@
   font-size: 90%;
 }
 
+.personNav {
+  margin-left: -92% !important;
+  width: 12% !important;
+}
+
 .cartFont {
   width: 5% !important;
   margin-left: 5px !important;
@@ -717,25 +732,25 @@
  font-family: 'Merriweather Sans', sans-serif;
 }
 
+
 .userNav {  
   background-color: #F7F5FB !important;  
   height: 30px !important;
 }
 
-.userContainer {
-  display: grid !important;  
-  grid-template-columns: repeat(6, 1fr);
 
+.userDropdown {
+  width: 15% !important;
+  /*height: 15px !important;*/
+  background-color: #F58A07 !important;
+  color: black !important;
+  /*margin-left: -20%;*/
+  /*margin-right: 5%;*/
 }
 
-.navigationUser {
-  grid-column: 6/6 !important;
-  /*margin-left: auto !important;*/  
-}
+
 .personNav {
-  width: 15%;  
-  margin-right: auto !important;
-  margin-left: auto !important;
+  width: 90% !important;    
 }
 
 .subtext {
@@ -756,10 +771,22 @@
 
 .navOptions {
   color: #F7F5FB !important;
-  font-size: 90%;
+  font-size: 90%;  
 }
 
+.navList {
+  margin-left: auto !important;
+}
 
+.userDrop { 
+  display: inline;
+  margin-left: 55%;
+}
+
+.icons {
+  /*display: ;*/
+  margin-top: 3%;
+}
 
 #editFunction {
   color: green;
@@ -866,6 +893,7 @@
 }
 
 .cartFont {
+  display: inline !important;
   width: 6% !important;
   margin-left: 5px !important;
   margin-right: -280px !important;
