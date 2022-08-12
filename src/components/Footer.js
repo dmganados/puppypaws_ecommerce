@@ -7,7 +7,7 @@ export default function Footer() {
 	return(
 		<div className="footer">
 			<Container className="mt-5 footerText">
-				<Row className="logo">
+				<Row className="footerLogo">
 					<Col>
 						<a href="/"> <img className="logoPic" src="https://res.cloudinary.com/dc7ygfgw5/image/upload/v1659932081/theme%20photos/Puppy_Paws__1_-removebg-preview_tvf4ay.png" alt="Puppy Paws logo" /></a>
 					</Col>	

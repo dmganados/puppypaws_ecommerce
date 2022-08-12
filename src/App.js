@@ -73,7 +73,7 @@ function App() {
             <Route path='/create-product' element={<CreateProduct />} />
             <Route path='/manage-product/update-product/:id' element={<Edit />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login />} />
+            <Route path='/login' element={<Login />} />           
             <Route path='/products/:id' element={<ProductInfo />} />
             <Route path='/my-orders' element={<Cart />} />
             <Route path='/profile' element={<Profile />} />

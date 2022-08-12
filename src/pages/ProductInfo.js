@@ -1,6 +1,6 @@
 import {Button, Container, Col, Row} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Swal from 'sweetalert2';
 
 
@@ -12,7 +12,7 @@ export default function ProductInfo() {
 	let [description, setDescription] = useState('');
 	let [sellingPrice, setSellingPrice] = useState('');
 	let [quantity, setQuantity] = useState('');		
-	
+
 	useEffect(() => {
 		pruductDetails();			
 	},[])
@@ -24,8 +24,7 @@ export default function ProductInfo() {
 			setProductName(data.productName);
 			setProductImage(data.productImg);
 			setDescription(data.description);
-			setSellingPrice(data.sellingPrice);			
-			
+			setSellingPrice(data.sellingPrice);				
 		})
 	}
 		
@@ -33,7 +32,7 @@ export default function ProductInfo() {
 	const addToCart = async (submitEvent) => {
 		submitEvent.preventDefault();
 		let userCredentials = localStorage.accessToken;	
-
+		
 		await fetch('https://limitless-brushlands-90925.herokuapp.com/orders/create-order/', {
 			method: 'POST',
 			headers: {
@@ -45,28 +44,35 @@ export default function ProductInfo() {
 				quantity: quantity
 			})
 		}).then(res => res.json()).then(cart => {
-
-			// User will receive responses if quantity field is filled or not
-			if (quantity != 0) {
-				setQuantity('');
-				Swal.fire({
-				  position: 'center',
-				  icon: 'success',
-				  title: 'New product is added to your cart',
-				  showConfirmButton: false,
-				  timer: 1500
-				})
+			// If user is undefined he will be routed to login page 
+			if (cart.auth === 'Authorization Failed') {				
+				window.location.href="/login"				
 			} else {
-				Swal.fire({
-				  position: 'center',
-				  icon: 'error',
-				  title: 'Quantity is required',
-				  showConfirmButton: false,
-				  timer: 1500
-				})
-			}
-		})
+				return false	
+			}			
+		})	
+
+		// User will receive responses if quantity field is filled or not
+		if (quantity != 0) {
+			setQuantity('');
+			Swal.fire({
+			  position: 'center',
+			  icon: 'success',
+			  title: 'New product is added to your cart',
+			  showConfirmButton: false,
+			  timer: 1500
+			})
+		} else {
+			Swal.fire({
+			  position: 'center',
+			  icon: 'error',
+			  title: 'Quantity is required',
+			  showConfirmButton: false,
+			  timer: 1500
+			})
+		}	
 	}
+	
 
 	return(
 		<div>
