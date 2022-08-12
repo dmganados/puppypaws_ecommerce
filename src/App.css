@@ -1,6 +1,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@300&family=Merriweather+Sans&display=swap');
 
+* {
+  box-sizing: border-box;
+}
 
 .gadgetImage1 {
   width: 60% !important;
@@ -808,6 +811,7 @@
   grid-row: 2/2;
   grid-column: 3/4 !important;
   text-align: center;
+
 }
 
 .navLogoLg {
@@ -852,6 +856,11 @@
  grid-column: 5/6;
 }
 
+.banner {
+  width: 100%;
+  height: auto;
+  margin: 0px;
+}
 
 
 #editFunction {
@@ -941,12 +950,6 @@
   text-align: center;
   background-color: #909CC2 !important;  
   padding: 5%;
-}
-
-.banner {
-  width: 100%;
-  height: auto;
-  margin: 0px;
 }
 
 .infoImage {

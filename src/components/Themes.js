@@ -1,8 +1,4 @@
 import {Row, Col, Card, Container} from 'react-bootstrap';
-import phone from './banner/phone1.png'
-import vReality from './banner/vr_glass.jpg'
-import controller from './banner/controller.jpg'
-import airpods from './banner/airpods.jpg'
 
 export default function Theme() {
 	return(
@@ -12,12 +8,12 @@ export default function Theme() {
 					<Card className="cardHighlight">
 						<Card.Body>
 							<Col>
-							<Card.Img src={phone} className="img-fluid mb-2 mr-2 p-1 d-inline d-sm-inline d-md-inline d-lg-inline gadgetImage1" />
-							<Card.Img src={vReality} className="img-fluid mb-2 p-1 d-inline d-sm-inline d-md-inline d-lg-inline gadgetImage2" width="150" />
+							<Card.Img src="https://res.cloudinary.com/dc7ygfgw5/image/upload/v1660315648/theme%20photos/karsten-winegeart-sytld_poGLc-unsplash_bj8zrz.jpg" className="img-fluid mb-2 mr-2 p-1 d-inline d-sm-inline d-md-inline d-lg-inline gadgetImage1" />
+							<Card.Img src="https://res.cloudinary.com/dc7ygfgw5/image/upload/v1660315649/theme%20photos/alicja-gancarz-e3EHK9pzmLU-unsplash_lpigy2.jpg" className="img-fluid mb-2 p-1 d-inline d-sm-inline d-md-inline d-lg-inline gadgetImage2" width="150" />
 							</Col>
 							<Col>
-							<Card.Img src={airpods} className="img-fluid d-inline d-sm-inline d-md-inline d-lg-inline mr-2 p-1 gadgetImage3" />
-							<Card.Img src={controller} className="img-fluid d-inline d-sm-inline d-md-inline d-lg-inline p-2 gadgetImage4" />							
+							<Card.Img src="https://res.cloudinary.com/dc7ygfgw5/image/upload/v1660316581/theme%20photos/manja-vitolic-bxvrvRNxksg-unsplash_fjkd0e.jpg" className="img-fluid d-inline d-sm-inline d-md-inline d-lg-inline mr-2 p-1 gadgetImage3" />
+							<Card.Img src="https://res.cloudinary.com/dc7ygfgw5/image/upload/v1660315648/theme%20photos/daniel-lincoln-UNGYOAr0w5k-unsplash_y39ws3.jpg" className="img-fluid d-inline d-sm-inline d-md-inline d-lg-inline p-2 gadgetImage4" />							
 							</Col>
 
 							<Card.Title className="pt-4 fw-bolder themeText">Phones and Gadgets</Card.Title>

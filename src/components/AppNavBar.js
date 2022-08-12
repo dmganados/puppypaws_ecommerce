@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Navbar, Nav, Container, Dropdown, Row, Col } from 'react-bootstrap';
 import UserContext from '../UserContext'
 
@@ -10,7 +10,9 @@ function AppNavBar() {
 	const clear = () => {
 		localStorage.clear();
 		window.location.href="/login";
-	}
+	};
+
+	
 
 	return(		
 		<div id="navigationBar">
@@ -26,8 +28,8 @@ function AppNavBar() {
 					<Navbar expand="lg">
 					<Navbar.Toggle aria-controls="basic-navbar-nav "/>
 					<Navbar.Collapse className="basic-navbar-nav">	
-					<Nav>							
-						<Nav.Link href="/" className="nav-link navOptions">Home</Nav.Link>		
+					<Nav>
+						<Nav.Link href="/" className="nav-link navOptions" >Home</Nav.Link>		
 						<Nav.Link href="/catalog" className="nav-link navOptions">Catalog</Nav.Link>
 						{
 							user.id === null ?
