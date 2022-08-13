@@ -5,41 +5,6 @@
   box-sizing: border-box;
 }
 
-.gadgetImage1 {
-  width: 60% !important;
-  height: auto !important;
-  margin-left: -100px !important; 
- 
-}
-
-.gadgetImage2 {
-  width: 67% !important;
-  height: auto !important;
-  margin-right: -100px !important;  
-
-}
-
-.gadgetImage3 {
-   width: 61% !important;
-  height: auto !important; 
-  margin-left: -60px !important;
-}
-
-.gadgetImage4 { 
-  width: 69% !important;
-  height: auto !important; 
-  margin-right: -60px !important;
-}
-
-
-.nav{
-  background-color: #F58A07;
-}
-
-
-
-
-
 .each-slide > div {
   display: flex;
   align-items: center;
@@ -52,10 +17,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .each-slide {
-    width: 100% !important;
-    height: 150px !important;
-  }
+
 }
 
 @media only screen and (min-width: 768px) {
@@ -78,17 +40,10 @@
   font-size: 100%;
 }
 
-@media only screen and (max-width: 600px) {
-  
-}
 
 @media only screen and (min-width: 600px) {
   #regCard {
     width: 50% !important;
-    /*padding-left: 10% !important;*/
-    /*padding-right: 10% !important;*/
-    /*margin: 20px !important;*/
-
   }
 }
 
@@ -164,9 +119,6 @@
 .rowNavLogo {
   grid-column: 2/4;
   display: block;
-  /*margin-left: 35% !important;*/
-  /*margin-right: auto;*/
-  /*position: static;*/
 }
 
 .navLogoLg {
@@ -202,9 +154,11 @@
 
 .personNav {
   width: 30px;
-  /*margin-left: -92% !important;*/
-  /*width: 100% !important; */
-  /*margin-top: 10%;  */
+}
+
+.each-slide {
+  width: 100% !important;
+  height: 150px !important;
 }
 
 .title {
@@ -775,8 +729,6 @@
   height: 30px !important;
 }
 
-
-
 .subtext {
   font-size: 105%;
 }
@@ -787,13 +739,10 @@
  
 }
 
-
-
 #navigationBar {  
   background-color: #F58A07 !important;
   font-family: 'Merriweather Sans', sans-serif; 
 }
-
 
 .navContainer {
   display: grid;
@@ -811,15 +760,12 @@
   grid-row: 2/2;
   grid-column: 3/4 !important;
   text-align: center;
-
 }
 
 .navLogoLg {
  display: block;
  width: 100% !important;
  margin-left: 35% !important;
- /*margin-top: -5px;*/
- /*margin-right: auto !important;*/
 }
 
 .navOptions {
@@ -862,6 +808,32 @@
   margin: 0px;
 }
 
+.cardPosition {   
+  position: static;
+  margin-top: 5%;  
+}
+
+.cardHighlight {  
+  min-height: 100% !important;
+  text-align: center;
+  /*background-color: #909CC2 !important;  */
+  
+}
+
+.themeTopImage {
+ width: 100% !important; 
+}
+
+.themeTopImageFood {
+  width: 100% !important;
+  height: 96% !important;
+}
+
+.themeTopText {
+  font-weight: bold;
+  font-size: 18px;
+  font-family: 'Merriweather Sans', sans-serif;
+}
 
 #editFunction {
   color: green;
@@ -940,17 +912,7 @@
   margin: 4% auto 4% auto;
 }
 
-.cardPosition {   
-  position: static;
-  margin-top: 5%;  
-}
 
-.cardHighlight {  
-  min-height: 100% !important;
-  text-align: center;
-  background-color: #909CC2 !important;  
-  padding: 5%;
-}
 
 .infoImage {
   width: 80%;
