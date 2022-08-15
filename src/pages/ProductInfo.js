@@ -82,7 +82,7 @@ export default function ProductInfo() {
 					<Col>
 						<img src={productImage} className="infoImage" />
 					</Col>
-					<Col>
+					<Col className="infoCol">
 						<h1 className="infoTitle">{productName}</h1>	
 						<p className="infoDescrip">{description}</p>
 						<h3 className="infoPrice">PHP {sellingPrice}</h3><br/>

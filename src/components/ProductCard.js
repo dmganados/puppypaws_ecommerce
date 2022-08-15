@@ -8,8 +8,6 @@ export default function ProductCard({productProp}) {
 	let id = productProp._id;
 	let specific = {id};
 	let image = productProp.productImg;
-	// console.log(specific)
-	// console.log(id)
 
 	return(
 		<Col xs={12} md={12} className="p-2" >
