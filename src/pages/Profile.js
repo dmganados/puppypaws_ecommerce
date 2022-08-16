@@ -1,5 +1,6 @@
 import { Container, Col, Row } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default function Profile() {
 
@@ -32,6 +33,11 @@ export default function Profile() {
 	
 	return(
 		<>
+			<div>
+				<Helmet>
+					<title>Puppy Paws | Profile</title>
+				</Helmet>
+			</div>
 			<Container className="mt-5">
 				<Row>
 					<Col>

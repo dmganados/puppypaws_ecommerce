@@ -1,5 +1,6 @@
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default function Cart() {
 
@@ -43,7 +44,13 @@ export default function Cart() {
 
 	
 	return (
+
 		<div className="App">
+			<div>
+				<Helmet>
+					<title>Puppy Paws | Cart</title>
+				</Helmet>
+			</div>
 			<Container>
 				<table className="table table-striped mt-5">
 					<thead>

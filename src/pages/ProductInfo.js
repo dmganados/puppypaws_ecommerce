@@ -1,7 +1,8 @@
 import {Button, Container, Col, Row} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 
 export default function ProductInfo() {
@@ -14,11 +15,11 @@ export default function ProductInfo() {
 	let [quantity, setQuantity] = useState('');		
 
 	useEffect(() => {
-		pruductDetails();			
+		productDetails();			
 	},[])
 
 	// Display the product information
-	const pruductDetails = async () => {
+	const productDetails = async () => {
 		await fetch(`https://limitless-brushlands-90925.herokuapp.com/products/${id}`).then(res => res.json()).then(data =>
 		{
 			setProductName(data.productName);
@@ -76,6 +77,11 @@ export default function ProductInfo() {
 
 	return(
 		<div>
+			<div>
+				<Helmet>
+					<title>Puppy Paws | Catalog</title>
+				</Helmet>
+			</div>	
 			{/*This appears in large screen*/}
 			<Container className="productInfo">
 				<Row>

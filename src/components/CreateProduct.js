@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Col, Form, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 export default function CreateProduct() {
 	let [productName, setProductName] = useState('');
@@ -90,7 +91,11 @@ export default function CreateProduct() {
 	
 	return(
 		<>
-
+		<div>
+			<Helmet>
+				<title>Puppy Paws | Create Product</title>
+			</Helmet>
+		</div>
 		{/*Form for large screen*/}
 		<Container>
 		<Col className='p-5'>

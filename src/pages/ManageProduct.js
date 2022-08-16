@@ -1,6 +1,7 @@
 import { Button, Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 
 export default function ManageProduct() {
@@ -82,6 +83,11 @@ export default function ManageProduct() {
 
 	return(
 		<div className="App">
+			<div>
+				<Helmet>
+					<title>Puppy Paws | Inventory</title>
+				</Helmet>
+			</div>
 			<Container>			
 				<Button className="mt-4 createBtn" href="/create-product">Create Product +</Button>		
 			</Container>

@@ -3,6 +3,7 @@ import { Container, Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
+import { Helmet } from 'react-helmet';
 
 
 export default function Register() {
@@ -112,6 +113,11 @@ export default function Register() {
 			<Navigate to="/" replace={true} />
 		:		
 		<>
+		<div>
+			<Helmet>
+				<title>Puppy Paws | Register</title>
+			</Helmet>
+		</div>
 		<Container >
 			<h3 className="my-4 text-center registerTitle">Create your Account</h3>
 			<Form className="p-1 mt-2" onSubmit={e => registerUser(e)}>		

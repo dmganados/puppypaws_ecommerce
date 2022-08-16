@@ -2,6 +2,7 @@ import {Button, Col, Container, Form} from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 export default function Edit() {
 		
@@ -84,6 +85,11 @@ export default function Edit() {
 
 	return (
 		<div>
+			<div>
+				<Helmet>
+					<title>Puppy Paws | Update</title>
+				</Helmet>
+			</div>
 
 			{/*This will appear for large screen*/}
 			<Container className="editForm">

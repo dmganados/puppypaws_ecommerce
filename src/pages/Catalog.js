@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ProductCard from './../components/ProductCard';
 import {Col, Row, Container} from 'react-bootstrap';
-// const express = require('express');
+import { Helmet } from 'react-helmet';
 
 export default function Catalog() {
 
@@ -21,6 +21,11 @@ export default function Catalog() {
 	},[]);
 	return(
 		<>
+			<div>
+				<Helmet>
+					<title>Puppy Paws | Catalog</title>
+				</Helmet>
+			</div>
 			<Container>
 				<Row>					
 					{productCollection}

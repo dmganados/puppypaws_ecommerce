@@ -3,6 +3,7 @@ import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 import { Navigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -93,6 +94,11 @@ export default function Login() {
 			<Navigate to="/" replace={true} />
 		:
 		<>
+		<div>
+			<Helmet>
+				<title>Puppy Paws | Login</title>
+			</Helmet>
+		</div>
 		<Container >
 			<h3 className="d-flex justify-content-center loginTitle">Login to your Account</h3>
 			<Form onSubmit={e => userToken(e)} >
