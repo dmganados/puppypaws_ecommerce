@@ -20,8 +20,18 @@ export default function Theme() {
 				</Col>
 			</Row>			
 		</Container>
-		<div className="bottomThemeDiv">			
+
+	{/*This header will only show in small screen*/}
+		<h4 className="smScrnThemeTxt">Shop What your Pet Needs</h4>
+
+		<div className="bottomThemeDiv">
+				<Row className="bottomThemeText">
+					<Col>
+						<h4 className="bottomThemeHeader">Shop What your Pet Needs</h4>
+					</Col>
+				</Row>							
 				<Row className="firstCol">
+
 					<Col>
 						<img src="https://res.cloudinary.com/dc7ygfgw5/image/upload/v1660378025/theme%20photos/marthijn-brinks-XiHyfOKmDIs-unsplash_cgyqth.jpg" alt="Cat inside the pet house"  className="themeBottomImg" />
 					</Col>
@@ -45,7 +55,8 @@ export default function Theme() {
 					<Col>
 						<img src="https://res.cloudinary.com/dc7ygfgw5/image/upload/c_scale,h_1166,w_2787/v1660378025/theme%20photos/barbel-kobus-a5P5aCSF--0-unsplash_k4mncd.jpg" alt="Cat lying in the pet house" className="horizontalThemeImg" />
 					</Col>
-				</Row>					
+				</Row>		
+
 		</div>
 		<div className="themeRowButton">							
 			<Button href="/catalog" className="themeButton">Check Catalog</Button>		
@@ -54,10 +65,3 @@ export default function Theme() {
 		</div>
 	)
 }
-
-	/*
-			Work on the theme images
-			Deploy project
-			Make another branch
-
-			*/

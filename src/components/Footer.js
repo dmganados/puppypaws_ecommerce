@@ -21,7 +21,7 @@ export default function Footer() {
 							  <path fillRule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
 							</svg>
 						<span className="contactDetails">						
-							Island Garden City of Samal, Davao del Norte, Philippines
+							Philippines
 						</span>
 						</Col>			
 						<Col className="mt-2">

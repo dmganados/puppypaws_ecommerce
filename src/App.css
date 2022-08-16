@@ -186,7 +186,7 @@
 .bottomThemeDiv {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: 15%;
+  margin-top: 20%;
 }
 
 .themeBottomImg {
@@ -223,6 +223,17 @@
 .themeButton {
   font-size: 80% !important;
   background-color: #084887 !important;
+}
+
+.smScrnThemeTxt {
+  position: absolute;
+  font-size: 100%;
+  margin-top: 12%;
+  margin-left: 5% !important;
+}
+
+.bottomThemeHeader {
+  display: none;
 }
 
 .cardPosition {   
@@ -640,7 +651,7 @@
 .firstCol {
   grid-column: 1/2;
   margin-left: auto !important;
-  margin-right: -13% !important;
+  /*margin-right: -13% !important;*/
 }
 
 .secondCol {
@@ -691,6 +702,21 @@
   font-size: 90% !important;
   text-align: center;
   font-family: 'Merriweather Sans', sans-serif;
+}
+
+.bottomThemeText {
+  display: inline-block !important;
+  grid-column: 1/4;
+  margin-left: 2% !important;
+}
+
+.bottomThemeHeader {
+  font-size: 120%;
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+.smScrnThemeTxt {
+  display: none;
 }
 
 .inventoryCard {
@@ -966,6 +992,7 @@
 }
 
 .themeTopText {
+  font-size: 150% !important;
   text-align: center;
   font-family: 'Merriweather Sans', sans-serif;
 }
@@ -1024,6 +1051,18 @@
 .themeButton {
   font-size: 100% !important;
   background-color: #084887 !important;
+}
+
+.bottomThemeText {
+  display: inline-block !important;
+  grid-column: 1/5;
+  margin-left: 2% !important;
+
+}
+
+.bottomThemeHeader {
+  font-size: 200%;
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
 #editFunction {
@@ -1174,7 +1213,7 @@
 }
 
 .footerLogo { 
-  /*margin-top: -5%;*/
+  margin-top: -5%;
   grid-column: 1/1;
   width: 170%;
   margin-left: -20% !important;
